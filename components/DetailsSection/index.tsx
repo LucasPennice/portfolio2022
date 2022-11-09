@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { motion as m } from "framer-motion";
-import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../utils/layout";
-import { selectedDetailsContext } from "../pages";
+import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
+import { selectedDetailsContext } from "../../pages";
 function Details({ layoutState }: { layoutState: LayoutState }) {
-    const [currentlyViewing, setCurrentlyViewing] = layoutState;
+    const [currentMode, setCurrentMode] = layoutState;
     const selectedDetailsState = useContext(selectedDetailsContext);
     const [selectedDetails, setSelectedDetails] = selectedDetailsState!;
 
@@ -12,13 +12,13 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
     return (
         <m.div
             className="absolute bg-yellow-50 w-screen h-screen"
-            animate={currentlyViewing === PortfolioMode.Details ? "active" : "inactive"}
-            variants={calculateVariants(currentlyViewing, PortfolioMode.Details)}
+            animate={currentMode === PortfolioMode.Details ? "active" : "inactive"}
+            variants={calculateVariants(currentMode, PortfolioMode.Details)}
             {...layoutAnimationSettings}>
             {selectedDetails.company}
             <button
                 onClick={() => {
-                    setCurrentlyViewing(PortfolioMode.Main);
+                    setCurrentMode(PortfolioMode.Main);
                 }}>
                 goback
             </button>

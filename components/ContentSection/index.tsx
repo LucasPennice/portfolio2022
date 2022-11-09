@@ -1,51 +1,59 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { motion as m, MotionValue, PanInfo, useDragControls, useScroll, useTransform } from "framer-motion";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { motion as m, PanInfo, useInView } from "framer-motion";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
 import Header from "./Header";
-import Work, { WorkExperience } from "./Work/WorkSection";
+import WorkSection, { WorkExperience } from "./WorkExperience/WorkSection";
 import { selectedDetailsContext } from "../../pages";
-
+import useHandleLogoState from "../../utils/useHandleLogoState";
+import AboutSection from "./AboutSection";
+import ContactSection from "./ContactSection";
+import ForDevsSection from "./ForDevsSection";
+import useContentInView from "../../utils/useContentInView";
+export enum ContentSections {
+    hero = "Hero",
+    work = "Work",
+    forDevs = "For devs",
+    contact = "Contact",
+    about = "About",
+}
 function Content({ layoutState }: { layoutState: LayoutState }) {
+    //Context
     const selectedDetailsState = useContext(selectedDetailsContext);
     const [selectedDetails, setSelectedDetails] = selectedDetailsState!;
-    const [currentlyViewing, setCurrentlyViewing] = layoutState;
+    //Local State
+    const [currentMode, setCurrentMode] = layoutState;
     const [showLogo, setShowLogo] = useState(false);
     //Derivated state
-    const isLoadFinished = currentlyViewing !== PortfolioMode.Loading;
-
+    const isLoadFinished = currentMode !== PortfolioMode.Loading;
+    //Refs
     const contentRef = useRef<null | HTMLDivElement>(null);
+    //Currently viewing
+    const workSectionRef = useRef(null);
+    const aboutSectionRef = useRef(null);
+    const contactSectionRef = useRef(null);
+    const forDevsSectionRef = useRef(null);
 
+    const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
     useEffect(() => {
-        if (!contentRef.current) return;
-
-        contentRef.current.addEventListener("scroll", handleScroll);
-
-        return () => {
-            contentRef.current?.removeEventListener("scroll", handleScroll);
-        };
-
-        function handleScroll(e: any) {
-            const distanceToTop: number = e.target.scrollTop;
-            if (distanceToTop > 100) return setShowLogo(true);
-            return setShowLogo(false);
-        }
-    }, []);
+        console.log(sectionInView);
+    }, [sectionInView]);
+    useHandleLogoState(contentRef, setShowLogo);
 
     function openDetails(workExperience: WorkExperience) {
         setSelectedDetails(workExperience);
-        setCurrentlyViewing(PortfolioMode.Details);
+        setCurrentMode(PortfolioMode.Details);
     }
 
     return (
         <m.div
             ref={contentRef}
             className={`absolute w-full h-screen z-10 shadow-md overflow-y-scroll overflow-x-clip background ${isLoadFinished && "backgroundShrink"}`}
-            animate={currentlyViewing === PortfolioMode.Main ? "active" : "inactive"}
-            variants={calculateVariants(currentlyViewing, PortfolioMode.Main)}
+            animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
+            variants={calculateVariants(currentMode, PortfolioMode.Main)}
             {...layoutAnimationSettings}>
-            <Header showLogo={showLogo} />
+            <Header showLogo={showLogo} sectionInView={sectionInView} />
 
             <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
                 <div className={`w-full flex-col justify-center align-center relative ${isLoadFinished && "heroGrow"}`} style={{ height: "100vh" }}>
@@ -54,11 +62,11 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
                     <Laptop />
                 </div>
             </div>
-            <Work openDetails={openDetails} />
-            <OpenMobileMenu
-                openMenu={() => setCurrentlyViewing(PortfolioMode.MobileMenu)}
-                closeMenu={() => setCurrentlyViewing(PortfolioMode.Main)}
-            />
+            <WorkSection openDetails={openDetails} reference={workSectionRef} />
+            <AboutSection reference={aboutSectionRef} />
+            <ForDevsSection reference={forDevsSectionRef} />
+            <ContactSection reference={contactSectionRef} />
+            <OpenMobileMenu openMenu={() => setCurrentMode(PortfolioMode.MobileMenu)} closeMenu={() => setCurrentMode(PortfolioMode.Main)} />
         </m.div>
     );
 }
