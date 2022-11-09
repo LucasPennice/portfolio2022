@@ -12,6 +12,7 @@
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
     line-height: normal !important;
+    cursor: none !important;
 }
 
 body {

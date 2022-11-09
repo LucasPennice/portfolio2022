@@ -7,11 +7,9 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
     const selectedDetailsState = useContext(selectedDetailsContext);
     const [selectedDetails, setSelectedDetails] = selectedDetailsState!;
 
-    if (!selectedDetails) return <></>;
-
     return (
         <m.div
-            className="absolute bg-yellow-50 w-screen h-screen"
+            className="absolute w-screen h-screen bg-white"
             animate={currentMode === PortfolioMode.Details ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Details)}
             {...layoutAnimationSettings}>

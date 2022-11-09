@@ -28,7 +28,8 @@ const Header = ({ showLogo, sectionInView }: Props) => {
 
     return (
         <div
-            className="w-full h-20 z-30 hidden xl:block top-0 sticky"
+            className="w-full h-20 z-30 hidden xl:block top-0 sticky backdrop-blur-sm"
+            style={{ backgroundColor: "#F0EEEC5A" }}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}>
             <div className="h-full w-full justify-center items-center gap-36 m-auto flex relative z-0" style={{ maxWidth: 1200 }}>

@@ -36,9 +36,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     const forDevsSectionRef = useRef(null);
 
     const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
-    useEffect(() => {
-        console.log(sectionInView);
-    }, [sectionInView]);
+
     useHandleLogoState(contentRef, setShowLogo);
 
     function openDetails(workExperience: WorkExperience) {
@@ -49,24 +47,29 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     return (
         <m.div
             ref={contentRef}
-            className={`absolute w-full h-screen z-10 shadow-md overflow-y-scroll overflow-x-clip background ${isLoadFinished && "backgroundShrink"}`}
+            className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
             animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Main)}
             {...layoutAnimationSettings}>
-            <Header showLogo={showLogo} sectionInView={sectionInView} />
+            <m.div />
+            <div className="h-full z-10 shadow-md overflow-y-scroll overflow-x-clip relative">
+                <Header showLogo={showLogo} sectionInView={sectionInView} />
 
-            <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
-                <div className={`w-full flex-col justify-center align-center relative ${isLoadFinished && "heroGrow"}`} style={{ height: "100vh" }}>
-                    <h1 className="flex justify-center items-end heroText h-1/2">LUCAS</h1>
-                    <h1 className="flex justify-center items-start heroText h-1/2">PENNICE</h1>
-                    <Laptop />
+                <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
+                    <div
+                        className={`w-full flex-col justify-center align-center relative ${isLoadFinished && "heroGrow"}`}
+                        style={{ height: "100vh" }}>
+                        <h1 className="flex justify-center items-end heroText h-1/2">LUCAS</h1>
+                        <h1 className="flex justify-center items-start heroText h-1/2">PENNICE</h1>
+                        <Laptop />
+                    </div>
                 </div>
+                <WorkSection openDetails={openDetails} reference={workSectionRef} />
+                <AboutSection reference={aboutSectionRef} />
+                <ForDevsSection reference={forDevsSectionRef} />
+                <ContactSection reference={contactSectionRef} />
+                <OpenMobileMenu openMenu={() => setCurrentMode(PortfolioMode.MobileMenu)} closeMenu={() => setCurrentMode(PortfolioMode.Main)} />
             </div>
-            <WorkSection openDetails={openDetails} reference={workSectionRef} />
-            <AboutSection reference={aboutSectionRef} />
-            <ForDevsSection reference={forDevsSectionRef} />
-            <ContactSection reference={contactSectionRef} />
-            <OpenMobileMenu openMenu={() => setCurrentMode(PortfolioMode.MobileMenu)} closeMenu={() => setCurrentMode(PortfolioMode.Main)} />
         </m.div>
     );
 }

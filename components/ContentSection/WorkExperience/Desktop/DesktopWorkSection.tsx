@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { motion as m } from "framer-motion";
 import VanillaTilt from "vanilla-tilt";
 import { WorkExperience } from "../WorkSection";
+import { MouseModes, updateMouseModeContext } from "../../../../pages";
 
 function DesktopWorkSection({
     openDetails,
@@ -39,6 +40,7 @@ const appearTextUnderlineAnimation = (idx: number) => {
 
 function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkExperience): void; data: WorkExperience }) {
     const tilt = React.useRef<HTMLDivElement | null>(null);
+    const updateMouseMode = React.useContext(updateMouseModeContext);
 
     useEffect(() => {
         if (!tilt.current) return;
@@ -54,7 +56,7 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
     return (
         <aside className="flex justify-evenly items-center gap-6 w-full h-screen mb-80">
             <section style={{ width: "45%", height: "80%" }}>
-                <Text data={data} />
+                <Text data={data} openDetails={() => openDetails(data)} />
             </section>
 
             <m.section
@@ -65,6 +67,12 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 className="flex justify-center items-center"
                 style={{ width: "45%", height: "70%" }}>
                 <div
+                    onMouseEnter={() => {
+                        updateMouseMode(MouseModes.ClickForDetails);
+                    }}
+                    onMouseLeave={() => {
+                        updateMouseMode(MouseModes.Default);
+                    }}
                     ref={tilt}
                     style={{
                         width: "80%",
@@ -79,7 +87,8 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
     );
 }
 
-function Text({ data }: { data: WorkExperience }) {
+function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => void }) {
+    const updateMouseMode = React.useContext(updateMouseModeContext);
     const LETTER_WIDTH = 61.687;
     const companyNameWords = data.company.split(" ");
     return (
@@ -96,6 +105,20 @@ function Text({ data }: { data: WorkExperience }) {
             })}
             <div className="relative overflow-clip mt-5" style={{ height: 100, width: 500 }}>
                 <m.h1 style={{ fontSize: 50 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
+                    {data.role}
+                </m.h1>
+            </div>
+            <div
+                onMouseEnter={() => {
+                    updateMouseMode(MouseModes.Clickeable);
+                }}
+                onMouseLeave={() => {
+                    updateMouseMode(MouseModes.Default);
+                }}
+                onClick={openDetails}
+                className="relative overflow-clip"
+                style={{ height: 100, width: 200 }}>
+                <m.h1 style={{ fontSize: 24 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
                     {data.role}
                 </m.h1>
             </div>

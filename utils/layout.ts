@@ -7,7 +7,7 @@ export enum PortfolioMode {
 }
 export type LayoutState = [PortfolioMode, (v: PortfolioMode) => void];
 
-export const GAP_BETWEEN_MODES = "100%";
+export const GAP_BETWEEN_MODES = "110%";
 
 export const calculateVariants = (currentMode: PortfolioMode, mode: PortfolioMode) => {
     type Position = {
