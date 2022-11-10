@@ -1,6 +1,12 @@
 import * as React from "react";
-import DesktopWorkSection from "./Desktop/DesktopWorkSection";
-
+import useIsMobile from "../../../utils/useMobileScreen";
+import dynamic from "next/dynamic";
+const MobileWork = dynamic(() => import("./Mobile"), {
+    ssr: false,
+});
+const DesktopWorkSection = dynamic(() => import("./Desktop/DesktopWorkSection"), {
+    ssr: false,
+});
 export interface WorkExperience {
     company: string;
     role: string;
@@ -18,18 +24,16 @@ interface Props {
     openDetails: (workExperience: WorkExperience) => void;
 }
 const WorkSection = ({ openDetails, reference }: Props) => {
+    const isMobile = useIsMobile(1280);
+
     return (
         <div style={{ minHeight: "110vh" }} ref={reference} id="workSection">
             <div style={{ maxWidth: 2500, margin: "0 auto", minHeight: "110vh" }} className="w-full flex-col justify-start items-center">
-                <DesktopWorkSection openDetails={openDetails} workExperienceArr={workExperienceArr} />
-                <MobileWork openDetails={openDetails} />
+                {!isMobile && <DesktopWorkSection openDetails={openDetails} workExperienceArr={workExperienceArr} />}
+                {isMobile && <MobileWork openDetails={openDetails} />}
             </div>
         </div>
     );
 };
-
-function MobileWork({ openDetails }: { openDetails(workExperience: WorkExperience): void }) {
-    return <div className="xl:hidden block">Mobile</div>;
-}
 
 export default WorkSection;

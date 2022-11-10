@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion as m, PanInfo, useInView } from "framer-motion";
+import React, { useContext, useRef, useState } from "react";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
-import Header from "./Header";
 import WorkSection, { WorkExperience } from "./WorkExperience/WorkSection";
 import { selectedDetailsContext } from "../../pages";
 import useHandleLogoState from "../../utils/useHandleLogoState";
@@ -11,6 +9,16 @@ import AboutSection from "./AboutSection";
 import ContactSection from "./ContactSection";
 import ForDevsSection from "./ForDevsSection";
 import useContentInView from "../../utils/useContentInView";
+import useIsMobile from "../../utils/useMobileScreen";
+import Laptop from "./Laptop";
+import dynamic from "next/dynamic";
+import { motion as m } from "framer-motion";
+const Header = dynamic(() => import("./Header"), {
+    ssr: false,
+});
+const OpenMobileMenu = dynamic(() => import("./OpenMobileMenu"), {
+    ssr: false,
+});
 export enum ContentSections {
     hero = "Hero",
     work = "Work",
@@ -35,6 +43,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     const contactSectionRef = useRef(null);
     const forDevsSectionRef = useRef(null);
 
+    const isMobile = useIsMobile(1280);
     const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
 
     useHandleLogoState(contentRef, setShowLogo);
@@ -53,7 +62,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
             {...layoutAnimationSettings}>
             <m.div />
             <div className="h-full z-10 shadow-md overflow-y-scroll overflow-x-clip relative">
-                <Header showLogo={showLogo} sectionInView={sectionInView} />
+                {!isMobile && <Header showLogo={showLogo} sectionInView={sectionInView} />}
 
                 <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
                     <div
@@ -68,41 +77,11 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
                 <AboutSection reference={aboutSectionRef} />
                 <ForDevsSection reference={forDevsSectionRef} />
                 <ContactSection reference={contactSectionRef} />
-                <OpenMobileMenu openMenu={() => setCurrentMode(PortfolioMode.MobileMenu)} closeMenu={() => setCurrentMode(PortfolioMode.Main)} />
+                {isMobile && (
+                    <OpenMobileMenu openMenu={() => setCurrentMode(PortfolioMode.MobileMenu)} closeMenu={() => setCurrentMode(PortfolioMode.Main)} />
+                )}
             </div>
         </m.div>
-    );
-}
-
-function OpenMobileMenu({ openMenu, closeMenu }: { openMenu: () => void; closeMenu: () => void }) {
-    const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-        const { x, y } = info.offset;
-        const { x: Vx, y: Vy } = info.velocity;
-        const speed = Math.sqrt(Math.pow(Vx, 2) + Math.pow(Vy, 2));
-
-        if (x > 100 && y < -100 && speed > 700) return openMenu();
-        if (x < -100 && y > 100 && speed > 700) return closeMenu();
-    };
-    return (
-        <m.div
-            drag
-            dragSnapToOrigin
-            dragConstraints={{ right: 0, top: 0, left: 0, bottom: 0 }}
-            whileDrag={{ scale: 0.6, boxShadow: "none" }}
-            className="sticky w-14 h-14 rounded-full m-3 justify-center items-center shadow-2xl shadow-gray-600 bg-white flex xl:hidden"
-            dragMomentum={false}
-            style={{ top: "100%" }}
-            onDrag={handleDrag}>
-            drag
-        </m.div>
-    );
-}
-
-function Laptop() {
-    return (
-        <section className="absolute w-full h-full top-0 left-0 flex justify-center items-center" style={{ opacity: 0.3 }}>
-            <div className="laptopContainer">LAPTOP</div>
-        </section>
     );
 }
 
