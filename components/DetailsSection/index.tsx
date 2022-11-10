@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { motion as m } from "framer-motion";
-import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
+import { calculateVariants, GAP_BETWEEN_MODES, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
 import { selectedDetailsContext } from "../../pages";
 function Details({ layoutState }: { layoutState: LayoutState }) {
     const [currentMode, setCurrentMode] = layoutState;
@@ -11,6 +11,7 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
         <m.div
             className="absolute w-screen h-screen bg-white"
             animate={currentMode === PortfolioMode.Details ? "active" : "inactive"}
+            initial="inactive"
             variants={calculateVariants(currentMode, PortfolioMode.Details)}
             {...layoutAnimationSettings}>
             {selectedDetails.company}

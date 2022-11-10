@@ -53,7 +53,7 @@ export default function Home() {
         <updateMouseModeContext.Provider value={updateMouseMode}>
             <div className="overflow-clip min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
                 {!isMobile && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
-                <Loading layoutState={[currentMode, setCurrentMode]} />
+                {/* <Loading layoutState={[currentMode, setCurrentMode]} /> */}
                 {isMobile && <MobileMenu layoutState={[currentMode, setCurrentMode]} />}
                 <selectedDetailsContext.Provider value={[selectedDetails, setSelectedDetails]}>
                     <Content layoutState={[currentMode, setCurrentMode]} />

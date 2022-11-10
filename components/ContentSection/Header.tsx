@@ -2,7 +2,6 @@
 import { AnimatePresence, motion as m } from "framer-motion";
 import Link from "next/link";
 import * as React from "react";
-import { text } from "stream/consumers";
 import { ContentSections } from ".";
 
 interface HeaderAnchorProps {

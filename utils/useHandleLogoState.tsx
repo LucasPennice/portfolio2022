@@ -8,7 +8,6 @@ interface Props {
 function useHandleLogoState(contentRef: MutableRefObject<any>, setShowLogo: (v: boolean) => void) {
     useEffect(() => {
         if (!contentRef) return;
-
         contentRef.current.addEventListener("scroll", handleScroll);
 
         return () => {

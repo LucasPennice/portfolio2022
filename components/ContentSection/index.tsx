@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
 import WorkSection, { WorkExperience } from "./WorkExperience/WorkSection";
 import { selectedDetailsContext } from "../../pages";
@@ -55,13 +55,12 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
 
     return (
         <m.div
-            ref={contentRef}
             className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
             animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Main)}
             {...layoutAnimationSettings}>
             <m.div />
-            <div className="h-full z-10 shadow-md overflow-y-scroll overflow-x-clip relative">
+            <div ref={contentRef} className="h-full z-10 shadow-md overflow-y-scroll overflow-x-clip relative">
                 {!isMobile && <Header showLogo={showLogo} sectionInView={sectionInView} />}
 
                 <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
