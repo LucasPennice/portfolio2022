@@ -1,11 +1,12 @@
-import { motion as m, PanInfo, useInView } from "framer-motion";
-import React, { createContext, useEffect, useRef, useState } from "react";
+import { motion as m } from "framer-motion";
+import React, { createContext, useEffect, useState } from "react";
 import { PortfolioMode } from "../utils/layout";
-import Details from "../components/DetailsSection";
-import MobileMenu from "../components/MobileMenu";
 import Loading from "../components/LoadingSection";
-import Content from "../components/ContentSection";
 import { WorkExperience } from "../components/ContentSection/WorkExperience/WorkSection";
+import dynamic from "next/dynamic";
+const MobileMenu = dynamic(() => import("../components/MobileMenu"), { ssr: false });
+const Details = dynamic(() => import("../components/DetailsSection"), { ssr: false });
+const Content = dynamic(() => import("../components/ContentSection"), { ssr: false });
 
 export enum MouseModes {
     Default = "Default",
