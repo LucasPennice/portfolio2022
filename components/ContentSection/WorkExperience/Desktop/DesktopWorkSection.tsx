@@ -122,7 +122,7 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
                 className="relative overflow-x-hidden overflow-y-hidden"
                 style={{ height: 100, width: 200 }}>
                 <m.h1 style={{ fontSize: 24 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
-                    {data.role}
+                    More Details
                 </m.h1>
             </div>
         </aside>

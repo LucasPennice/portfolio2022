@@ -13,7 +13,7 @@ import useIsMobile from "../../utils/useMobileScreen";
 import Laptop from "./Laptop";
 import dynamic from "next/dynamic";
 import { motion as m } from "framer-motion";
-const Header = dynamic(() => import("./Header"), {
+const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
     ssr: false,
 });
 const OpenMobileMenu = dynamic(() => import("./OpenMobileMenu"), {
