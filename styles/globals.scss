@@ -103,3 +103,10 @@ body {
     transition: 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) !important;
     transition-delay: 2.3s !important;
 }
+
+.safariBlurCompatibility {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+}

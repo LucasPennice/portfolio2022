@@ -32,7 +32,7 @@ const Header = ({ showLogo, sectionInView }: Props) => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}>
             <div className="h-full w-full justify-center items-center gap-36 m-auto flex relative z-0" style={{ maxWidth: 1200 }}>
-                <AnimatePresence>{sectionInView && <Slider currentContentSection={sectionInView} showLogo={showLogo} />}</AnimatePresence>
+                {sectionInView && <Slider currentContentSection={sectionInView} showLogo={showLogo} />}
                 <AnimatePresence>
                     {sectionInView && isHovering && hoveringAnchor && (
                         <HoverSlider hoveringSection={hoveringAnchor} currentContentSection={sectionInView} showLogo={showLogo} />
@@ -97,7 +97,7 @@ function Slider({ currentContentSection, showLogo }: SliderProps) {
                 initial={{ filter: "blur(2px)" }}
                 animate={{ filter: "blur(0px)" }}
                 transition={{ type: "spring", bounce: 0.1, damping: 15 }}
-                className="h-full w-full bg-black rounded-md"></m.div>
+                className="h-full w-full bg-black rounded-md safariBlurCompatibility"></m.div>
         </m.aside>
     );
 }
@@ -123,7 +123,7 @@ function HoverSlider({ currentContentSection, showLogo, hoveringSection }: Hover
                 initial={{ filter: "blur(2px)" }}
                 animate={{ filter: "blur(0px)" }}
                 transition={{ type: "spring", bounce: 0.1, damping: 20, stiffness: 150 }}
-                className="h-full w-full rounded-md"
+                className="h-full w-full rounded-md safariBlurCompatibility"
                 style={{
                     backgroundColor: "#57737A",
                     opacity: 0.2,

@@ -45,9 +45,9 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
     useEffect(() => {
         if (!tilt.current) return;
         VanillaTilt.init(tilt.current, {
-            scale: 1.2,
-            speed: 500,
-            max: 10,
+            scale: 1.1,
+            speed: 200,
+            max: 5,
             reverse: true,
             "full-page-listening": true,
         });
@@ -65,7 +65,7 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
                 className="flex justify-center items-center"
-                style={{ width: "45%", height: "70%" }}>
+                style={{ width: "45%", height: "70%", perspective: 1000 }}>
                 <div
                     onMouseEnter={() => {
                         updateMouseMode(MouseModes.ClickForDetails);
