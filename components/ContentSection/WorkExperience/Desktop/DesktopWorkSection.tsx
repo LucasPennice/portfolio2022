@@ -80,7 +80,7 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                         background: 'url("https://i.natgeofe.com/n/82fddbcc-4cbb-4373-bf72-dbc30068be60/drill-monkey-01_2x3.jpg") center',
                         backgroundSize: "cover",
                     }}
-                    className="aspect-video bg-green-300 shadow-xl shadow-gray-400"
+                    className="aspect-video bg-green-300 shadow-xl shadow-gray-400 rounded-md"
                     onClick={() => openDetails(data)}></div>
             </m.section>
         </aside>

@@ -11,6 +11,9 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
         if (mode === MouseModes.ClickForDetails) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
         }
+        if (mode === MouseModes.Scroll) {
+            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
+        }
         if (mode === MouseModes.Clickeable) {
             return { ...position, height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
         }
@@ -37,6 +40,12 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
                     <p>Click</p>
                     <p>For</p>
                     <p>Details</p>
+                </div>
+            )}
+            {mode === MouseModes.Scroll && (
+                <div className="h-full w-full flex flex-col justify-center items-center text-white" style={{ fontSize: 12, fontWeight: "bold" }}>
+                    <p>Scroll</p>
+                    <p className="text-3xl">↔</p>
                 </div>
             )}
         </m.div>

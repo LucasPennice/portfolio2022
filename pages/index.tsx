@@ -17,8 +17,19 @@ export enum MouseModes {
     Default = "Default",
     ClickForDetails = "ClickForDetails",
     Clickeable = "Clickeable",
+    Scroll = "Scroll",
 }
-const defaultSelectedDetails = { company: "", from: "", role: "", to: "" };
+const defaultSelectedDetails: WorkExperience = {
+    company: "",
+    from: "",
+    role: "",
+    to: "",
+    coverImage: "",
+    detailImages: [],
+    projectLink: false,
+    techStack: [],
+    caseStudy: "",
+};
 
 export const selectedDetailsContext = createContext<[WorkExperience, (v: WorkExperience) => void]>([defaultSelectedDetails, () => {}]);
 export const updateMouseModeContext = createContext<(v: MouseModes) => void>(() => {});
