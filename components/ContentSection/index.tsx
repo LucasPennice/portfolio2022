@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
-import WorkSection, { WorkExperience } from "./WorkExperience/WorkSection";
 import { selectedDetailsContext } from "../../pages";
 import useHandleLogoState from "../../utils/useHandleLogoState";
 import AboutSection from "./AboutSection";
@@ -13,6 +12,8 @@ import useIsMobile from "../../utils/useMobileScreen";
 import Laptop from "./Laptop";
 import dynamic from "next/dynamic";
 import { motion as m } from "framer-motion";
+import { WorkExperience } from "../../data";
+import WorkSection from "./WorkExperience/WorkSection";
 const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
     ssr: false,
 });

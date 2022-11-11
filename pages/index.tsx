@@ -1,11 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import { PortfolioMode } from "../utils/layout";
-import Loading from "../components/LoadingSection";
-import { WorkExperience } from "../components/ContentSection/WorkExperience/WorkSection";
 import useIsMobile from "../utils/useMobileScreen";
 import Content from "../components/ContentSection";
 import Details from "../components/DetailsSection";
 import dynamic from "next/dynamic";
+import { WorkExperience } from "../data";
 const Cursor = dynamic(() => import("../components/Cursor"), {
     ssr: false,
 });
@@ -31,7 +30,10 @@ const defaultSelectedDetails: WorkExperience = {
     caseStudy: "",
 };
 
-export const selectedDetailsContext = createContext<[WorkExperience, (v: WorkExperience) => void]>([defaultSelectedDetails, () => {}]);
+export const selectedDetailsContext = createContext<[WorkExperience, (v: WorkExperience) => void]>([
+    defaultSelectedDetails,
+    (defaultSelectedDetails) => {},
+]);
 export const updateMouseModeContext = createContext<(v: MouseModes) => void>(() => {});
 
 export default function Home() {

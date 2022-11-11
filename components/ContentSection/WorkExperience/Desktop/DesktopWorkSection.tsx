@@ -2,8 +2,8 @@ import * as React from "react";
 import { useEffect } from "react";
 import { motion as m } from "framer-motion";
 import VanillaTilt from "vanilla-tilt";
-import { WorkExperience } from "../WorkSection";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
+import { WorkExperience } from "../../../../data";
 
 function DesktopWorkSection({
     openDetails,
