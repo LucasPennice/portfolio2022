@@ -95,7 +95,10 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
         <aside className="flex flex-col sticky top-20 cursor-default">
             {companyNameWords.map((word, idx) => {
                 return (
-                    <div key={word} className="relative overflow-clip hoverUnderlineDiv" style={{ height: 100, width: word.length * LETTER_WIDTH }}>
+                    <div
+                        key={word}
+                        className="relative overflow-x-hidden overflow-y-hidden hoverUnderlineDiv"
+                        style={{ height: 100, width: word.length * LETTER_WIDTH }}>
                         <m.h1 style={{ fontSize: 90 }} className="absolute" {...appearTextAnimation(idx)}>
                             {word.toUpperCase()}
                         </m.h1>
@@ -103,7 +106,7 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
                     </div>
                 );
             })}
-            <div className="relative overflow-clip mt-5" style={{ height: 100, width: 500 }}>
+            <div className="relative overflow-x-hidden overflow-y-hidden mt-5" style={{ height: 100, width: 500 }}>
                 <m.h1 style={{ fontSize: 50 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
                     {data.role}
                 </m.h1>
@@ -116,7 +119,7 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
                     updateMouseMode(MouseModes.Default);
                 }}
                 onClick={openDetails}
-                className="relative overflow-clip"
+                className="relative overflow-x-hidden overflow-y-hidden"
                 style={{ height: 100, width: 200 }}>
                 <m.h1 style={{ fontSize: 24 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
                     {data.role}

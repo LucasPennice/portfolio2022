@@ -60,7 +60,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
             variants={calculateVariants(currentMode, PortfolioMode.Main)}
             {...layoutAnimationSettings}>
             <m.div />
-            <div ref={contentRef} className="h-full z-10 shadow-md overflow-y-scroll overflow-x-clip relative">
+            <div ref={contentRef} className="h-full z-10 shadow-md overflow-y-scroll overflow-x-hidden relative">
                 {!isMobile && <Header showLogo={showLogo} sectionInView={sectionInView} />}
 
                 <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">

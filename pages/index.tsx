@@ -51,7 +51,7 @@ export default function Home() {
 
     return (
         <updateMouseModeContext.Provider value={updateMouseMode}>
-            <div className="overflow-clip min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
+            <div className="overflow-hidden min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
                 {!isMobile && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
                 {/* <Loading layoutState={[currentMode, setCurrentMode]} /> */}
                 {isMobile && <MobileMenu layoutState={[currentMode, setCurrentMode]} />}
