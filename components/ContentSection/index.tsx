@@ -9,11 +9,12 @@ import ContactSection from "./ContactSection";
 import ForDevsSection from "./ForDevsSection";
 import useContentInView from "../../utils/useContentInView";
 import useIsMobile from "../../utils/useMobileScreen";
-import Laptop from "./Laptop";
+import Laptop from "./HeroSection/Laptop";
 import dynamic from "next/dynamic";
 import { motion as m } from "framer-motion";
 import { WorkExperience } from "../../data";
 import WorkSection from "./WorkExperience/WorkSection";
+import HeroSection from "./HeroSection";
 const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
     ssr: false,
 });
@@ -44,6 +45,8 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     const contactSectionRef = useRef(null);
     const forDevsSectionRef = useRef(null);
 
+    const smoothScrolling = useRef(null);
+
     const isMobile = useIsMobile(1280);
     const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
 
@@ -56,6 +59,8 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
 
     return (
         <m.div
+            ref={smoothScrolling}
+            data-scroll-container
             className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
             animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Main)}
@@ -63,16 +68,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
             <m.div />
             <div ref={contentRef} className="h-full z-10 shadow-md overflow-y-scroll overflow-x-hidden relative">
                 {!isMobile && <Header showLogo={showLogo} sectionInView={sectionInView} />}
-
-                <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
-                    <div
-                        className={`w-full flex-col justify-center align-center relative ${isLoadFinished && "heroGrow"}`}
-                        style={{ height: "100vh" }}>
-                        <h1 className="flex justify-center items-end heroText h-1/2">LUCAS</h1>
-                        <h1 className="flex justify-center items-start heroText h-1/2">PENNICE</h1>
-                        <Laptop />
-                    </div>
-                </div>
+                <HeroSection />
                 <WorkSection openDetails={openDetails} reference={workSectionRef} />
                 <AboutSection reference={aboutSectionRef} />
                 <ForDevsSection reference={forDevsSectionRef} />
