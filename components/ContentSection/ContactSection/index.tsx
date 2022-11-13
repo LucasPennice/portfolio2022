@@ -22,7 +22,7 @@ const ContactSection = ({ reference }: Props) => {
     return (
         <div id="contactSection" style={{ minHeight: isMobile ? "auto" : "110vh" }} className="pt-28" ref={reference}>
             <div
-                style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? "100vh" : "calc(100vh - 112px)" }}
+                style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? 700 : "calc(100vh - 112px)" }}
                 className="w-full flex flex-col justify-between items-start pb-20 px-4 xl:px-20">
                 <h1 style={{ fontSize: isMobile ? "6vw" : 40 }}>Contact Me</h1>
                 <div>

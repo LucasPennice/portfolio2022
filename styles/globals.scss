@@ -29,6 +29,12 @@
     }
 }
 
+@media (max-width: 1280px) {
+    * {
+        cursor: default !important;
+    }
+}
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -46,6 +52,23 @@ body {
     animation: backgroundShrink 1.5s ease forwards;
 }
 
+@media (max-width: 1280px) {
+    .background {
+        background-size: 80%;
+    }
+    .backgroundShrink {
+        animation: backgroundShrinkMobile 1.5s ease forwards;
+    }
+}
+
+@keyframes backgroundShrinkMobile {
+    from {
+        background-size: 80%;
+    }
+    to {
+        background-size: 50%;
+    }
+}
 @keyframes backgroundShrink {
     from {
         background-size: 20%;
@@ -155,4 +178,9 @@ body {
 
 .dot.selected {
     background-color: #e01a4f !important;
+}
+
+.control-next.control-arrow:before,
+.carousel.carousel-slider .control-arrow {
+    opacity: 0 !important;
 }

@@ -20,7 +20,7 @@ const WorkSection = ({ openDetails, reference }: Props) => {
         <div ref={reference} id="workSection">
             <div
                 style={{ maxWidth: 2500, margin: "0 auto", minHeight: isMobile ? "auto" : "110vh" }}
-                className="w-full flex-col justify-start items-center xl:pb-0 pb-40">
+                className="w-full flex-col justify-start items-center xl:pb-0 pb-24">
                 {!isMobile && <DesktopWorkSection openDetails={openDetails} workExperienceArr={workExperienceArr} />}
                 {isMobile && <MobileWork openDetails={openDetails} workExperienceArr={workExperienceArr} />}
             </div>

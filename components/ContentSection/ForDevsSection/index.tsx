@@ -31,7 +31,7 @@ const ForDevsSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
 
     return (
-        <div id="forDevsSection" className="py-28" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
+        <div id="forDevsSection" className="xl:pb-28 pb-6" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
             <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center xl:px-20 px-4">
                 <header
                     className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
