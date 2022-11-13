@@ -18,6 +18,7 @@ export enum MouseModes {
     Clickeable = "Clickeable",
     Scroll = "Scroll",
     CopyToClipboard = "CopyToClipboard",
+    Copied = "Copied",
 }
 const defaultSelectedDetails: WorkExperience = {
     company: "",

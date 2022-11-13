@@ -3,24 +3,26 @@ import "vis-network/styles/vis-network.css";
 import { WorkExperience } from "../../data";
 import { motion as m } from "framer-motion";
 import useHandleNetworkCreation from "./useHandleNetworkCreation";
+import useIsMobile from "../../utils/useMobileScreen";
 
 function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) {
     const caseStudyParagraphs = selectedDetails.caseStudy.split("-BREAK-");
     const graphNetworkState = useState<any>(null);
     const graphContainer = useRef<null | HTMLDivElement>(null);
+    const isMobile = useIsMobile(1280);
 
     useHandleNetworkCreation(graphNetworkState, graphContainer, selectedDetails);
 
     const animation = {
         whileInView: { opacity: 1, y: 0 },
         initial: { opacity: 0, y: 30 },
-        viewport: { once: false },
+        viewport: { once: isMobile ? true : false },
     };
 
     const screenTransitionDuration = 0.4;
 
     return (
-        <div className="w-1/2 text-2xl flex flex-col h-full justify-start " style={{ maxWidth: 1000 }}>
+        <div className="w-full xl:w-1/2 text-xl xl:text-2xl flex flex-col h-auto xl:h-full justify-start " style={{ maxWidth: 1000 }}>
             <m.aside
                 {...animation}
                 transition={{ bounce: 0, delay: screenTransitionDuration }}
@@ -32,8 +34,8 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
             <m.aside
                 {...animation}
                 transition={{ bounce: 0, delay: screenTransitionDuration + 0.1 }}
-                className="flex-1 flex justify-center items-start flex-col">
-                <div className="h-96 w-full" ref={graphContainer} />
+                className="flex-1 flex justify-center xl:items-start flex-col">
+                <div className="xl:h-96 w-full" style={{ aspectRatio: 1 / 0.5 }} ref={graphContainer} />
             </m.aside>
             <m.aside
                 {...animation}

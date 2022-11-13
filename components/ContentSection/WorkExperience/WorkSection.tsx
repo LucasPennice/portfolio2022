@@ -17,10 +17,12 @@ const WorkSection = ({ openDetails, reference }: Props) => {
     const isMobile = useIsMobile(1280);
 
     return (
-        <div style={{ minHeight: "110vh" }} ref={reference} id="workSection">
-            <div style={{ maxWidth: 2500, margin: "0 auto", minHeight: "110vh" }} className="w-full flex-col justify-start items-center">
+        <div ref={reference} id="workSection">
+            <div
+                style={{ maxWidth: 2500, margin: "0 auto", minHeight: isMobile ? "auto" : "110vh" }}
+                className="w-full flex-col justify-start items-center xl:pb-0 pb-40">
                 {!isMobile && <DesktopWorkSection openDetails={openDetails} workExperienceArr={workExperienceArr} />}
-                {isMobile && <MobileWork openDetails={openDetails} />}
+                {isMobile && <MobileWork openDetails={openDetails} workExperienceArr={workExperienceArr} />}
             </div>
         </div>
     );

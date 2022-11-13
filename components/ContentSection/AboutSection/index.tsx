@@ -1,11 +1,15 @@
+import useIsMobile from "../../../utils/useMobileScreen";
+
 interface Props {
     reference: React.MutableRefObject<any>;
 }
 
 const AboutSection = ({ reference }: Props) => {
+    const isMobile = useIsMobile(1280);
+
     return (
-        <div id="aboutSection" style={{ minHeight: "100vh" }} ref={reference}>
-            <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
+        <div id="aboutSection" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
+            <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center xl:pb-0 pb-40">
                 <h1>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum excepturi recusandae quisquam corrupti quis laborum dolores, neque
                     accusantium aliquam quo, reprehenderit impedit rerum culpa provident atque odit dolorum doloremque debitis?

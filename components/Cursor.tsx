@@ -11,6 +11,9 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
         if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
         }
+        if (mode === MouseModes.Copied) {
+            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#5FAD41" };
+        }
         if (mode === MouseModes.Scroll) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
         }
@@ -53,6 +56,11 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
                     <p>Copy</p>
                     <p>To</p>
                     <p>Clipboard</p>
+                </div>
+            )}
+            {mode === MouseModes.Copied && (
+                <div className="h-full w-full flex flex-col justify-center items-center text-white" style={{ fontSize: 12, fontWeight: "bold" }}>
+                    <p>Copied</p>
                 </div>
             )}
         </m.div>

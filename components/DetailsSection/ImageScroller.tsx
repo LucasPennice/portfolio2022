@@ -1,6 +1,6 @@
 import { motion as m, useSpring } from "framer-motion";
 import { useScroll } from "framer-motion";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState, useTransition } from "react";
 import { MouseModes, updateMouseModeContext } from "../../pages";
 
 function ImageScroller({ imageArr }: { imageArr: string[] }) {
@@ -20,7 +20,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                     xmlns="http//www.w3.org/2000/svg"
                     width="130"
                     viewBox="0 0 100 100"
-                    className="h-16 w-16 absolute bottom-3 z-10 rounded-full overflow-x-hidden overflow-y-hidden"
+                    className="h-16 w-16 absolute bottom-2 z-10 rounded-full overflow-x-hidden overflow-y-hidden"
                     style={{ right: "5%" }}>
                     <path d="M0 50 L100 50" strokeWidth="0" stroke="gray" />
                     <m.circle
@@ -47,7 +47,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                         <div
                             key={idx}
                             className="h-5/6 aspect-video bg-black rounded-md"
-                            style={{ marginLeft: idx === 0 ? "50%" : "10%", marginRight: idx === imageArr.length - 1 ? "5%" : "0%" }}></div>
+                            style={{ marginLeft: idx === 0 ? "51%" : "10%", marginRight: idx === imageArr.length - 1 ? "5%" : "0%" }}></div>
                     );
                 })}
             </div>

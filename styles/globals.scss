@@ -13,6 +13,20 @@
     -webkit-tap-highlight-color: transparent;
     line-height: normal !important;
     cursor: none !important;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px #12100e00;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #12100e;
+        border-radius: 10px;
+    }
 }
 
 body {
@@ -121,4 +135,24 @@ body {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }
+}
+
+.carousel-status {
+    display: none;
+}
+
+.control-dots {
+    margin: 0 !important;
+}
+
+.dot {
+    width: 20px !important;
+    height: 10px !important;
+    border-radius: 3px !important;
+    box-shadow: none !important;
+    background-color: #717c89 !important;
+}
+
+.dot.selected {
+    background-color: #e01a4f !important;
 }

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { RecommendationsForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
 import { motion as m } from "framer-motion";
+import useIsMobile from "../../../utils/useMobileScreen";
 
 interface RecommendationDropdown {
     selectedResourceState: [number | undefined, (v: number | undefined) => void];
@@ -17,14 +18,15 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
     //Derived State
     const isOpen = selectedResource === idx;
 
-    const styles = { borderStyle: getBorderStyles(), borderWidth: 1, borderColor: "black", paddingTop: 50 };
+    const isMobile = useIsMobile(1280);
+    const styles = { borderStyle: getBorderStyles(), borderWidth: 1, borderColor: "black", paddingTop: isMobile ? 20 : 50 };
 
     const variants = {
         open: {
-            height: 335,
+            height: isMobile ? 213 : 335,
         },
         closed: {
-            height: 135,
+            height: isMobile ? 63 : 135,
             transition: {
                 delay: 0.2,
                 when: "beforeChildren", //use this instead of delay
@@ -60,7 +62,7 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
             variants={variants}
             initial="closed"
             animate={isOpen ? "open" : "closed"}
-            className="px-20 text-3xl overflow-y-hidden"
+            className="px-5 xl:px-20 text-xl xl:text-3xl overflow-y-hidden"
             transition={{ ease: "easeInOut" }}>
             <section className="flex items-start justify-between">
                 <p>
@@ -74,9 +76,9 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
                 key={data.text}
                 initial="closed"
                 animate={isOpen ? "open" : "closed"}
-                style={{ height: 200 }}
+                style={{ height: isMobile ? 150 : 200 }}
                 className="flex flex-col justify-center items-start gap-4">
-                <p className="text-2xl">{data.description}</p>
+                <p className="text-xl xl:text-2xl">{data.description}</p>
             </m.section>
         </m.div>
     );

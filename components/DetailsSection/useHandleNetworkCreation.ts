@@ -18,6 +18,18 @@ interface Edge {
 }
 
 const graphOptions = {
+    interaction: {
+        dragNodes: false,
+        dragView: false,
+        hideEdgesOnDrag: false,
+        hideEdgesOnZoom: false,
+        hideNodesOnDrag: false,
+        hover: false,
+        hoverConnectedEdges: false,
+        selectable: false,
+        selectConnectedEdges: false,
+        zoomView: false,
+    },
     nodes: {
         borderWidth: 0,
         shape: "text",

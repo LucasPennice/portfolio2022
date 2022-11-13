@@ -3,6 +3,7 @@ import { motion as m } from "framer-motion";
 import { ResourcesForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
 import RecommendationDropdown from "./RecommendationDropdown";
+import useIsMobile from "../../../utils/useMobileScreen";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -27,14 +28,16 @@ const ForDevsSection = ({ reference }: Props) => {
         return updateMouseMode(MouseModes.Clickeable);
     };
 
+    const isMobile = useIsMobile(1280);
+
     return (
-        <div id="forDevsSection" className="py-28" style={{ minHeight: "110vh" }} ref={reference}>
-            <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center">
+        <div id="forDevsSection" className="py-28" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
+            <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center xl:px-20 px-4">
                 <header
                     className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
                     onMouseEnter={setMouseModeToAction}
                     onMouseLeave={setMouseModeToDefault}
-                    style={{ fontSize: 150, fontWeight: "bold" }}>
+                    style={{ fontSize: isMobile ? "15vw" : 150, fontWeight: "bold" }}>
                     {topicsArray.map((topic, idx) => {
                         const active = selectedTopic === topic;
                         return (
@@ -47,8 +50,8 @@ const ForDevsSection = ({ reference }: Props) => {
                         );
                     })}
                 </header>
-                <div className="w-full flex justify-center items-start mt-12">
-                    <m.section className="w-1/2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={selectedTopic}>
+                <div className="w-full flex justify-center items-start mt-12 xl:flex-row flex-col-reverse">
+                    <m.section className="w-full xl:w-1/2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={selectedTopic}>
                         {ResourcesForDevs[selectedTopic].map((resource, idx) => (
                             <RecommendationDropdown
                                 key={idx}
@@ -58,8 +61,8 @@ const ForDevsSection = ({ reference }: Props) => {
                             />
                         ))}
                     </m.section>
-                    <section className="w-1/2 flex justify-center items-center">
-                        <div className="aspect-square bg-red opacity-5" style={{ width: "80%" }}>
+                    <section className="w-full xl:w-1/2 flex justify-center items-center xl:mb-0 mb-12">
+                        <div className="xl:aspect-square aspect-video bg-red opacity-5" style={{ width: isMobile ? "100%" : "80%" }}>
                             {selectedTopic}
                         </div>
                     </section>
