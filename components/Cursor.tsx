@@ -8,7 +8,7 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
             y: mousePosition.y - 16,
         };
 
-        if (mode === MouseModes.ClickForDetails) {
+        if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
         }
         if (mode === MouseModes.Scroll) {
@@ -46,6 +46,13 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
                 <div className="h-full w-full flex flex-col justify-center items-center text-white" style={{ fontSize: 12, fontWeight: "bold" }}>
                     <p>Scroll</p>
                     <p className="text-3xl">↔</p>
+                </div>
+            )}
+            {mode === MouseModes.CopyToClipboard && (
+                <div className="h-full w-full flex flex-col justify-center items-center text-white" style={{ fontSize: 12, fontWeight: "bold" }}>
+                    <p>Copy</p>
+                    <p>To</p>
+                    <p>Clipboard</p>
                 </div>
             )}
         </m.div>

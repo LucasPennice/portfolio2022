@@ -59,3 +59,25 @@ export const workExperienceArr: WorkExperience[] = [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",
     },
 ];
+
+export enum SelectedTopic {
+    Books = "Books",
+    Courses = "Courses",
+    Channels = "Channels",
+    Talks = "Talks",
+}
+
+export type RecommendationsForDevs = {
+    [key in SelectedTopic]: { text: string; link?: string; description: string }[];
+};
+
+export const ResourcesForDevs: RecommendationsForDevs = {
+    Books: [
+        { text: "Clean Code", description: "Book about writing clean code ", link: "comprarlinks" },
+        { text: "Clean Coder", description: "Book about writing clean code " },
+        { text: "Refactoring", description: "Book about writing clean code " },
+    ],
+    Channels: [{ text: "Jack Herrington", link: "skere", description: "React youtuber" }],
+    Courses: [{ text: "gamer course", link: "skere", description: "React course" }],
+    Talks: [{ text: "Clean code", link: "skere", description: "clean code talk" }],
+};
