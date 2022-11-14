@@ -15,7 +15,7 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
     const screenTransitionDuration = 0.4;
 
     return (
-        <div className="w-full xl:w-1/2 text-xl xl:text-2xl flex flex-col h-auto xl:h-full justify-start" style={{ maxWidth: 1000 }}>
+        <div className="w-full xl:w-1/2 text-xl xl:text-2xl flex flex-col h-auto xl:h-full justify-start xl:gap-0 gap-10" style={{ maxWidth: 1000 }}>
             <m.aside
                 {...animation}
                 transition={{ bounce: 0, delay: screenTransitionDuration }}

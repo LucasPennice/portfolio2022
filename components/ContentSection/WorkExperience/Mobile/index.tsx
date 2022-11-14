@@ -2,7 +2,6 @@ import { Carousel } from "react-responsive-carousel";
 import { WorkExperience } from "../../../../data";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Image from "next/image";
-import AnimateWordOnView from "../../../AnimateWordOnView";
 
 function MobileWork({ openDetails, workExperienceArr }: { openDetails(workExperience: WorkExperience): void; workExperienceArr: WorkExperience[] }) {
     return (

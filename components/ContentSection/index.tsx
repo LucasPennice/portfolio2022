@@ -60,7 +60,6 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     return (
         <m.div
             ref={smoothScrolling}
-            data-scroll-container
             className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
             animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Main)}

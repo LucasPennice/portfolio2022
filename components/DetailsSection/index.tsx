@@ -32,7 +32,7 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
             {!isMobile && <DesktopHeader />}
             {isMobile && <MobileHeader />}
             <div
-                className="w-full px-4 xl:px-10 flex xl:flex-row flex-col justify-start items-center relative xl:overflow-x-hidden xl:overflow-y-hidden overflow-y-scroll"
+                className="w-full px-4 xl:px-10 flex xl:flex-row flex-col  justify-start items-center relative xl:overflow-x-hidden xl:overflow-y-hidden overflow-y-scroll"
                 style={{ height: "calc(100vh - 115px)" }}>
                 <TextAndChart selectedDetails={selectedDetails} />
                 {!isMobile && <ImageScroller imageArr={selectedDetails.detailImages} />}
