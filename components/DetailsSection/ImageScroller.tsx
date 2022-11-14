@@ -28,7 +28,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                         cx="50"
                         cy="50"
                         r="40"
-                        stroke="black"
+                        stroke="#00C49A"
                         strokeLinecap="round"
                         strokeWidth="20"
                         fill="none"

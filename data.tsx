@@ -1,6 +1,13 @@
+import { ReactElement } from "react";
+import { SiSass, SiReact, SiReactrouter, SiRedux, SiTypescript, SiNextdotjs, SiV, SiWebpack } from "react-icons/si";
+import { AiFillApi } from "react-icons/ai";
+import { SiFramer } from "react-icons/si";
+import { IoBuild } from "react-icons/io5";
+import { BiGitBranch } from "react-icons/bi";
+
 export interface Tech {
-    name: string;
-    icon: string;
+    label: string;
+    icon: ReactElement<any, any>;
 }
 
 export interface WorkExperience {
@@ -25,15 +32,16 @@ export const workExperienceArr: WorkExperience[] = [
         detailImages: ["no", "no", "no", "no"],
         projectLink: false,
         techStack: [
-            { icon: "", name: "TypeScript" },
-            { icon: "", name: "ReactJs" },
-            { icon: "", name: "Sass" },
-            { icon: "", name: "React Router" },
-            { icon: "", name: "Redux" },
-            { icon: "", name: "Git" },
-            { icon: "", name: "Webpack" },
-            { icon: "", name: "EsBuild" },
-            { icon: "", name: "Framer Motion" },
+            { icon: <SiReact id="reactLogo" />, label: "ReactJs" },
+            { icon: <SiTypescript id="tsLogo" />, label: "TypeScript" },
+            { icon: <SiRedux id="reduxLogo" />, label: "Redux" },
+            { icon: <SiReactrouter id="routerLogo" />, label: "React-Router" },
+            { icon: <SiSass id="sassLogo" />, label: "Sass" },
+            { icon: <SiWebpack id="webpackLogo" />, label: "Webpack" },
+            { icon: <AiFillApi id="reactLogo" />, label: "API" },
+            { icon: <BiGitBranch id="gitLogo" />, label: "Git" },
+            { icon: <SiFramer id="framerLogo" />, label: "Framer Motion" },
+            { icon: <IoBuild id="esbuildLogo" />, label: "EsBuild" },
         ],
         caseStudy:
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",
@@ -47,13 +55,14 @@ export const workExperienceArr: WorkExperience[] = [
         detailImages: ["no", "no", "no", "no"],
         projectLink: false,
         techStack: [
-            { icon: "", name: "TypeScript" },
-            { icon: "", name: "ReactJs" },
-            { icon: "", name: "Sass" },
-            { icon: "", name: "NextJs" },
-            { icon: "", name: "Git" },
-            { icon: "", name: "VisJs" },
-            { icon: "", name: "Framer Motion" },
+            { icon: <SiReact id="reactLogo" />, label: "ReactJs" },
+            { icon: <SiTypescript id="tsLogo" />, label: "TypeScript" },
+            { icon: <SiSass id="sassLogo" />, label: "Sass" },
+            { icon: <AiFillApi id="reactLogo" />, label: "API" },
+            { icon: <SiNextdotjs id="nextLogo" />, label: "NextJs" },
+            { icon: <BiGitBranch id="gitLogo" />, label: "Git" },
+            { icon: <SiFramer id="framerLogo" />, label: "Framer Motion" },
+            { icon: <SiV id="visLogo" />, label: "VisJs" },
         ],
         caseStudy:
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",

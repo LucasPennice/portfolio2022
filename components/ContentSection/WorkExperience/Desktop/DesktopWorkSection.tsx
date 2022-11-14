@@ -57,7 +57,7 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
                 className="flex flex-col items-end justify-center"
-                style={{ width: "calc(50% - 20px)", height: "100%", perspective: 1000 }}>
+                style={{ width: "calc(50% - 20px)", height: "calc(100vh - 100px)", perspective: 1000 }}>
                 <div style={{ width: "auto", height: "100%", borderRadius: 5 }} className="overflow-x-hidden overflow-y-hidden">
                     <Image
                         onMouseEnter={setMouseDetails}

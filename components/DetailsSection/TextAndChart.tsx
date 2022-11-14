@@ -1,32 +1,25 @@
-import { useRef, useState } from "react";
-import "vis-network/styles/vis-network.css";
 import { WorkExperience } from "../../data";
 import { motion as m } from "framer-motion";
-import useHandleNetworkCreation from "./useHandleNetworkCreation";
 import useIsMobile from "../../utils/useMobileScreen";
 
 function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) {
     const caseStudyParagraphs = selectedDetails.caseStudy.split("-BREAK-");
-    const graphNetworkState = useState<any>(null);
-    const graphContainer = useRef<null | HTMLDivElement>(null);
     const isMobile = useIsMobile(1280);
-
-    useHandleNetworkCreation(graphNetworkState, graphContainer, selectedDetails);
 
     const animation = {
         whileInView: { opacity: 1, y: 0 },
-        initial: { opacity: 0, y: 30 },
+        initial: { opacity: 0, y: 50 },
         viewport: { once: isMobile ? true : false },
     };
 
     const screenTransitionDuration = 0.4;
 
     return (
-        <div className="w-full xl:w-1/2 text-xl xl:text-2xl flex flex-col h-auto xl:h-full justify-start " style={{ maxWidth: 1000 }}>
+        <div className="w-full xl:w-1/2 text-xl xl:text-2xl flex flex-col h-auto xl:h-full justify-start" style={{ maxWidth: 1000 }}>
             <m.aside
                 {...animation}
                 transition={{ bounce: 0, delay: screenTransitionDuration }}
-                className="flex-1 flex justify-center items-start flex-col gap-7">
+                className="flex-1 text-lg flex justify-center items-start flex-col gap-7">
                 {caseStudyParagraphs.map((text, idx) => (
                     <p key={idx}>{text}</p>
                 ))}
@@ -34,8 +27,19 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
             <m.aside
                 {...animation}
                 transition={{ bounce: 0, delay: screenTransitionDuration + 0.1 }}
-                className="flex-1 flex justify-center xl:items-start flex-col">
-                <div className="xl:h-96 w-full" style={{ aspectRatio: 1 / 0.5 }} ref={graphContainer} />
+                className="flex-1 flex justify-start items-center flex-wrap gap-5">
+                {selectedDetails.techStack.map((tech, idx) => {
+                    return (
+                        <div key={idx} className="flex flex-col justify-center items-center gap-1">
+                            <aside
+                                className="w-16 h-16 flex justify-center items-center rounded-sm"
+                                style={{ fontSize: 40, color: "#F0EEEC", backgroundColor: "#12100E" }}>
+                                {tech.icon}
+                            </aside>
+                            <p className="text-base">{tech.label}</p>
+                        </div>
+                    );
+                })}
             </m.aside>
             <m.aside
                 {...animation}
