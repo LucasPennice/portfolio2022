@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { motion as m } from "framer-motion";
+import { motion as m, useScroll } from "framer-motion";
 import VanillaTilt from "vanilla-tilt";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
 import { WorkExperience } from "../../../../data";
+import Image from "next/image";
 
 function DesktopWorkSection({
     openDetails,
@@ -13,7 +14,7 @@ function DesktopWorkSection({
     workExperienceArr: WorkExperience[];
 }) {
     return (
-        <m.div className="hidden xl:block">
+        <m.div className="hidden xl:block ">
             {workExperienceArr.map((workExperience) => {
                 return <Job_Desktop key={workExperience.company} openDetails={openDetails} data={workExperience} />;
             })}
@@ -24,7 +25,7 @@ function DesktopWorkSection({
 const appearTextAnimation = (idx: number) => {
     return {
         whileInView: { top: 0 },
-        initial: { top: 100 },
+        initial: { top: 130 },
         transition: { duration: 0.7, delay: parseFloat(`0.${idx * 3}`) },
         viewport: { once: true },
     };
@@ -39,23 +40,14 @@ const appearTextUnderlineAnimation = (idx: number) => {
 };
 
 function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkExperience): void; data: WorkExperience }) {
-    const tilt = React.useRef<HTMLDivElement | null>(null);
     const updateMouseMode = React.useContext(updateMouseModeContext);
 
-    useEffect(() => {
-        if (!tilt.current) return;
-        VanillaTilt.init(tilt.current, {
-            scale: 1.1,
-            speed: 200,
-            max: 5,
-            reverse: true,
-            "full-page-listening": true,
-        });
-    }, []);
+    const setMouseDetails = () => updateMouseMode(MouseModes.ClickForDetails);
+    const setMouseDefault = () => updateMouseMode(MouseModes.Default);
 
     return (
-        <aside className="flex justify-evenly items-center gap-6 w-full h-screen mb-80">
-            <section style={{ width: "45%", height: "80%" }}>
+        <aside className="flex justify-between items-center gap-6 w-full h-screen mb-20">
+            <section style={{ width: "calc(50% - 20px)", height: "100%" }}>
                 <Text data={data} openDetails={() => openDetails(data)} />
             </section>
 
@@ -64,24 +56,29 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 initial={{ opacity: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="flex justify-center items-center"
-                style={{ width: "45%", height: "70%", perspective: 1000 }}>
-                <div
-                    onMouseEnter={() => {
-                        updateMouseMode(MouseModes.ClickForDetails);
-                    }}
-                    onMouseLeave={() => {
-                        updateMouseMode(MouseModes.Default);
-                    }}
-                    ref={tilt}
-                    style={{
-                        width: "80%",
-                        height: "100%",
-                        background: 'url("https://i.natgeofe.com/n/82fddbcc-4cbb-4373-bf72-dbc30068be60/drill-monkey-01_2x3.jpg") center',
-                        backgroundSize: "cover",
-                    }}
-                    className="aspect-video bg-green-300 shadow-xl shadow-gray-400 rounded-md"
-                    onClick={() => openDetails(data)}></div>
+                className="flex flex-col items-end justify-center"
+                style={{ width: "calc(50% - 20px)", height: "100%", perspective: 1000 }}>
+                <div style={{ width: "auto", height: "100%", borderRadius: 5 }} className="overflow-x-hidden overflow-y-hidden">
+                    <Image
+                        onMouseEnter={setMouseDetails}
+                        onMouseLeave={setMouseDefault}
+                        onClick={() => openDetails(data)}
+                        className="scale-125 hover:scale-110"
+                        src="/drill-monkey-01_2x3.webp"
+                        style={{
+                            width: "auto",
+                            height: "100%",
+                            borderRadius: 5,
+                            transition: ".5s ease-in-out",
+                        }}
+                        alt="Project img"
+                        width={1920}
+                        height={1080}
+                    />
+                </div>
+                <h1 onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={() => openDetails(data)} className="text-2xl mt-2">
+                    More Details
+                </h1>
             </m.section>
         </aside>
     );
@@ -89,40 +86,35 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
 
 function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => void }) {
     const updateMouseMode = React.useContext(updateMouseModeContext);
-    const LETTER_WIDTH = 61.687;
+    const LETTER_WIDTH = 82.25;
     const companyNameWords = data.company.split(" ");
     return (
-        <aside className="flex flex-col sticky top-20 cursor-default">
-            {companyNameWords.map((word, idx) => {
-                return (
-                    <div
-                        key={word}
-                        className="relative overflow-x-hidden overflow-y-hidden hoverUnderlineDiv"
-                        style={{ height: 100, width: word.length * LETTER_WIDTH }}>
-                        <m.h1 style={{ fontSize: 90 }} className="absolute" {...appearTextAnimation(idx)}>
-                            {word.toUpperCase()}
-                        </m.h1>
-                        <Underline idx={idx} />
-                    </div>
-                );
-            })}
-            <div className="relative overflow-x-hidden overflow-y-hidden mt-5" style={{ height: 100, width: 500 }}>
-                <m.h1 style={{ fontSize: 50 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
-                    {data.role}
-                </m.h1>
-            </div>
+        <aside className="flex flex-col sticky top-20 cursor-default w-full">
             <div
                 onMouseEnter={() => {
-                    updateMouseMode(MouseModes.Clickeable);
+                    updateMouseMode(MouseModes.ClickForDetails);
                 }}
                 onMouseLeave={() => {
                     updateMouseMode(MouseModes.Default);
                 }}
-                onClick={openDetails}
-                className="relative overflow-x-hidden overflow-y-hidden"
-                style={{ height: 100, width: 200 }}>
-                <m.h1 style={{ fontSize: 24 }} className="absolute" {...appearTextAnimation(companyNameWords.length)}>
-                    More Details
+                onClick={openDetails}>
+                {companyNameWords.map((word, idx) => {
+                    return (
+                        <div
+                            key={word}
+                            className="relative overflow-x-hidden overflow-y-hidden hoverUnderlineDiv"
+                            style={{ height: 130, width: word.length * LETTER_WIDTH }}>
+                            <m.h1 style={{ fontSize: 120 }} className="absolute" {...appearTextAnimation(idx)}>
+                                {word.toUpperCase()}
+                            </m.h1>
+                            <Underline idx={idx} />
+                        </div>
+                    );
+                })}
+            </div>
+            <div className="relative overflow-x-hidden overflow-y-hidden mt-20 w-full flex justify-start" style={{ height: 140 }}>
+                <m.h1 style={{ fontSize: 50 }} className="absolute left-0" {...appearTextAnimation(companyNameWords.length)}>
+                    {data.role}
                 </m.h1>
             </div>
         </aside>

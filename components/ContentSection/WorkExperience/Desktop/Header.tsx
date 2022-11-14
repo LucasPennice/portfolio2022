@@ -46,7 +46,7 @@ const Header = ({ showLogo, sectionInView }: Props) => {
                     <AnimatePresence>
                         {showLogo && (
                             <m.div
-                                className="text-center"
+                                className="text-center text-xl"
                                 exit={{ width: 0, scale: 0 }}
                                 initial={{ width: 0, scale: 0 }}
                                 animate={{ width: 100, scale: 1 }}>

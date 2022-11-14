@@ -62,12 +62,14 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
             variants={variants}
             initial="closed"
             animate={isOpen ? "open" : "closed"}
-            className="px-5 xl:px-20 text-xl xl:text-3xl overflow-y-hidden"
+            className="px-5 xl:px-20 text-xl xl:text-2xl overflow-y-hidden"
             transition={{ ease: "easeInOut" }}>
             <section className="flex items-start justify-between">
                 <p>
                     <span className="pr-24">0{idx}</span>
-                    {data.text}
+                    <span className="pr-24" style={{ textOverflow: "ellipsis", overflowX: "hidden", whiteSpace: "nowrap" }}>
+                        {data.text}
+                    </span>
                 </p>
                 <m.p animate={{ rotate: isOpen ? 45 : 0 }}>+</m.p>
             </section>
@@ -84,10 +86,8 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
     );
 
     function getBorderStyles() {
-        if (idx === 0 && isLastElement) return "solid none solid none";
-        if (idx === 0) return "solid none none none";
-        if (isLastElement) return "none none solid none";
-        return "solid none solid none";
+        if (idx === 0) return "solid none solid none";
+        return "none none solid none";
     }
 }
 export default RecommendationDropdown;

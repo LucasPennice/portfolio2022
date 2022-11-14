@@ -31,8 +31,12 @@ const ForDevsSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
 
     return (
-        <div id="forDevsSection" className="xl:pb-28 pb-6" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
+        <div id="forDevsSection" className="xl:pb-28 pb-6 xl:pt-20 xl:mt-20" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
             <div style={{ maxWidth: 2500, margin: "0 auto" }} className="w-full flex-col justify-start items-center xl:px-20 px-4">
+                <header className="w-full flex justify-between items-center xl:text-3xl text-2xl mb-20">
+                    <h1>.03</h1>
+                    <h1>For Devs</h1>
+                </header>
                 <header
                     className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
                     onMouseEnter={setMouseModeToAction}

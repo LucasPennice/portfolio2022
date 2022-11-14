@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
 import useCopy from "../../../utils/useCopy";
 import useIsMobile from "../../../utils/useMobileScreen";
@@ -12,6 +12,8 @@ const ContactSection = ({ reference }: Props) => {
     const updateMouseMode = useContext(updateMouseModeContext);
     const copyToClipBoard = useCopy();
 
+    const [copied, setCopied] = useState(false);
+
     const setMouseModeToDefault = () => updateMouseMode(MouseModes.Default);
     const setMouseModeToCopy = () => updateMouseMode(MouseModes.CopyToClipboard);
     const setMouseModeToCopied = () => updateMouseMode(MouseModes.Copied);
@@ -20,11 +22,14 @@ const ContactSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
 
     return (
-        <div id="contactSection" style={{ minHeight: isMobile ? "auto" : "110vh" }} className="pt-28" ref={reference}>
+        <div id="contactSection" style={{ minHeight: isMobile ? "auto" : "110vh" }} className="pt-10 xl:pt-28 xl:mt-20" ref={reference}>
             <div
-                style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? 700 : "calc(100vh - 112px)" }}
-                className="w-full flex flex-col justify-between items-start pb-20 px-4 xl:px-20">
-                <h1 style={{ fontSize: isMobile ? "6vw" : 40 }}>Contact Me</h1>
+                style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? "100vh" : "calc(100vh - 112px)" }}
+                className="w-full flex flex-col justify-between items-start px-4 xl:px-20 gap-10">
+                <header className="w-full flex justify-between items-center xl:text-3xl text-2xl">
+                    <h1>.04</h1>
+                    <h1>Contact Me</h1>
+                </header>
                 <div>
                     <section
                         onMouseEnter={setMouseModeToCopy}
@@ -32,12 +37,15 @@ const ContactSection = ({ reference }: Props) => {
                         onClick={() => {
                             copyToClipBoard("lucaspennice@gmail.com");
                             setMouseModeToCopied();
+                            setCopied(true);
                         }}>
                         <h1 style={{ fontSize: "9vw" }}>LUCASPENNICE@</h1>
                         <h1 style={{ fontSize: "9vw" }}>GMAIL.COM</h1>
+                        {isMobile && !copied && <p>↑ Click To Copy</p>}
+                        {isMobile && copied && <p style={{ color: "#5FAD41" }}>Copied!</p>}
                     </section>
 
-                    <h1 style={{ fontSize: isMobile ? "6vw" : 40 }} className="pt-3">
+                    <h1 style={{ fontSize: isMobile ? "max(5vw , 10px)" : 40 }} className="pt-3">
                         <Link href="http://www.linkedin.com/in/lucas-pennice" legacyBehavior>
                             <a target="_blank" rel="noopener noreferrer" onMouseEnter={setMouseModeToClickeable} onMouseLeave={setMouseModeToDefault}>
                                 LinkedIn
@@ -59,16 +67,16 @@ const ContactSection = ({ reference }: Props) => {
                         </Link>
                     </h1>
                 </div>
-                <footer className="w-full flex flex-col xl:flex-row justify-start xl:justify-between items-start xl:gap-0 gap-6 xl:items-center">
-                    <div style={{ fontSize: isMobile ? "4vw" : 30 }}>
+                <footer className="w-full flex flex-col xl:flex-row justify-start xl:justify-between items-start xl:gap-0 gap-6 xl:items-center pb-5 xl:pb-0">
+                    <div style={{ fontSize: isMobile ? "max(2vw , 2px)" : 30 }}>
                         <p>BASED IN ROSARIO</p>
                         <p>ARGENTINA</p>
                     </div>
-                    <div style={{ fontSize: isMobile ? "4vw" : 30 }}>
+                    <div style={{ fontSize: isMobile ? "max(2vw , 2px)" : 30 }}>
                         <p>DEVELOPED BY</p>
                         <p>LUCAS PENNICE</p>
                     </div>
-                    <div style={{ fontSize: isMobile ? "4vw" : 30 }}>
+                    <div style={{ fontSize: isMobile ? "max(2vw , 2px)" : 30 }}>
                         <p>DESIGN INSPIRED BY</p>
                         <p>RICHARD EKWONYE</p>
                     </div>

@@ -1,5 +1,6 @@
 import { motion as m, useSpring } from "framer-motion";
 import { useScroll } from "framer-motion";
+import Image from "next/image";
 import { useContext, useRef, useState, useTransition } from "react";
 import { MouseModes, updateMouseModeContext } from "../../pages";
 
@@ -44,10 +45,20 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                 onMouseLeave={() => updateMouseMode(MouseModes.Default)}>
                 {imageArr.map((e, idx) => {
                     return (
-                        <div
+                        <Image
+                            src="/drill-monkey-01_2x3.webp"
+                            style={{
+                                width: "auto",
+                                height: "83%",
+                                borderRadius: 5,
+                                marginLeft: idx === 0 ? "51%" : "10%",
+                                marginRight: idx === imageArr.length - 1 ? "5%" : "0%",
+                            }}
+                            alt="Project img"
+                            width={1920}
+                            height={1080}
                             key={idx}
-                            className="h-5/6 aspect-video bg-black rounded-md"
-                            style={{ marginLeft: idx === 0 ? "51%" : "10%", marginRight: idx === imageArr.length - 1 ? "5%" : "0%" }}></div>
+                        />
                     );
                 })}
             </div>

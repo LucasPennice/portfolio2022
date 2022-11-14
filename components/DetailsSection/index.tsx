@@ -5,6 +5,7 @@ import { MouseModes, selectedDetailsContext, updateMouseModeContext } from "../.
 import ImageScroller from "./ImageScroller";
 import dynamic from "next/dynamic";
 import useIsMobile from "../../utils/useMobileScreen";
+import Image from "next/image";
 const TextAndChart = dynamic(() => import("./TextAndChart"), {
     ssr: false,
 });
@@ -38,9 +39,14 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
                 {isMobile && (
                     <div className="py-10 w-full">
                         {selectedDetails.detailImages.map((src, idx) => (
-                            <div className="w-full aspect-video bg-black mb-8 rounded-md" key={idx}>
-                                lesgo
-                            </div>
+                            <Image
+                                key={idx}
+                                src="/drill-monkey-01_2x3.webp"
+                                style={{ width: "100%", height: "auto", borderRadius: 5, marginBottom: 20 }}
+                                alt="Project img"
+                                width={1920}
+                                height={1080}
+                            />
                         ))}
                     </div>
                 )}
