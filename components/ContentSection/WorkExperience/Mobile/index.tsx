@@ -2,11 +2,12 @@ import { Carousel } from "react-responsive-carousel";
 import { WorkExperience } from "../../../../data";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Image from "next/image";
+import AnimateWordOnView from "../../../AnimateWordOnView";
 
 function MobileWork({ openDetails, workExperienceArr }: { openDetails(workExperience: WorkExperience): void; workExperienceArr: WorkExperience[] }) {
     return (
         <div className="xl:hidden block">
-            <Carousel>
+            <Carousel showArrows={false} showThumbs={false}>
                 {workExperienceArr.map((workExperience, idx) => {
                     return (
                         <div key={idx} className="flex flex-col justify-start items-start gap-2 pb-6">

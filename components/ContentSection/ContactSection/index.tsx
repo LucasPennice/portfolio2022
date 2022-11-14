@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
 import useCopy from "../../../utils/useCopy";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { motion as m } from "framer-motion";
-import { appearOpacity, appearTextAnimation } from "../../../utils/animations";
-import { LETTER_SIZE_AT_10 } from "../../../data";
+import { appearOpacity } from "../../../utils/animations";
+import AnimateWordOnView, { AllowedFonts } from "../../AnimateWordOnView";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -13,32 +13,31 @@ interface Props {
 
 const ContactSection = ({ reference }: Props) => {
     const updateMouseMode = useContext(updateMouseModeContext);
+    const isMobile = useIsMobile(1280);
     const copyToClipBoard = useCopy();
 
     const [copied, setCopied] = useState(false);
+    const [fontSize, setFontSize] = useState<AllowedFonts>(110);
 
     const setMouseModeToDefault = () => updateMouseMode(MouseModes.Default);
     const setMouseModeToCopy = () => updateMouseMode(MouseModes.CopyToClipboard);
     const setMouseModeToCopied = () => updateMouseMode(MouseModes.Copied);
     const setMouseModeToClickeable = () => updateMouseMode(MouseModes.Clickeable);
 
-    const isMobile = useIsMobile(1280);
-    const isSmall = useIsMobile(680);
-
-    const getFontSize = (isMobile: boolean, isSmall: boolean) => {
-        if (!isMobile && !isSmall) return 110;
-        if (isMobile && !isSmall) return 70;
-        return 36;
-    };
-
-    const getHeightForFont = (isMobile: boolean, isSmall: boolean) => {
-        if (!isMobile && !isSmall) return 126.5;
-        if (isMobile && !isSmall) return 80.5;
-        return 41.5;
-    };
-
-    const fontSize = getFontSize(isMobile, isSmall);
-    const letterHeight = getHeightForFont(isMobile, isSmall);
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        handleResize();
+        function handleResize() {
+            const windowSize: number | undefined = window.innerWidth;
+            if (!windowSize) return;
+            if (windowSize >= 0 && windowSize <= 680) return setFontSize(36);
+            if (windowSize > 680 && windowSize <= 1280) return setFontSize(70);
+            return setFontSize(110);
+        }
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <div id="contactSection" style={{ minHeight: isMobile ? "auto" : "110vh" }} className="pt-10 xl:pt-28 xl:mt-20" ref={reference}>
@@ -59,41 +58,8 @@ const ContactSection = ({ reference }: Props) => {
                             setMouseModeToCopied();
                             setCopied(true);
                         }}>
-                        {["LUCASPENNICE@", "GMAIL.COM"].map((word) => {
-                            let lastLetterLeftPosition = 0;
-                            return (
-                                <div
-                                    className="relative overflow-x-hidden overflow-y-hidden flex justify-start w-full"
-                                    style={{ height: letterHeight }}>
-                                    {word.split("").map((letter, idx) => {
-                                        const calculateLetterPosition = (fontSize: number) => {
-                                            let currentSymbol = "";
-                                            if (letter === "@") currentSymbol = "AT";
-                                            if (letter === ".") currentSymbol = "DOT";
-                                            if (letter !== "@" && letter !== ".") currentSymbol = letter.toUpperCase();
-                                            //@ts-ignore
-                                            const letterSizeAtFont10: number = LETTER_SIZE_AT_10[currentSymbol];
-                                            const letterSizeAtCurrentFont = (letterSizeAtFont10 / 10) * fontSize;
-                                            const result = lastLetterLeftPosition;
-                                            lastLetterLeftPosition += letterSizeAtCurrentFont;
-                                            return result;
-                                        };
-                                        const calculateLetterDelay = () => {
-                                            return idx / 20;
-                                        };
-                                        return (
-                                            <m.h1
-                                                className="absolute"
-                                                {...appearTextAnimation(calculateLetterDelay(), letterHeight)}
-                                                style={{ left: calculateLetterPosition(fontSize), fontSize }}
-                                                key={idx}>
-                                                {letter.toUpperCase()}
-                                            </m.h1>
-                                        );
-                                    })}
-                                </div>
-                            );
-                        })}
+                        <AnimateWordOnView fontSize={fontSize} wordToAnimate="LUCASPENNICE@" />
+                        <AnimateWordOnView fontSize={fontSize} wordToAnimate="GMAIL.COM" />
 
                         {isMobile && !copied && <p>↑ Click To Copy</p>}
                         {isMobile && copied && <p style={{ color: "#5FAD41" }}>Copied!</p>}

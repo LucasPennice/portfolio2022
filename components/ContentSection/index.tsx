@@ -5,7 +5,6 @@ import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode 
 import { selectedDetailsContext } from "../../pages";
 import useHandleLogoState from "../../utils/useHandleLogoState";
 import AboutSection from "./AboutSection";
-import ContactSection from "./ContactSection";
 import ForDevsSection from "./ForDevsSection";
 import useContentInView from "../../utils/useContentInView";
 import useIsMobile from "../../utils/useMobileScreen";
@@ -18,9 +17,10 @@ import HeroSection from "./HeroSection";
 const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
     ssr: false,
 });
-const OpenMobileMenu = dynamic(() => import("./OpenMobileMenu"), {
+const ContactSection = dynamic(() => import("./ContactSection"), {
     ssr: false,
 });
+
 export enum ContentSections {
     hero = "Hero",
     work = "Work",

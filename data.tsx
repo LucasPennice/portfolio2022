@@ -199,4 +199,5 @@ export const LETTER_SIZE_AT_10 = {
     Z: 6.11,
     AT: 10.16,
     DOT: 2.78,
+    SPACE: 5.56,
 };
