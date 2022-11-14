@@ -37,7 +37,10 @@ const ForDevsSection = ({ reference }: Props) => {
                     <h1>.03</h1>
                     <h1>For Devs</h1>
                 </header>
-                <header
+                <m.header
+                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    viewport={{ once: true }}
                     className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
                     onMouseEnter={setMouseModeToAction}
                     onMouseLeave={setMouseModeToDefault}
@@ -53,9 +56,14 @@ const ForDevsSection = ({ reference }: Props) => {
                             </h1>
                         );
                     })}
-                </header>
+                </m.header>
                 <div className="w-full flex justify-center items-start mt-12 xl:flex-row flex-col-reverse">
-                    <m.section className="w-full xl:w-1/2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={selectedTopic}>
+                    <m.section
+                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        viewport={{ once: true }}
+                        className="w-full xl:w-1/2"
+                        key={selectedTopic}>
                         {ResourcesForDevs[selectedTopic].map((resource, idx) => (
                             <RecommendationDropdown
                                 key={idx}
@@ -66,9 +74,14 @@ const ForDevsSection = ({ reference }: Props) => {
                         ))}
                     </m.section>
                     <section className="w-full xl:w-1/2 flex justify-center items-center xl:mb-0 mb-12">
-                        <div className="xl:aspect-square aspect-video bg-red opacity-5" style={{ width: isMobile ? "100%" : "80%" }}>
+                        <m.div
+                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            viewport={{ once: true }}
+                            className="xl:aspect-square aspect-video bg-black"
+                            style={{ width: isMobile ? "100%" : "80%" }}>
                             {selectedTopic}
-                        </div>
+                        </m.div>
                     </section>
                 </div>
             </div>

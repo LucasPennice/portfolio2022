@@ -1,5 +1,7 @@
 import Image from "next/image";
 import useIsMobile from "../../../utils/useMobileScreen";
+import { motion as m } from "framer-motion";
+import { appearOpacity } from "../../../utils/animations";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -17,22 +19,22 @@ const AboutSection = ({ reference }: Props) => {
                     <h1>.02</h1>
                     <h1>About</h1>
                 </header>
-                <section className="flex flex-col xl:flex-row justify-between items-center gap-7">
-                    <aside className="w-1/2 text-3xl xl:h-screen">
-                        <h1 className="mb-14">
+                <section className="flex flex-col-reverse xl:flex-row justify-between items-center gap-7">
+                    <aside className="w-full xl:w-1/2 text-xl xl:text-3xl xl:h-screen">
+                        <m.h1 className="mb-14" {...appearOpacity(0)}>
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum excepturi recusandae quisquam corrupti quis laborum
                             dolores, neque accusantium aliquam quo, reprehenderit impedit rerum culpa provident atque odit dolorum doloremque debitis?
-                        </h1>
-                        <h1 className="mb-14">
+                        </m.h1>
+                        <m.h1 className="mb-14" {...appearOpacity(0.2)}>
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum excepturi recusandae quisquam corrupti quis laborum
                             dolores, neque accusantium aliquam quo, reprehenderit impedit rerum culpa provident atque odit dolorum doloremque debitis?
-                        </h1>
-                        <h1>
+                        </m.h1>
+                        <m.h1 {...appearOpacity(0.4)}>
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum excepturi recusandae quisquam corrupti quis laborum
                             dolores, neque accusantium aliquam quo, reprehenderit impedit rerum culpa provident atque odit dolorum doloremque debitis?
-                        </h1>
+                        </m.h1>
                     </aside>
-                    <div className="w-1/2 overflow-x-hidden overflow-y-hidden rounded-sm">
+                    <div className="w-full xl:w-1/2 overflow-x-hidden overflow-y-hidden rounded-sm">
                         <Image
                             className="scale-125 hover:scale-110"
                             src="/drill-monkey-01_2x3.webp"

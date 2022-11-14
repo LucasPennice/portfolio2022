@@ -5,6 +5,7 @@ import VanillaTilt from "vanilla-tilt";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
 import { WorkExperience } from "../../../../data";
 import Image from "next/image";
+import { appearTextAnimation, appearTextUnderlineAnimation } from "../../../../utils/animations";
 
 function DesktopWorkSection({
     openDetails,
@@ -21,23 +22,6 @@ function DesktopWorkSection({
         </m.div>
     );
 }
-
-const appearTextAnimation = (idx: number) => {
-    return {
-        whileInView: { top: 0 },
-        initial: { top: 130 },
-        transition: { duration: 0.7, delay: parseFloat(`0.${idx * 3}`) },
-        viewport: { once: true },
-    };
-};
-const appearTextUnderlineAnimation = (idx: number) => {
-    return {
-        whileInView: { width: "100%" },
-        initial: { width: 0 },
-        transition: { duration: 0.7, delay: parseFloat(`0.${idx * 3}`) },
-        viewport: { once: true },
-    };
-};
 
 function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkExperience): void; data: WorkExperience }) {
     const updateMouseMode = React.useContext(updateMouseModeContext);
@@ -88,6 +72,7 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
     const updateMouseMode = React.useContext(updateMouseModeContext);
     const LETTER_WIDTH = 82.25;
     const companyNameWords = data.company.split(" ");
+
     return (
         <aside className="flex flex-col sticky top-20 cursor-default w-full">
             <div
@@ -98,30 +83,55 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
                     updateMouseMode(MouseModes.Default);
                 }}
                 onClick={openDetails}>
-                {companyNameWords.map((word, idx) => {
+                {companyNameWords.map((word, wordIdx) => {
                     return (
                         <div
                             key={word}
-                            className="relative overflow-x-hidden overflow-y-hidden hoverUnderlineDiv"
+                            className="relative overflow-x-hidden overflow-y-hidden flex justify-start hoverUnderlineDiv"
                             style={{ height: 130, width: word.length * LETTER_WIDTH }}>
-                            <m.h1 style={{ fontSize: 120 }} className="absolute" {...appearTextAnimation(idx)}>
-                                {word.toUpperCase()}
-                            </m.h1>
-                            <Underline idx={idx} />
+                            {word.split("").map((letter, idx) => {
+                                const calculateLetterDelay = () => {
+                                    return idx / 20;
+                                };
+
+                                return (
+                                    <m.h1
+                                        className="absolute"
+                                        {...appearTextAnimation(calculateLetterDelay(), 130)}
+                                        style={{ left: LETTER_WIDTH * idx, fontSize: 115 }}
+                                        key={`${wordIdx}${idx}`}>
+                                        {letter.toUpperCase()}
+                                    </m.h1>
+                                );
+                            })}
+                            <Underline delay={companyNameWords.length / 3} />
                         </div>
                     );
                 })}
             </div>
-            <div className="relative overflow-x-hidden overflow-y-hidden mt-20 w-full flex justify-start" style={{ height: 140 }}>
-                <m.h1 style={{ fontSize: 50 }} className="absolute left-0" {...appearTextAnimation(companyNameWords.length)}>
-                    {data.role}
-                </m.h1>
+
+            <div className="relative overflow-x-hidden overflow-y-hidden flex justify-start mt-10" style={{ height: 50 }}>
+                {data.role.split("").map((letter, idx) => {
+                    const calculateLetterDelay = () => {
+                        return idx / 40;
+                    };
+
+                    return (
+                        <m.h1
+                            className="absolute"
+                            {...appearTextAnimation(calculateLetterDelay() + 0.5, 50)}
+                            style={{ left: 30 * idx, fontSize: 40 }}
+                            key={`${letter}${idx}`}>
+                            {letter.toUpperCase()}
+                        </m.h1>
+                    );
+                })}
             </div>
         </aside>
     );
 }
 
-function Underline({ idx }: { idx: number }) {
-    return <m.div {...appearTextUnderlineAnimation(idx)} style={{ height: 7 }} className="w-full absolute bottom-0 left-0 bg-black"></m.div>;
+function Underline({ delay }: { delay: number }) {
+    return <m.div {...appearTextUnderlineAnimation(delay)} style={{ height: 7 }} className="w-full absolute bottom-0 left-0 bg-black"></m.div>;
 }
 export default DesktopWorkSection;
