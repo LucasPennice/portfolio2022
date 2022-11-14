@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
-import { motion as m, useScroll } from "framer-motion";
-import VanillaTilt from "vanilla-tilt";
+import { motion as m } from "framer-motion";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
 import { WorkExperience } from "../../../../data";
 import Image from "next/image";
