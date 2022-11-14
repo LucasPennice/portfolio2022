@@ -120,14 +120,14 @@ function useHandleNetworkCreation(
                         },
                     },
                     ...selectedDetails.techStack.map((tech) => {
-                        return { id: tech.name, label: tech.name, level: 1 };
+                        return { id: tech.label, label: tech.label, level: 1 };
                     }),
                 ] as Node[];
             }
             function createEdges() {
                 return [
                     ...selectedDetails.techStack.map((tech) => {
-                        return { from: selectedDetails.company, to: tech.name, id: `${selectedDetails.company}${tech.name}` };
+                        return { from: selectedDetails.company, to: tech.label, id: `${selectedDetails.company}${tech.label}` };
                     }),
                 ] as Edge[];
             }
