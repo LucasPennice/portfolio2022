@@ -234,3 +234,15 @@ body {
 #esbuildLogo {
     color: #efd81d;
 }
+
+.appearOpacity {
+    animation: appearOpacity 1s forwards;
+}
+@keyframes appearOpacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

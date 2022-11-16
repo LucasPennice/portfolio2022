@@ -10,7 +10,7 @@ const LaptopScene = () => {
     useEffect(() => {
         if (!laptopRef.current) return;
         gsap.from(laptopRef.current.position, { z: 8 });
-        gsap.to(laptopRef.current.position, { z: 0, duration: 2, ease: "power2.out" });
+        gsap.to(laptopRef.current.position, { z: 0, duration: 3.5, ease: "power2.out" });
     }, [laptopRef]);
 
     return (
