@@ -50,17 +50,10 @@ body {
 .heroText {
     font-size: 250px;
 }
-.laptopContainer {
-    background-color: green;
-    height: 400px;
-    aspect-ratio: 1;
-}
+
 @media (max-width: 1280px) {
     .heroText {
         font-size: 20vw;
-    }
-    .laptopContainer {
-        height: 50vw;
     }
 }
 

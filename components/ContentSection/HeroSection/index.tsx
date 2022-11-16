@@ -1,6 +1,7 @@
 import { motion as m } from "framer-motion";
 import useIsMobile from "../../../utils/useMobileScreen";
-import Laptop from "./Laptop";
+import dynamic from "next/dynamic";
+const Laptop = dynamic(() => import("./Laptop"), { ssr: false });
 
 function HeroSection() {
     const isMobile = useIsMobile(1280);
