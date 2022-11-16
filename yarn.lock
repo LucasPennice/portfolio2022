@@ -214,7 +214,7 @@
     utility-types "^3.10.0"
     zustand "^3.5.13"
 
-"@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0":
+"@react-three/fiber@^8.9.1", "@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0":
   version "8.9.1"
   resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-8.9.1.tgz"
   integrity sha512-xRMO9RGp0DkxSFu5BmmkjCxJ4r0dEpLobtxXdZwI0h2rZZaCnkPM5zThRN8xaZNbZhzRSVICeNOFaZltr9xFyQ==
