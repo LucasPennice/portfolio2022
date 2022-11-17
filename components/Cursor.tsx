@@ -9,16 +9,16 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
         };
 
         if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
-            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
+            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
         }
         if (mode === MouseModes.Copied) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#5FAD41" };
         }
         if (mode === MouseModes.Scroll) {
-            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
+            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
         }
         if (mode === MouseModes.Clickeable) {
-            return { ...position, height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "#E01A4F" };
+            return { ...position, height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
         }
 
         return { ...position, height: "32px", width: "32px", mixBlendMode: "difference", backgroundColor: "white" };

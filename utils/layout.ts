@@ -21,10 +21,8 @@ export const calculateVariants = (currentMode: PortfolioMode, mode: PortfolioMod
     const currentPosition: Position = selectCurrentPosition();
 
     return {
-        active: { scale: 1, filter: "blur(0px)", left: "0px", top: "0px" },
+        active: { left: "0px", top: "0px" },
         inactive: {
-            scale: 1,
-            filter: "blur(5px)",
             ...currentPosition,
         },
     };
@@ -79,5 +77,5 @@ export const calculateVariants = (currentMode: PortfolioMode, mode: PortfolioMod
 };
 
 export const layoutAnimationSettings = {
-    transition: { bounce: 0, duration: 0.5 },
+    transition: { bounce: 0, duration: 0, delay: 0.25 },
 };

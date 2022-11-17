@@ -1,9 +1,10 @@
 import * as React from "react";
-import { motion as m } from "framer-motion";
+import { motion as m, useInView } from "framer-motion";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
 import { WorkExperience } from "../../../../data";
 import Image from "next/image";
 import AnimateWordOnView from "../../../AnimateWordOnView";
+import AnimatedImageOnView from "../../../AnimatedImageOnView";
 
 function DesktopWorkSection({
     openDetails,
@@ -33,35 +34,28 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 <Text data={data} openDetails={() => openDetails(data)} />
             </section>
 
-            <m.section
-                whileInView={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
+            <section
                 className="flex flex-col items-end justify-center"
                 style={{ width: "calc(50% - 20px)", height: "calc(100vh - 100px)", perspective: 1000 }}>
-                <div style={{ width: "auto", height: "100%", borderRadius: 5 }} className="overflow-x-hidden overflow-y-hidden">
-                    <Image
-                        onMouseEnter={setMouseDetails}
-                        onMouseLeave={setMouseDefault}
-                        onClick={() => openDetails(data)}
-                        className="scale-125 hover:scale-110"
-                        src="/drill-monkey-01_2x3.webp"
-                        style={{
+                <AnimatedImageOnView
+                    imageProps={{
+                        alt: "project inmg",
+                        height: 1080,
+                        width: 1920,
+                        src: "/drill-monkey-01_2x3.webp",
+                        styles: {
                             width: "auto",
                             height: "100%",
                             borderRadius: 5,
                             transition: ".5s ease-in-out",
-                        }}
-                        alt="Project img"
-                        width={1920}
-                        height={1080}
-                    />
-                </div>
+                        },
+                    }}
+                    actions={{ onMouseEnter: setMouseDetails, onMouseLeave: setMouseDefault, onClick: () => openDetails(data) }}
+                />
                 <h1 onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={() => openDetails(data)} className="text-2xl mt-2">
                     More Details
                 </h1>
-            </m.section>
+            </section>
         </aside>
     );
 }

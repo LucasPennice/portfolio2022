@@ -1,4 +1,4 @@
-import { motion as m, useSpring } from "framer-motion";
+import { motion as m, useInView, useSpring } from "framer-motion";
 import { useScroll } from "framer-motion";
 import Image from "next/image";
 import { useContext, useRef, useState, useTransition } from "react";
@@ -11,6 +11,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
     const [hideProgress, setHideProgress] = useState(true);
 
     const ref = useRef(null);
+    const isInView = useInView(ref);
     const { scrollXProgress } = useScroll({ container: ref });
     return (
         <>
@@ -46,6 +47,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                 {imageArr.map((e, idx) => {
                     return (
                         <Image
+                            className={`opacity-0 ${isInView && "animateFromBottom"}`}
                             src="/drill-monkey-01_2x3.webp"
                             style={{
                                 width: "auto",
@@ -53,6 +55,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                                 borderRadius: 5,
                                 marginLeft: idx === 0 ? "51%" : "10%",
                                 marginRight: idx === imageArr.length - 1 ? "5%" : "0%",
+                                animationDelay: `${idx / 20 + 0.7}s`,
                             }}
                             alt="Project img"
                             width={1920}

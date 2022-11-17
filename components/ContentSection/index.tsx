@@ -72,9 +72,6 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
                 <AboutSection reference={aboutSectionRef} />
                 <ForDevsSection reference={forDevsSectionRef} />
                 <ContactSection reference={contactSectionRef} />
-                {/* {isMobile && (
-                    <OpenMobileMenu openMenu={() => setCurrentMode(PortfolioMode.MobileMenu)} closeMenu={() => setCurrentMode(PortfolioMode.Main)} />
-                )} */}
             </div>
         </m.div>
     );

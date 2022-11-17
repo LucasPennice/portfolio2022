@@ -8,13 +8,16 @@ interface Props {
     wordToAnimate: string;
     fontSize: AllowedFonts;
     underline?: boolean;
+    delayInSeconds?: number;
 }
 
-function AnimateWordOnView({ fontSize, wordToAnimate, underline }: Props) {
+function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds }: Props) {
     //It's an object because we need to modify the variable and JS doesn't allow pass by reference
     let lastLetterLeftPosition = { value: 0 };
     let letterHeight = getHeightForFont(fontSize);
     const lettersArray = wordToAnimate.split("");
+
+    const delay = delayInSeconds ?? 0;
 
     return (
         <div
@@ -25,7 +28,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline }: Props) {
                     <m.h1
                         className="absolute"
                         whileInView={{ top: 0 }}
-                        transition={{ duration: 0.7, delay: idx / 20 }}
+                        transition={{ duration: 0.7, delay: delay + idx / 20, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
                         viewport={{ once: true }}
                         style={{ top: letterHeight, left: calculateLetterPosition(letter), fontSize }}
                         key={idx}>
@@ -33,7 +36,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline }: Props) {
                     </m.h1>
                 );
             })}
-            {underline && <Underline delay={lettersArray.length / 20} />}
+            {underline && <Underline delay={delay + lettersArray.length / 20} />}
         </div>
     );
 
