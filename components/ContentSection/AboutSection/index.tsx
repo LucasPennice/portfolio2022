@@ -32,16 +32,18 @@ const AboutSection = ({ reference }: Props) => {
                     })}
 
                     <m.h1 {...appearOpacity(0.3)}>I have professional experience with the following technologies</m.h1>
-                    <m.div {...appearOpacity(0.4)} className="w-full flex flex-wrap justify-center items-center gap-7 my-12 xl:my-24">
+                    <m.div {...appearOpacity(0.4)} className={`w-full my-12 xl:my-24 flex flex-wrap justify-center items-center gap-7`}>
                         {ABOUT_SECTION_DATA.workExperienceTech.map((tech, idx) => {
                             return (
-                                <div key={idx} className="flex flex-col justify-center items-center gap-1">
+                                <div key={idx} className="flex-1 flex flex-col justify-start items-center gap-1">
                                     <aside
                                         className="w-16 h-16 xl:w-32 xl:h-32 flex justify-center items-center rounded-md"
                                         style={{ fontSize: isMobile ? 40 : 65, color: "#F0EEEC", backgroundColor: "#12100E" }}>
                                         {tech.icon}
                                     </aside>
-                                    <p className="text-base">{tech.label}</p>
+                                    <p className="text-base" style={{ height: 36 }}>
+                                        {tech.label}
+                                    </p>
                                 </div>
                             );
                         })}
@@ -50,13 +52,15 @@ const AboutSection = ({ reference }: Props) => {
                     <m.div {...appearOpacity(0.6)} className="w-full flex flex-wrap justify-center items-center gap-7 my-12 xl:my-24">
                         {ABOUT_SECTION_DATA.haveUsedBeforeTech.map((tech, idx) => {
                             return (
-                                <div key={idx} className="flex flex-col justify-center items-center gap-1">
+                                <div key={idx} className="flex-1 flex flex-col justify-start items-center gap-1">
                                     <aside
                                         className="w-16 h-16 xl:w-32 xl:h-32 flex justify-center items-center rounded-md"
                                         style={{ fontSize: isMobile ? 40 : 65, color: "#F0EEEC", backgroundColor: "#12100E" }}>
                                         {tech.icon}
                                     </aside>
-                                    <p className="text-base">{tech.label}</p>
+                                    <p className="text-base" style={{ height: 36 }}>
+                                        {tech.label}
+                                    </p>
                                 </div>
                             );
                         })}
