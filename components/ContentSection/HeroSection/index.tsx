@@ -25,6 +25,7 @@ function HeroSection() {
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="LUCAS" />
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="PENNICE" />
                 <AnimatedImageOnView
+                    priority
                     containerStyles={{
                         width: `clamp(320px,${19 * 3}vw,800px)`,
                         height: `clamp(135px,${8 * 3}vw,309px)`,

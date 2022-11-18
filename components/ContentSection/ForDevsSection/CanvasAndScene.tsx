@@ -7,16 +7,16 @@ function CanvasAndScene() {
             <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
             <Environment preset="city" />
             <ambientLight />
-            <Suspense fallback={null}>
-                <mesh scale={3.5}>
-                    <boxGeometry />
-                    <meshStandardMaterial color="hotpink" />
-                </mesh>
-                {/* <IPhoneModel /> */}
-                {/* <BookshelfModel /> */}
-                {/* <HeadphonesModel /> */}
-                {/* <ReactModel /> */}
-            </Suspense>
+            {/* <Suspense fallback={null}> */}
+            <mesh scale={3.5}>
+                <boxGeometry />
+                <meshStandardMaterial color="hotpink" />
+            </mesh>
+            {/* <IPhoneModel /> */}
+            {/* <BookshelfModel /> */}
+            {/* <HeadphonesModel /> */}
+            {/* <ReactModel /> */}
+            {/* </Suspense> */}
         </>
     );
 }

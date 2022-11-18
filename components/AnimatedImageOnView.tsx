@@ -17,9 +17,10 @@ interface AnimatedImage {
         height: number;
     };
     parallax?: boolean;
+    priority?: boolean;
 }
 
-function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles }: AnimatedImage) {
+function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles, priority }: AnimatedImage) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
@@ -37,6 +38,7 @@ function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles }:
                     alt={imageProps.alt}
                     width={imageProps.width}
                     height={imageProps.height}
+                    priority={priority ? true : false}
                 />
             </div>
         );
