@@ -51,7 +51,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds,
     }
 
     function getHeightForFont(fontSize: number) {
-        return (fontSize * 130) / 110;
+        return (fontSize * 140) / 110;
     }
 
     function calculateLetterPosition(letter: string) {
