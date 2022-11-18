@@ -40,7 +40,7 @@ const ContactSection = ({ reference }: Props) => {
     }, []);
 
     return (
-        <div id="contactSection" style={{ minHeight: isMobile ? "auto" : "110vh" }} className="pt-10 xl:pt-28 xl:mt-20" ref={reference}>
+        <div id="contactSection" style={{ minHeight: "110vh" }} className="pt-10 xl:pt-28 xl:mt-20" ref={reference}>
             <div
                 style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? "100vh" : "calc(100vh - 112px)" }}
                 className="w-full flex flex-col justify-between items-start px-4 xl:px-20 gap-10">
@@ -60,9 +60,10 @@ const ContactSection = ({ reference }: Props) => {
                         }}>
                         <AnimateWordOnView fontSize={fontSize} wordToAnimate="LUCASPENNICE@" />
                         <AnimateWordOnView fontSize={fontSize} wordToAnimate="GMAIL.COM" />
-
-                        {isMobile && !copied && <p>↑ Click To Copy</p>}
-                        {isMobile && copied && <p style={{ color: "#5FAD41" }}>Copied!</p>}
+                        <m.div {...appearOpacity(1)}>
+                            {isMobile && !copied && <p>↑ Click To Copy</p>}
+                            {isMobile && copied && <p style={{ color: "#5FAD41" }}>Copied!</p>}
+                        </m.div>
                     </section>
 
                     <m.h1 {...appearOpacity(1)} style={{ fontSize: isMobile ? "max(5vw , 10px)" : 40 }} className="pt-3">
@@ -88,8 +89,8 @@ const ContactSection = ({ reference }: Props) => {
                     </m.h1>
                 </div>
                 <m.footer
-                    {...appearOpacity(1.2)}
-                    className="w-full flex flex-col xl:flex-row justify-start xl:justify-between items-start xl:gap-0 gap-6 xl:items-center pb-5 xl:pb-0">
+                    {...appearOpacity(1.1)}
+                    className="w-full flex flex-row justify-between items-start xl:gap-0 gap-6 xl:items-center pb-5 xl:pb-0">
                     <div style={{ fontSize: isMobile ? "max(2vw , 2px)" : 30 }}>
                         <p>BASED IN ROSARIO</p>
                         <p>ARGENTINA</p>

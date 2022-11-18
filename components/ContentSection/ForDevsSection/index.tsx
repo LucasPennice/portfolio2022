@@ -47,6 +47,7 @@ const ForDevsSection = ({ reference }: Props) => {
                     whileInView={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 30 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 1, easings: "cubic-bezier(0.075, 0.82, 0.165, 1)" }}
                     className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
                     onMouseEnter={setMouseModeToAction}
                     onMouseLeave={setMouseModeToDefault}
@@ -68,6 +69,7 @@ const ForDevsSection = ({ reference }: Props) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         initial={{ opacity: 0, y: 30 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 0.5, easings: "cubic-bezier(0.075, 0.82, 0.165, 1)" }}
                         className="w-full xl:w-1/2"
                         key={selectedTopic}>
                         {ResourcesForDevs[selectedTopic].map((resource, idx) => (
