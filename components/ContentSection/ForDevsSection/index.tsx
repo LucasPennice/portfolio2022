@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
 import { ResourcesForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
@@ -6,6 +6,10 @@ import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
+import { IPhoneModel } from "./models/IPhoneModel";
+import { HeadphonesModel } from "./models/HeadphonesModel";
+import { BookshelfModel } from "./models/BookshelfModel";
+import { ReactModel } from "./models/ReactModel";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -81,11 +85,16 @@ const ForDevsSection = ({ reference }: Props) => {
                                 <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
                                 <Environment preset="city" />
                                 <ambientLight />
-                                {/* <Suspense fallback={null}> */}
-                                <mesh scale={3.5}>
+                                {/* <mesh scale={3.5}>
                                     <boxGeometry />
                                     <meshStandardMaterial color="hotpink" />
-                                </mesh>
+                                </mesh> */}
+                                <Suspense fallback={null}>
+                                    {selectedTopic === SelectedTopic.Talks && <HeadphonesModel />}
+                                    {selectedTopic === SelectedTopic.Books && <BookshelfModel />}
+                                    {selectedTopic === SelectedTopic.Channels && <IPhoneModel />}
+                                    {selectedTopic === SelectedTopic.Courses && <ReactModel />}
+                                </Suspense>
                             </Canvas>
                         </div>
                     </section>
