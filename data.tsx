@@ -1,8 +1,33 @@
 import { ReactElement } from "react";
-import { SiSass, SiReact, SiReactrouter, SiRedux, SiTypescript, SiNextdotjs, SiV, SiWebpack } from "react-icons/si";
+import {
+    SiSass,
+    SiReact,
+    SiReactrouter,
+    SiRedux,
+    SiTypescript,
+    SiNextdotjs,
+    SiV,
+    SiWebpack,
+    SiCplusplus,
+    SiC,
+    SiVite,
+    SiTsnode,
+    SiNodedotjs,
+    SiJavascript,
+    SiPostgresql,
+    SiMongodb,
+    SiPrisma,
+    SiExpress,
+    SiPassport,
+    SiHtml5,
+    SiCss3,
+    SiDocker,
+} from "react-icons/si";
 import { AiFillApi } from "react-icons/ai";
 import { SiFramer } from "react-icons/si";
 import { IoBuild } from "react-icons/io5";
+import { TbBrandReactNative } from "react-icons/tb";
+import { DiPython } from "react-icons/di";
 import { BiGitBranch } from "react-icons/bi";
 
 export interface Tech {
@@ -167,6 +192,45 @@ export const ResourcesForDevs: RecommendationsForDevs = {
             description:
                 "Discover how you can create interactive, memorable experiences to onboard people into your app. We'll take you through discoverable design practices and learn how you can craft explorable, fun interfaces that help people grasp the possibilities of your app at a glance. We'll also show you how to apply this methodology to personalize your content and make your app easy to customize.",
         },
+    ],
+};
+
+export const ABOUT_SECTION_DATA = {
+    textArray: [
+        "My name is Lucas Pennice and I’m a MERN stack developer looking for an entry-level position as a front end or full stack developer. I live in Argentina but I’m willing to work remotely",
+        "I’m always learning, and looking for the next challenge. Some of my main interests are creating useful, responsive websites and web applications, improve my team-working skills, learn to write better code and keep discovering new technologies to work with",
+        "I began my coding journey in highschool when I took three years of C, it was mostly based on solvin algorithmic problems. After finishing highschool I started studying civil engineer, but it didn't feel like a good fit for me. I wanted to be able to build projects and see them grow, after a couple of weeks I enrolled in another college to study system engineering",
+    ],
+    workExperienceTech: [
+        { icon: <SiReact />, label: "ReactJs" },
+        { icon: <SiTypescript />, label: "TypeScript" },
+        { icon: <SiJavascript />, label: "JavaScript" },
+        { icon: <SiSass />, label: "Sass" },
+        { icon: <SiNextdotjs />, label: "NextJs" },
+        { icon: <BiGitBranch />, label: "Git" },
+        { icon: <SiFramer />, label: "Framer Motion" },
+        { icon: <SiV />, label: "VisJs" },
+        { icon: <SiRedux />, label: "Redux" },
+        { icon: <SiReactrouter />, label: "React-Router" },
+        { icon: <SiWebpack />, label: "Webpack" },
+        { icon: <IoBuild />, label: "EsBuild" },
+        { icon: <SiTsnode />, label: "TsNodeJs" },
+        { icon: <SiNodedotjs />, label: "NodeJs" },
+        { icon: <SiPostgresql />, label: "PostGresql" },
+        { icon: <SiExpress />, label: "ExpressJs" },
+        { icon: <SiHtml5 />, label: "HTML" },
+        { icon: <SiCss3 />, label: "CSS" },
+        { icon: <SiDocker />, label: "Docker" },
+    ],
+    haveUsedBeforeTech: [
+        { icon: <DiPython />, label: "Python" },
+        { icon: <SiCplusplus />, label: "C++" },
+        { icon: <SiC />, label: "C" },
+        { icon: <SiVite />, label: "Vite" },
+        { icon: <SiMongodb />, label: "MongoDB" },
+        { icon: <SiPrisma />, label: "Prisma" },
+        { icon: <SiPassport />, label: "PassportJs" },
+        { icon: <TbBrandReactNative />, label: "ReactNative" },
     ],
 };
 
