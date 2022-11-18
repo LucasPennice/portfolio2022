@@ -47,7 +47,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
 
     const smoothScrolling = useRef(null);
 
-    const isMobile = useIsMobile(1280);
+    const isSmallScreen = useIsMobile(1670);
     const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
 
     useHandleLogoState(contentRef, setShowLogo);
@@ -66,7 +66,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
             {...layoutAnimationSettings}>
             <m.div />
             <div ref={contentRef} className="h-full z-10 shadow-md overflow-y-scroll overflow-x-hidden relative">
-                {!isMobile && <Header showLogo={showLogo} sectionInView={sectionInView} />}
+                {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} />}
                 <HeroSection />
                 <WorkSection openDetails={openDetails} reference={workSectionRef} />
                 <AboutSection reference={aboutSectionRef} />
