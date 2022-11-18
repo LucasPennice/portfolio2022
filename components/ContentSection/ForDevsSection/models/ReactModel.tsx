@@ -6,6 +6,8 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { motion } from "framer-motion-3d";
+import { modelAnimation } from "./animation";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -22,11 +24,12 @@ type GLTFResult = GLTF & {
     };
 };
 
-export function ReactModel(props: JSX.IntrinsicElements["group"]) {
+export function ReactModel() {
     //@ts-ignore
     const { nodes, materials } = useGLTF("reactModel.gltf") as GLTFResult;
     return (
-        <group {...props} dispose={null}>
+        //@ts-ignore
+        <motion.group dispose={null} {...modelAnimation}>
             <mesh
                 castShadow
                 receiveShadow
@@ -63,7 +66,7 @@ export function ReactModel(props: JSX.IntrinsicElements["group"]) {
                     scale={[3.75, 1.47, 3]}
                 />
             </mesh>
-        </group>
+        </motion.group>
     );
 }
 

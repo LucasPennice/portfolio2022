@@ -6,6 +6,8 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { modelAnimation } from "./animation";
+import { motion } from "framer-motion-3d";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -55,11 +57,12 @@ type GLTFResult = GLTF & {
     };
 };
 
-export function IPhoneModel(props: JSX.IntrinsicElements["group"]) {
+export function IPhoneModel() {
     //@ts-ignore
     const { nodes, materials } = useGLTF("/iphoneModel.gltf") as GLTFResult;
     return (
-        <group {...props} dispose={null}>
+        //@ts-ignore
+        <motion.group dispose={null} {...modelAnimation}>
             <group position={[0, 1.563, 0]}>
                 <mesh geometry={nodes.Circle038.geometry} material={materials["FrameGrey.001"]} />
                 <mesh geometry={nodes.Circle038_1.geometry} material={materials["Front.001"]} />
@@ -103,7 +106,7 @@ export function IPhoneModel(props: JSX.IntrinsicElements["group"]) {
                 <mesh geometry={nodes.VolumeButtons001.geometry} material={materials["FrameGrey.001"]} position={[-0.658, 0.208, -0.002]} />
                 <mesh geometry={nodes.SCREEN.geometry} material={materials["Display.002"]} />
             </group>
-        </group>
+        </motion.group>
     );
 }
 
