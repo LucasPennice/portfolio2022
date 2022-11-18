@@ -8,6 +8,7 @@ interface AnimatedImage {
         onMouseLeave?: () => void;
         onClick?: () => void;
     };
+    containerStyles?: { [key: string]: string | number };
     imageProps: {
         styles: { [key: string]: string | number };
         src: string;
@@ -15,11 +16,30 @@ interface AnimatedImage {
         width: number;
         height: number;
     };
+    parallax?: boolean;
 }
 
-function AnimatedImageOnView({ imageProps, actions }: AnimatedImage) {
+function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles }: AnimatedImage) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
+
+    if (!parallax)
+        return (
+            <div ref={ref} style={{ ...containerStyles }} className="overflow-x-hidden overflow-y-hidden relative">
+                <AnimatedDivOnView />
+                <Image
+                    onMouseEnter={(actions && actions.onMouseEnter) ?? undefined}
+                    onMouseLeave={(actions && actions.onMouseLeave) ?? undefined}
+                    onClick={(actions && actions.onClick) ?? undefined}
+                    className={`${isInView && "imageAnimation"}  hover:scale-110`}
+                    src={imageProps.src}
+                    style={imageProps.styles}
+                    alt={imageProps.alt}
+                    width={imageProps.width}
+                    height={imageProps.height}
+                />
+            </div>
+        );
 
     return (
         <div
@@ -33,7 +53,7 @@ function AnimatedImageOnView({ imageProps, actions }: AnimatedImage) {
                 onClick={(actions && actions.onClick) ?? undefined}
                 className={`${isInView && "imageAnimation"}  hover:scale-110`}
                 src={imageProps.src}
-                style={imageProps.styles}
+                style={{ ...imageProps.styles, position: "absolute", top: 0 }}
                 alt={imageProps.alt}
                 width={imageProps.width}
                 height={imageProps.height}

@@ -34,9 +34,7 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 <Text data={data} openDetails={() => openDetails(data)} />
             </section>
 
-            <section
-                className="flex flex-col items-end justify-center"
-                style={{ width: "calc(50% - 20px)", height: "calc(100vh - 100px)", perspective: 1000 }}>
+            <section className="flex flex-col items-end justify-center" style={{ width: "calc(50% - 20px)", height: "calc(100vh - 100px)" }}>
                 <AnimatedImageOnView
                     imageProps={{
                         alt: "project inmg",
@@ -44,12 +42,13 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                         width: 1920,
                         src: "/drill-monkey-01_2x3.webp",
                         styles: {
-                            width: "auto",
+                            width: "100%",
                             height: "100%",
                             borderRadius: 5,
-                            transition: ".5s ease-in-out",
+                            transition: ".5s cubic-bezier(0.83, 0, 0.17, 1)",
                         },
                     }}
+                    parallax
                     actions={{ onMouseEnter: setMouseDetails, onMouseLeave: setMouseDefault, onClick: () => openDetails(data) }}
                 />
                 <h1 onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={() => openDetails(data)} className="text-2xl mt-2">

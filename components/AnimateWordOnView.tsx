@@ -6,7 +6,7 @@ export type AllowedFonts = 110 | 70 | 36;
 
 interface Props {
     wordToAnimate: string;
-    fontSize: AllowedFonts;
+    fontSize: number;
     underline?: boolean;
     delayInSeconds?: number;
 }
@@ -48,10 +48,8 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds 
         return result;
     }
 
-    function getHeightForFont(fontSize: AllowedFonts) {
-        if (fontSize === 110) return 126.5;
-        if (fontSize === 70) return 80.5;
-        return 41.5;
+    function getHeightForFont(fontSize: number) {
+        return (fontSize * 126) / 110;
     }
 
     function calculateLetterPosition(letter: string) {

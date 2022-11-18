@@ -3,6 +3,7 @@ import { AnimatePresence, motion as m } from "framer-motion";
 import Link from "next/link";
 import * as React from "react";
 import { ContentSections } from "../..";
+import AnimateWordOnView from "../../../AnimateWordOnView";
 import HoverSlider from "./HoverSlider";
 import Slider from "./Slider";
 
@@ -46,12 +47,12 @@ const Header = ({ showLogo, sectionInView }: Props) => {
                     <AnimatePresence>
                         {showLogo && (
                             <m.div
-                                className="text-center text-xl"
+                                className="flex flex-col justify-center items-center"
                                 exit={{ width: 0, scale: 0 }}
                                 initial={{ width: 0, scale: 0 }}
                                 animate={{ width: 100, scale: 1 }}>
-                                <h2>LUCAS</h2>
-                                <h2>PENNICE</h2>
+                                <AnimateWordOnView fontSize={20} wordToAnimate="LUCAS" />
+                                <AnimateWordOnView fontSize={20} wordToAnimate="PENNICE" />
                             </m.div>
                         )}
                     </AnimatePresence>

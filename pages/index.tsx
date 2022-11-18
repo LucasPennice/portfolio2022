@@ -33,6 +33,8 @@ const defaultSelectedDetails: WorkExperience = {
     caseStudy: "",
 };
 
+export const HEIGHT_WITHOUT_NAVBAR = "calc(100vh - 80px)";
+
 export const selectedDetailsContext = createContext<[WorkExperience, (v: WorkExperience) => void]>([
     defaultSelectedDetails,
     (defaultSelectedDetails) => {},
