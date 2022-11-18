@@ -4,11 +4,8 @@ import { ResourcesForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
 import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
-import dynamic from "next/dynamic";
 import { Canvas } from "@react-three/fiber";
-const CanvasAndScene = dynamic(() => import("./CanvasAndScene"), {
-    ssr: false,
-});
+import CanvasAndScene from "./CanvasAndScene";
 
 interface Props {
     reference: React.MutableRefObject<any>;
