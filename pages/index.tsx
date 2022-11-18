@@ -47,7 +47,7 @@ export default function Home() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [mouseMode, setMouseMode] = useState<MouseModes>(MouseModes.Default);
 
-    const isMobile = useIsMobile(1280);
+    const isSmallScreen = useIsMobile(1680);
 
     useEffect(() => {
         const mouseMove = (e: any) => {
@@ -70,8 +70,8 @@ export default function Home() {
         <updateMouseModeContext.Provider value={updateMouseMode}>
             <div className="overflow-hidden min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
                 <Transition currentMode={currentMode} shouldAnimate={selectedDetails.company !== ""} />
-                {!isMobile && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
-                {isMobile && <MobileMenu layoutState={[currentMode, setCurrentMode]} />}
+                {!isSmallScreen && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
+                {/* {isSmallScreen && <MobileMenu layoutState={[currentMode, setCurrentMode]} />} */}
                 <selectedDetailsContext.Provider value={[selectedDetails, setSelectedDetails]}>
                     <Content layoutState={[currentMode, setCurrentMode]} />
                     <Details layoutState={[currentMode, setCurrentMode]} />

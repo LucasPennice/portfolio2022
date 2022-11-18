@@ -24,7 +24,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds,
     return (
         <div
             className="relative overflow-x-hidden overflow-y-hidden flex justify-start w-full"
-            style={{ height: letterHeight, width: calculateWordWidth(), ...style }}>
+            style={{ height: letterHeight + 1, width: calculateWordWidth(), ...style }}>
             {lettersArray.map((letter, idx) => {
                 return (
                     <m.h1
@@ -51,7 +51,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds,
     }
 
     function getHeightForFont(fontSize: number) {
-        return (fontSize * 130) / 110;
+        return (fontSize * 125.5) / 110;
     }
 
     function calculateLetterPosition(letter: string) {

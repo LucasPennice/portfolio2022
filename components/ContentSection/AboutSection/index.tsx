@@ -1,4 +1,3 @@
-import Image from "next/image";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { motion as m } from "framer-motion";
 import { appearOpacity } from "../../../utils/animations";
@@ -11,7 +10,8 @@ interface Props {
 
 const AboutSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
-    const shouldAddMarginBottom = useInRange(1275, 1700);
+    const shouldAddMarginBottomTablet = useInRange(1275, 1679);
+    const shouldAddMarginBottomComputer = useInRange(1680, 2400);
 
     return (
         <div id="aboutSection" ref={reference}>
@@ -22,7 +22,9 @@ const AboutSection = ({ reference }: Props) => {
                     <h1>.02</h1>
                     <h1>About</h1>
                 </header>
-                <aside className={`w-full text-2xl xl:text-4xl xl:h-screen ${shouldAddMarginBottom && "mb-96"}`}>
+                <aside
+                    className={`w-full text-2xl xl:text-4xl xl:h-screen`}
+                    style={{ marginBottom: shouldAddMarginBottomTablet ? 600 : shouldAddMarginBottomComputer ? 300 : 0 }}>
                     {ABOUT_SECTION_DATA.textArray.map((paragraph, idx) => {
                         return (
                             <m.h1 key={paragraph} className="mb-14" {...appearOpacity(idx / 10)}>
