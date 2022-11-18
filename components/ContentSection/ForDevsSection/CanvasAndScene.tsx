@@ -1,9 +1,9 @@
 import { Canvas } from "@react-three/fiber";
-import { Center, Environment, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 function CanvasAndScene() {
     return (
-        <Canvas camera={{ position: [-25, 5, -25], fov: 15, zoom: 1 }}>
+        <>
             <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
             <Environment preset="city" />
             <ambientLight />
@@ -17,7 +17,7 @@ function CanvasAndScene() {
                 {/* <HeadphonesModel /> */}
                 {/* <ReactModel /> */}
             </Suspense>
-        </Canvas>
+        </>
     );
 }
 

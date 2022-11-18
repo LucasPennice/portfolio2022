@@ -5,6 +5,7 @@ import { MouseModes, updateMouseModeContext } from "../../../pages";
 import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
 import dynamic from "next/dynamic";
+import { Canvas } from "@react-three/fiber";
 const CanvasAndScene = dynamic(() => import("./CanvasAndScene"), {
     ssr: false,
 });
@@ -84,7 +85,9 @@ const ForDevsSection = ({ reference }: Props) => {
                             viewport={{ once: true }}
                             className="xl:aspect-square aspect-video "
                             style={{ width: isMobile ? "100%" : "80%" }}>
-                            <CanvasAndScene />
+                            <Canvas camera={{ position: [-25, 5, -25], fov: 15, zoom: 1 }}>
+                                <CanvasAndScene />
+                            </Canvas>
                         </m.div>
                     </section>
                 </div>
