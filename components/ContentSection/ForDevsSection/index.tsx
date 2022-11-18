@@ -6,6 +6,7 @@ import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { Canvas } from "@react-three/fiber";
 import CanvasAndScene from "./CanvasAndScene";
+import { Environment, OrbitControls } from "@react-three/drei";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -76,16 +77,18 @@ const ForDevsSection = ({ reference }: Props) => {
                         ))}
                     </m.section>
                     <section className="w-full xl:w-1/2 flex justify-center items-center xl:mb-0 mb-12">
-                        <m.div
-                            whileInView={{ opacity: 1, y: 0 }}
-                            initial={{ opacity: 0, y: 30 }}
-                            viewport={{ once: true }}
-                            className="xl:aspect-square aspect-video "
-                            style={{ width: isMobile ? "100%" : "80%" }}>
+                        <div className="xl:aspect-square aspect-video " style={{ width: isMobile ? "100%" : "80%" }}>
                             <Canvas camera={{ position: [-25, 5, -25], fov: 15, zoom: 1 }}>
-                                <CanvasAndScene />
+                                <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
+                                <Environment preset="city" />
+                                <ambientLight />
+                                {/* <Suspense fallback={null}> */}
+                                <mesh scale={3.5}>
+                                    <boxGeometry />
+                                    <meshStandardMaterial color="hotpink" />
+                                </mesh>
                             </Canvas>
-                        </m.div>
+                        </div>
                     </section>
                 </div>
             </div>
