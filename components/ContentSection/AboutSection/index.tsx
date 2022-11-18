@@ -10,8 +10,6 @@ interface Props {
 
 const AboutSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
-    const shouldAddMarginBottomTablet = useInRange(1275, 1679);
-    const shouldAddMarginBottomComputer = useInRange(1680, 2400);
 
     return (
         <div id="aboutSection" ref={reference}>
