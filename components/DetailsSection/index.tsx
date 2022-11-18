@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { motion as m } from "framer-motion";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
 import { MouseModes, selectedDetailsContext, updateMouseModeContext } from "../../pages";
@@ -21,6 +21,19 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
 
     const setMouseModeTo = (mode: MouseModes) => () => updateMouseMode(mode);
     const goBackToContent = () => setCurrentMode(PortfolioMode.Main);
+
+    useEffect(() => {
+        window.addEventListener("keydown", ifEscGoBackToContent);
+
+        return () => {
+            window.removeEventListener("keydown", ifEscGoBackToContent);
+        };
+
+        function ifEscGoBackToContent(e: any) {
+            if (currentMode !== PortfolioMode.Details) return;
+            if (e.key === "Escape") return goBackToContent();
+        }
+    }, [currentMode]);
 
     return (
         <m.div

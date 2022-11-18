@@ -41,7 +41,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
             <div
                 ref={ref}
                 onScroll={() => setHideProgress(false)}
-                className="w-full h-full absolute bottom-0 left-0 flex items-center gap-4 overflow-x-scroll hideScrollbar"
+                className="w-full h-full absolute bottom-0 left-0 flex items-center gap-4 overflow-x-scroll overflow-y-hidden hideScrollbar"
                 onMouseEnter={() => updateMouseMode(MouseModes.Scroll)}
                 onMouseLeave={() => updateMouseMode(MouseModes.Default)}>
                 {imageArr.map((e, idx) => {
