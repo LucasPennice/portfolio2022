@@ -102,16 +102,16 @@ export enum SelectedTopic {
 }
 
 export type RecommendationsForDevs = {
-    [key in SelectedTopic]: { text: string; link?: string; description: string }[];
+    [key in SelectedTopic]: { text: string; link?: string; author?: string; description: string }[];
 };
 
 export const ResourcesForDevs: RecommendationsForDevs = {
     Books: [
-        { text: "Clean Code - Robert C. Martin", description: "Book about writing clean code " },
-        { text: "The Clean Coder - Robert C. Martin", description: "Book about writing clean code " },
-        { text: "Refactoring - Martin Fowler", description: "Book about writing clean code " },
-        { text: "The Pragmatic Programmer - Andy Hunt & Dave Thomas", description: "Book about writing clean code " },
-        { text: "Eloquent JavaScript - Marijn Haverbeke", description: "Book about writing clean code " },
+        { text: "Clean Code", author: "Robert C. Martin", description: "Book about writing clean code " },
+        { text: "The Clean Coder ", author: "Robert C. Martin", description: "Book about writing clean code " },
+        { text: "Refactoring ", author: "Martin Fowler", description: "Book about writing clean code " },
+        { text: "The Pragmatic Programmer", author: "Andy Hunt & Dave Thomas", description: "Book about writing clean code " },
+        { text: "Eloquent JavaScript", author: "Marijn Haverbeke", description: "Book about writing clean code " },
     ],
     Channels: [
         { text: "Jack Herrington", link: "skere", description: "React youtuber" },
@@ -154,17 +154,20 @@ export const ResourcesForDevs: RecommendationsForDevs = {
     ],
     Talks: [
         {
-            text: "Clean Code - Robert C. Martin",
+            text: "Clean Code",
+            author: "Robert C. Martin",
             link: "https://www.youtube.com/watch?v=7EmboKQH8lM&list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&ab_channel=UnityCoin",
             description: "clean code talk",
         },
         {
-            text: "React-spring: on animations and hooks - Alec Larson",
+            text: "React-spring: on animations and hooks",
+            author: "Alec Larson",
             link: "https://www.youtube.com/watch?v=5QCYBiANRYs&t=986s&ab_channel=ReactEurope",
             description: "clean code talk",
         },
         {
-            text: "5 Years of Building React Table - Tanner Linsley",
+            text: "5 Years of Building React Table",
+            author: "Tanner Linsley",
             link: "https://www.youtube.com/watch?v=O4IWJcafX8c&ab_channel=ReactConferencesbyGitNation",
             description: "clean code talk",
         },

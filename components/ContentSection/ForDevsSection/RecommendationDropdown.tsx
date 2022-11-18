@@ -19,6 +19,7 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
     const isOpen = selectedResource === idx;
 
     const isMobile = useIsMobile(1280);
+    const isSmallScreen = useIsMobile(680);
     const styles = { borderStyle: getBorderStyles(), borderWidth: 1, borderColor: "black", paddingTop: isMobile ? 20 : 50 };
 
     const variants = {
@@ -26,7 +27,7 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
             height: isMobile ? 213 : 335,
         },
         closed: {
-            height: isMobile ? 63 : 135,
+            height: isMobile ? 90 : 135,
             transition: {
                 delay: 0.2,
                 when: "beforeChildren", //use this instead of delay
@@ -64,13 +65,12 @@ function RecommendationDropdown({ data, position, selectedResourceState }: Recom
             animate={isOpen ? "open" : "closed"}
             className="px-5 xl:px-20 text-xl xl:text-2xl overflow-y-hidden"
             transition={{ ease: "easeInOut" }}>
-            <section className="flex items-start justify-between">
-                <p>
-                    <span className="pr-24">0{idx}</span>
-                    <span className="pr-24" style={{ textOverflow: "ellipsis", overflowX: "hidden", whiteSpace: "nowrap" }}>
-                        {data.text}
-                    </span>
-                </p>
+            <section className="flex items-center justify-between">
+                <p>0{idx}</p>
+                <div className="flex-1 pl-6" style={{ fontSize: isSmallScreen ? 12 : 20 }}>
+                    <p>{data.text}</p>
+                    {data.author && <p>By {data.author}</p>}
+                </div>
                 <m.p animate={{ rotate: isOpen ? 45 : 0 }}>+</m.p>
             </section>
             <m.section

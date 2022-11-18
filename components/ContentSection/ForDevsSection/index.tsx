@@ -5,7 +5,7 @@ import { MouseModes, updateMouseModeContext } from "../../../pages";
 import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { Canvas } from "@react-three/fiber";
-import { Center, Environment, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { IPhoneModel } from "./models/IPhoneModel";
 import { HeadphonesModel } from "./models/HeadphonesModel";
 import { BookshelfModel } from "./models/BookshelfModel";
@@ -85,14 +85,12 @@ const ForDevsSection = ({ reference }: Props) => {
                                 <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
                                 <Environment preset="city" />
                                 <ambientLight />
-                                {/* <Center> */}
                                 <Suspense fallback={null}>
                                     {selectedTopic === SelectedTopic.Talks && <HeadphonesModel />}
                                     {selectedTopic === SelectedTopic.Books && <BookshelfModel />}
                                     {selectedTopic === SelectedTopic.Channels && <IPhoneModel />}
                                     {selectedTopic === SelectedTopic.Courses && <ReactModel />}
                                 </Suspense>
-                                {/* </Center> */}
                             </Canvas>
                         </div>
                     </section>
