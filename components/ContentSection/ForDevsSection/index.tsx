@@ -1,11 +1,13 @@
-import { Suspense, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
 import { ResourcesForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
 import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
-import { Canvas } from "@react-three/fiber";
-import { Center, Environment, OrbitControls } from "@react-three/drei";
+import dynamic from "next/dynamic";
+const CanvasAndScene = dynamic(() => import("./CanvasAndScene"), {
+    ssr: false,
+});
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -82,21 +84,7 @@ const ForDevsSection = ({ reference }: Props) => {
                             viewport={{ once: true }}
                             className="xl:aspect-square aspect-video "
                             style={{ width: isMobile ? "100%" : "80%" }}>
-                            <Canvas camera={{ position: [-25, 5, -25], fov: 15, zoom: 1 }}>
-                                <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
-                                <Environment preset="city" />
-                                <ambientLight />
-                                <Suspense fallback={null}>
-                                    <mesh scale={3.5}>
-                                        <boxGeometry />
-                                        <meshStandardMaterial color="hotpink" />
-                                    </mesh>
-                                    {/* <IPhoneModel /> */}
-                                    {/* <BookshelfModel /> */}
-                                    {/* <HeadphonesModel /> */}
-                                    {/* <ReactModel /> */}
-                                </Suspense>
-                            </Canvas>
+                            <CanvasAndScene />
                         </m.div>
                     </section>
                 </div>
