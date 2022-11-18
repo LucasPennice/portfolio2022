@@ -12,12 +12,13 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
         if (blockDragFn) return;
         setBlockDragFn(true);
         const { x } = info.offset;
-        if (x < 0)
+        console.log(x);
+        if (x <= -4)
             return setSelectedContentIdx((prev) => {
                 if (prev + 1 === workExperienceArr.length) return prev;
                 return prev + 1;
             });
-        if (x > 0)
+        if (x >= 4)
             return setSelectedContentIdx((prev) => {
                 if (prev - 1 === -1) return prev;
                 return prev - 1;
