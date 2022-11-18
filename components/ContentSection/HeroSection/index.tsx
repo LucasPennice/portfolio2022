@@ -5,7 +5,7 @@ import AnimateWordOnView from "../../AnimateWordOnView";
 
 function HeroSection() {
     const isMobile = useIsMobile(700);
-    const isSmallScreen = useIsMobile(1100);
+    const isSmallScreen = useIsMobile(1670);
 
     const getFontSize = () => {
         if (isMobile) return 35;
