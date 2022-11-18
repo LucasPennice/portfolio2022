@@ -1,7 +1,7 @@
-import { motion as m, useInView, useSpring } from "framer-motion";
+import { motion as m, useInView } from "framer-motion";
 import { useScroll } from "framer-motion";
 import Image from "next/image";
-import { useContext, useRef, useState, useTransition } from "react";
+import { useContext, useRef, useState } from "react";
 import { MouseModes, updateMouseModeContext } from "../../pages";
 
 function ImageScroller({ imageArr }: { imageArr: string[] }) {

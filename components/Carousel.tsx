@@ -1,5 +1,4 @@
 import { PanInfo, motion as m, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { useState } from "react";
 import { WorkExperience } from "../data";
 import AnimatedImageOnView from "./AnimatedImageOnView";

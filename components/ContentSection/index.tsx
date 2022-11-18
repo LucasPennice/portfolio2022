@@ -8,7 +8,6 @@ import AboutSection from "./AboutSection";
 import ForDevsSection from "./ForDevsSection";
 import useContentInView from "../../utils/useContentInView";
 import useIsMobile from "../../utils/useMobileScreen";
-import Laptop from "./HeroSection/Laptop";
 import dynamic from "next/dynamic";
 import { motion as m } from "framer-motion";
 import { WorkExperience } from "../../data";

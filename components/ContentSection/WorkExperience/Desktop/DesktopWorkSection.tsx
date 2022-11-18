@@ -2,7 +2,6 @@ import * as React from "react";
 import { motion as m, useInView } from "framer-motion";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
 import { WorkExperience } from "../../../../data";
-import Image from "next/image";
 import AnimateWordOnView from "../../../AnimateWordOnView";
 import AnimatedImageOnView from "../../../AnimatedImageOnView";
 

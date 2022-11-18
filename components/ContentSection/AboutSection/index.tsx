@@ -2,7 +2,6 @@ import useIsMobile from "../../../utils/useMobileScreen";
 import { motion as m } from "framer-motion";
 import { appearOpacity } from "../../../utils/animations";
 import { ABOUT_SECTION_DATA } from "../../../data";
-import useInRange from "../../../utils/useInRange";
 
 interface Props {
     reference: React.MutableRefObject<any>;

@@ -5,7 +5,6 @@ import { MouseModes, updateMouseModeContext } from "../../../pages";
 import RecommendationDropdown from "./RecommendationDropdown";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { Canvas } from "@react-three/fiber";
-import CanvasAndScene from "./CanvasAndScene";
 import { Environment, OrbitControls } from "@react-three/drei";
 
 interface Props {
