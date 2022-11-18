@@ -9,9 +9,6 @@ import { motion as m } from "framer-motion";
 const Cursor = dynamic(() => import("../components/Cursor"), {
     ssr: false,
 });
-const MobileMenu = dynamic(() => import("../components/MobileMenu"), {
-    ssr: false,
-});
 
 export enum MouseModes {
     Default = "Default",
@@ -71,7 +68,6 @@ export default function Home() {
             <div className="overflow-hidden min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
                 <Transition currentMode={currentMode} shouldAnimate={selectedDetails.company !== ""} />
                 {!isSmallScreen && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
-                {/* {isSmallScreen && <MobileMenu layoutState={[currentMode, setCurrentMode]} />} */}
                 <selectedDetailsContext.Provider value={[selectedDetails, setSelectedDetails]}>
                     <Content layoutState={[currentMode, setCurrentMode]} />
                     <Details layoutState={[currentMode, setCurrentMode]} />
