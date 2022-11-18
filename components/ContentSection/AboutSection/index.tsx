@@ -22,7 +22,7 @@ const AboutSection = ({ reference }: Props) => {
                     <h1>.02</h1>
                     <h1>About</h1>
                 </header>
-                <aside className={`w-full text-2xl xl:text-4xl xl:h-screen ${shouldAddMarginBottom && "mb-80"}`}>
+                <aside className={`w-full text-2xl xl:text-4xl xl:h-screen ${shouldAddMarginBottom && "mb-96"}`}>
                     {ABOUT_SECTION_DATA.textArray.map((paragraph, idx) => {
                         return (
                             <m.h1 key={paragraph} className="mb-14" {...appearOpacity(idx / 10)}>
