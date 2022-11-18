@@ -9,9 +9,11 @@ interface Props {
     fontSize: number;
     underline?: boolean;
     delayInSeconds?: number;
+    animateEveryTime?: true;
+    style?: { [key: string]: string | number };
 }
 
-function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds }: Props) {
+function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds, animateEveryTime, style }: Props) {
     //It's an object because we need to modify the variable and JS doesn't allow pass by reference
     let lastLetterLeftPosition = { value: 0 };
     let letterHeight = getHeightForFont(fontSize);
@@ -22,14 +24,14 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds 
     return (
         <div
             className="relative overflow-x-hidden overflow-y-hidden flex justify-start w-full"
-            style={{ height: letterHeight, width: calculateWordWidth() }}>
+            style={{ height: letterHeight, width: calculateWordWidth(), ...style }}>
             {lettersArray.map((letter, idx) => {
                 return (
                     <m.h1
                         className="absolute"
                         whileInView={{ top: 0 }}
                         transition={{ duration: 0.7, delay: delay + idx / 20, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: animateEveryTime ? true : false }}
                         style={{ top: letterHeight, left: calculateLetterPosition(letter), fontSize }}
                         key={idx}>
                         {letter.toUpperCase()}

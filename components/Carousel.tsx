@@ -2,6 +2,8 @@ import { PanInfo, motion as m, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { WorkExperience } from "../data";
+import AnimatedImageOnView from "./AnimatedImageOnView";
+import AnimateWordOnView from "./AnimateWordOnView";
 
 function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExperience[]; onClick: (v: WorkExperience) => void }) {
     const [selectedContentIdx, setSelectedContentIdx] = useState(0);
@@ -44,22 +46,36 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                     onClick={() => onClick(workExperience)}
                                     transition={{ duration: 0.4, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
                                     className="w-full h-full absolute left-0 top-0">
-                                    <Image
-                                        src="/drill-monkey-01_2x3.webp"
-                                        style={{
-                                            width: "auto",
-                                            height: "calc(100% - 150px)",
-                                            maxHeight: "80vh",
-                                            borderRadius: 5,
-                                            pointerEvents: "none",
+                                    <AnimatedImageOnView
+                                        imageProps={{
+                                            src: "/drill-monkey-01_2x3.webp",
+                                            styles: {
+                                                width: "auto",
+                                                height: "calc(100% - 150px)",
+                                                maxHeight: "80vh",
+                                                borderRadius: 5,
+                                                pointerEvents: "none",
+                                            },
+                                            alt: "Project img",
+                                            width: 1920,
+                                            height: 580,
                                         }}
-                                        alt="Project img"
-                                        width={1920}
-                                        height={580}
                                     />
-                                    <h1 style={{ fontSize: 42 }}>{workExperience.company}</h1>
-                                    <h1 style={{ fontSize: 24 }}>{workExperience.role}</h1>
-                                    <p className="pr-8 py-5">More details</p>
+                                    <AnimateWordOnView
+                                        fontSize={32}
+                                        wordToAnimate={workExperience.company}
+                                        animateEveryTime
+                                        delayInSeconds={0.5}
+                                        style={{ marginTop: 10 }}
+                                    />
+                                    <AnimateWordOnView
+                                        fontSize={24}
+                                        wordToAnimate={workExperience.role}
+                                        animateEveryTime
+                                        delayInSeconds={0.7}
+                                        style={{ marginTop: 10, marginBottom: 10 }}
+                                    />
+                                    <AnimateWordOnView fontSize={12} delayInSeconds={0.4} wordToAnimate="Click for details" animateEveryTime />
                                 </m.div>
                             )}
                         </AnimatePresence>
