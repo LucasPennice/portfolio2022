@@ -31,7 +31,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds,
                         className="absolute"
                         whileInView={{ top: 0 }}
                         transition={{ duration: 0.7, delay: delay + idx / 20, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
-                        viewport={{ once: animateEveryTime ? true : false }}
+                        viewport={{ once: true }}
                         style={{ top: letterHeight, left: calculateLetterPosition(letter), fontSize }}
                         key={idx}>
                         {letter.toUpperCase()}

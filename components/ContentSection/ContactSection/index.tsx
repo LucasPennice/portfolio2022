@@ -100,7 +100,7 @@ const ContactSection = ({ reference }: Props) => {
                     </div>
                     <div style={{ fontSize: isMobile ? "max(2vw , 2px)" : 30 }}>
                         <p>DESIGN INSPIRED BY</p>
-                        <p>RICHARD EKWONYE</p>
+                        <p>GIL HUYBRECHT</p>
                     </div>
                 </m.footer>
             </div>
