@@ -29,7 +29,7 @@
     }
 }
 
-@media (max-width: 1670px) {
+@media (max-width: 1430px) {
     * {
         cursor: default !important;
     }
@@ -248,15 +248,15 @@ body {
 }
 
 .imageAnimation {
-    scale: 1.4;
+    scale: 0.9;
     animation: imageAnimation 1s 0.4s forwards cubic-bezier(0.83, 0, 0.17, 1);
 }
 @keyframes imageAnimation {
     from {
-        scale: 1.4;
+        scale: 0.9;
     }
     to {
-        scale: 1.2;
+        scale: 1;
     }
 }
 

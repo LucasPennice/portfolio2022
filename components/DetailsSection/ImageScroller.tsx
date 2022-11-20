@@ -2,9 +2,10 @@ import { motion as m, useInView } from "framer-motion";
 import { useScroll } from "framer-motion";
 import Image from "next/image";
 import { useContext, useRef, useState } from "react";
+import { ImageType } from "../../data";
 import { MouseModes, updateMouseModeContext } from "../../pages";
 
-function ImageScroller({ imageArr }: { imageArr: string[] }) {
+function ImageScroller({ imageArr }: { imageArr: ImageType[] }) {
     //Context
     const updateMouseMode = useContext(updateMouseModeContext);
     //Local State
@@ -48,7 +49,7 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                     return (
                         <Image
                             className={`opacity-0 ${isInView && "animateFromBottom"}`}
-                            src="/drill-monkey-01_2x3.webp"
+                            src={e.src}
                             style={{
                                 width: "auto",
                                 height: "83%",
@@ -58,8 +59,8 @@ function ImageScroller({ imageArr }: { imageArr: string[] }) {
                                 animationDelay: `${idx / 20 + 0.7}s`,
                             }}
                             alt="Project img"
-                            width={1920}
-                            height={1080}
+                            width={e.resolution.w}
+                            height={e.resolution.h}
                             key={idx}
                         />
                     );

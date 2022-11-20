@@ -23,7 +23,7 @@ const defaultSelectedDetails: WorkExperience = {
     from: "",
     role: "",
     to: "",
-    coverImage: "",
+    coverImage: { resolution: { h: 0, w: 0 }, src: "" },
     detailImages: [],
     projectLink: false,
     techStack: [],
@@ -44,7 +44,7 @@ export default function Home() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [mouseMode, setMouseMode] = useState<MouseModes>(MouseModes.Default);
 
-    const isSmallScreen = useIsMobile(1680);
+    const isSmallScreen = useIsMobile(1430);
 
     useEffect(() => {
         const mouseMove = (e: any) => {

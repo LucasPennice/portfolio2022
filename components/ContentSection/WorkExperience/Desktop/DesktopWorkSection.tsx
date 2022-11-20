@@ -37,17 +37,15 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 <AnimatedImageOnView
                     imageProps={{
                         alt: "project inmg",
-                        height: 1080,
-                        width: 1920,
-                        src: "/drill-monkey-01_2x3.webp",
+                        height: data.coverImage.resolution.h,
+                        width: data.coverImage.resolution.w,
+                        src: data.coverImage.src,
                         styles: {
-                            width: "100%",
                             height: "100%",
                             borderRadius: 5,
                             transition: ".5s cubic-bezier(0.83, 0, 0.17, 1)",
                         },
                     }}
-                    parallax
                     actions={{ onMouseEnter: setMouseDetails, onMouseLeave: setMouseDefault, onClick: () => openDetails(data) }}
                 />
                 <h1 onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={() => openDetails(data)} className="text-2xl mt-2">

@@ -35,26 +35,75 @@ export interface Tech {
     icon: ReactElement<any, any>;
 }
 
+export type ImageType = {
+    src: string;
+    resolution: { w: number; h: number };
+};
+
 export interface WorkExperience {
     company: string;
     role: string;
     from: string;
     to: string;
     projectLink: false | string;
-    coverImage: string;
-    detailImages: string[];
+    coverImage: ImageType;
+    detailImages: ImageType[];
     techStack: Tech[];
     caseStudy: string;
 }
 
 export const workExperienceArr: WorkExperience[] = [
     {
+        company: "Tracker Wallet",
+        from: "2021",
+        to: "2022",
+        role: "Front End Dev",
+        coverImage: { resolution: { w: 2160, h: 3840 }, src: "/projectsScreenshots/trackerWallet/cover.png" },
+        detailImages: [
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/1.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/2.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/3.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/4.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/5.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/6.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/7.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/8.png" },
+        ],
+        projectLink: false,
+        techStack: [
+            { icon: <SiReact id="reactLogo" />, label: "ReactJs" },
+            { icon: <SiTypescript id="tsLogo" />, label: "TypeScript" },
+            { icon: <SiSass id="sassLogo" />, label: "Sass" },
+            { icon: <AiFillApi id="reactLogo" />, label: "API" },
+            { icon: <SiNextdotjs id="nextLogo" />, label: "NextJs" },
+            { icon: <BiGitBranch id="gitLogo" />, label: "Git" },
+            { icon: <SiFramer id="framerLogo" />, label: "Framer Motion" },
+            { icon: <SiV id="visLogo" />, label: "VisJs" },
+        ],
+        caseStudy:
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",
+    },
+    {
         company: "Creator Set",
         from: "2021",
         to: "2022",
         role: "Front End Dev",
-        coverImage: "no",
-        detailImages: ["no", "no", "no", "no"],
+        coverImage: { resolution: { w: 2160, h: 3840 }, src: "/projectsScreenshots/creatorSet/cover.png" },
+        detailImages: [
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/1.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/2.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/3.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/4.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/5.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/6.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/7.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/8.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/9.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/10.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/11.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/12.png" },
+            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/13.png" },
+        ],
         projectLink: false,
         techStack: [
             { icon: <SiReact id="reactLogo" />, label: "ReactJs" },
@@ -67,27 +116,6 @@ export const workExperienceArr: WorkExperience[] = [
             { icon: <BiGitBranch id="gitLogo" />, label: "Git" },
             { icon: <SiFramer id="framerLogo" />, label: "Framer Motion" },
             { icon: <IoBuild id="esbuildLogo" />, label: "EsBuild" },
-        ],
-        caseStudy:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",
-    },
-    {
-        company: "Tracker Wallet",
-        from: "2021",
-        to: "2022",
-        role: "Front End Dev",
-        coverImage: "no",
-        detailImages: ["no", "no", "no", "no"],
-        projectLink: false,
-        techStack: [
-            { icon: <SiReact id="reactLogo" />, label: "ReactJs" },
-            { icon: <SiTypescript id="tsLogo" />, label: "TypeScript" },
-            { icon: <SiSass id="sassLogo" />, label: "Sass" },
-            { icon: <AiFillApi id="reactLogo" />, label: "API" },
-            { icon: <SiNextdotjs id="nextLogo" />, label: "NextJs" },
-            { icon: <BiGitBranch id="gitLogo" />, label: "Git" },
-            { icon: <SiFramer id="framerLogo" />, label: "Framer Motion" },
-            { icon: <SiV id="visLogo" />, label: "VisJs" },
         ],
         caseStudy:
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",

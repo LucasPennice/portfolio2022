@@ -24,30 +24,8 @@ function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles, p
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    if (!parallax)
-        return (
-            <div ref={ref} style={{ ...containerStyles }} className="overflow-x-hidden overflow-y-hidden relative">
-                <AnimatedDivOnView />
-                <Image
-                    onMouseEnter={(actions && actions.onMouseEnter) ?? undefined}
-                    onMouseLeave={(actions && actions.onMouseLeave) ?? undefined}
-                    onClick={(actions && actions.onClick) ?? undefined}
-                    className={`${isInView && "imageAnimation"}  hover:scale-110`}
-                    src={imageProps.src}
-                    style={imageProps.styles}
-                    alt={imageProps.alt}
-                    width={imageProps.width}
-                    height={imageProps.height}
-                    priority={priority ? true : false}
-                />
-            </div>
-        );
-
     return (
-        <div
-            ref={ref}
-            style={{ width: imageProps.styles.width ?? "auto", height: imageProps.styles.height ?? "auto", borderRadius: 5 }}
-            className="overflow-x-hidden overflow-y-hidden relative">
+        <div ref={ref} style={{ ...containerStyles }} className="overflow-x-hidden overflow-y-hidden relative">
             <AnimatedDivOnView />
             <Image
                 onMouseEnter={(actions && actions.onMouseEnter) ?? undefined}
@@ -55,10 +33,11 @@ function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles, p
                 onClick={(actions && actions.onClick) ?? undefined}
                 className={`${isInView && "imageAnimation"}  hover:scale-110`}
                 src={imageProps.src}
-                style={{ ...imageProps.styles, position: "absolute", top: 0 }}
+                style={imageProps.styles}
                 alt={imageProps.alt}
                 width={imageProps.width}
                 height={imageProps.height}
+                priority={priority ? true : false}
             />
         </div>
     );
