@@ -6,6 +6,7 @@ import ImageScroller from "./ImageScroller";
 import dynamic from "next/dynamic";
 import useIsMobile from "../../utils/useMobileScreen";
 import Image from "next/image";
+import YouTube from "react-youtube";
 const TextAndIcons = dynamic(() => import("./TextAndIcons"), {
     ssr: false,
 });
@@ -51,6 +52,15 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
                 {!isMobile && <ImageScroller youtubeDemoVideoId={selectedDetails.youtubeDemoVideoId} imageArr={selectedDetails.detailImages} />}
                 {isMobile && (
                     <div className="py-10 w-full">
+                        {selectedDetails.youtubeDemoVideoId && (
+                            <div style={{ width: "100%", aspectRatio: 16 / 9, marginBottom: 20 }}>
+                                <YouTube
+                                    videoId={selectedDetails.youtubeDemoVideoId}
+                                    opts={{ height: "100%", width: "100%", playerVars: { autoplay: 0 } }}
+                                    style={{ height: "100%", width: "100%" }}
+                                />
+                            </div>
+                        )}
                         {selectedDetails.detailImages.map((img, idx) => (
                             <Image
                                 key={idx}

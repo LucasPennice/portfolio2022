@@ -52,7 +52,7 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
                         cx="50"
                         cy="50"
                         r="40"
-                        stroke="#00C49A"
+                        stroke="rgb(79, 178, 134)"
                         strokeLinecap="round"
                         strokeWidth="20"
                         fill="none"

@@ -22,6 +22,7 @@ import {
     SiHtml5,
     SiCss3,
     SiDocker,
+    SiThreedotjs,
 } from "react-icons/si";
 import { AiFillApi } from "react-icons/ai";
 import { SiFramer } from "react-icons/si";
@@ -35,7 +36,6 @@ import TrackerWalletCover from "./public/projectsScreenshots/trackerWallet/cover
 import TW_Dashboard1 from "./public/projectsScreenshots/trackerWallet/dashboard1.png";
 import TW_Dashboard2 from "./public/projectsScreenshots/trackerWallet/dashboard2.png";
 import TW_Map from "./public/projectsScreenshots/trackerWallet/map.png";
-import TW_MapColor from "./public/projectsScreenshots/trackerWallet/mapcolor.png";
 import TW_MapEditNode from "./public/projectsScreenshots/trackerWallet/mapeditnode.png";
 import TW_MapFilterColor from "./public/projectsScreenshots/trackerWallet/mapfiltercolor.png";
 import TW_MapTree from "./public/projectsScreenshots/trackerWallet/maptree.png";
@@ -45,10 +45,8 @@ import CreatorSetCover from "./public/projectsScreenshots/creatorSet/cover.png";
 import CS_CaptionTool from "./public/projectsScreenshots/creatorSet/captiontool.png";
 import CS_CaptionToolPage from "./public/projectsScreenshots/creatorSet/captiontoolpage.png";
 import CS_EditProfile from "./public/projectsScreenshots/creatorSet/editProfile.png";
-import CS_HighlightTool from "./public/projectsScreenshots/creatorSet/highlighttool.png";
 import CS_Login from "./public/projectsScreenshots/creatorSet/login.png";
 import CS_NewProduct from "./public/projectsScreenshots/creatorSet/newProduct.png";
-import CS_Poptag from "./public/projectsScreenshots/creatorSet/poptag.png";
 import CS_ProfanityChecker from "./public/projectsScreenshots/creatorSet/profanitychecker.png";
 import CS_Store from "./public/projectsScreenshots/creatorSet/store.png";
 import CS_ThumbnailPreviewer from "./public/projectsScreenshots/creatorSet/thumbnailPreviewer.png";
@@ -81,7 +79,7 @@ export const workExperienceArr: WorkExperience[] = [
         company: "Tracker Wallet",
         from: "2021",
         to: "2022",
-        role: "Front End Dev",
+        role: "Frontend developer",
         youtubeDemoVideoId: "dE-3igVicso",
         coverImage: { resolution: { w: 2600, h: 3840 }, src: TrackerWalletCover },
         detailImages: [
@@ -98,20 +96,19 @@ export const workExperienceArr: WorkExperience[] = [
             { icon: <SiReact />, label: "ReactJs" },
             { icon: <SiTypescript />, label: "TypeScript" },
             { icon: <SiSass />, label: "Sass" },
-            { icon: <AiFillApi />, label: "API" },
             { icon: <SiNextdotjs />, label: "NextJs" },
             { icon: <BiGitBranch />, label: "Git" },
             { icon: <SiFramer />, label: "Framer Motion" },
             { icon: <SiV />, label: "VisJs" },
         ],
         caseStudy:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",
+            "Chose the technologies for the project based on the desired functionality, designed types and interfaces for the current app’s components and future backend API’s, created a mock API to simulate intended behavior (with varying response times and success rates to simulate a real backend). Ensured persistence between reloads using local and session storage, achieved a more fluid experience following Apple’s user experience guidelines for animations and expected interface behavior. Wrote the source code according to Clean Code and Refactoring principles, used TypeScript as the main language to achieve type safety across the codebase.-BREAK-Implemented recursive algorithms to iterate through tree data structures, modified VisJs to help visualize said tree data structures in two different ways (network and tree) and the interaction between their nodes. Wrote functions to produce custom SVG code to render as the tree’s nodes and created a modal to implement those functions through an easier to understand UI. Developed the app based on Sigma designs provides by a designer, wrote functions to filter sub-trees from the main network depending on the chosen data span and desired amount of interactions. Created a component to render an account’s balance across a month, two weeks or a week, depending no the user’s preference.",
     },
     {
         company: "Creator Set",
         from: "2021",
         to: "2022",
-        role: "Front End Dev",
+        role: "Frontend Dev",
         coverImage: { resolution: { w: 2600, h: 3840 }, src: CreatorSetCover },
         detailImages: [
             { resolution: { w: 2560, h: 1358 }, src: CS_Login },
@@ -126,6 +123,7 @@ export const workExperienceArr: WorkExperience[] = [
         projectLink: false,
         techStack: [
             { icon: <SiReact />, label: "ReactJs" },
+            { icon: <SiJavascript />, label: "JavaScript" },
             { icon: <SiTypescript />, label: "TypeScript" },
             { icon: <SiRedux />, label: "Redux" },
             { icon: <SiReactrouter />, label: "React-Router" },
@@ -137,7 +135,7 @@ export const workExperienceArr: WorkExperience[] = [
             { icon: <IoBuild />, label: "EsBuild" },
         ],
         caseStudy:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.-BREAK-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis rem vitae dolorum amet deserunt optio quia facilis iure. Fuga eveniet earum in placeat labore repellat quo itaque nesciunt ratione magni.",
+            "Migration from MUI to custom components for complete UI overhaul, migrated from WebPack to EsBuild, partial migration from JavaScript to TypeScript, integration with backend API’s to send and receive data that is then rendered as React components. Created several forms with the option to upload images, videos and files. Implemented polling to check the processing state of uploaded files, created a component that allows the user to highlight individual frames of an uploaded video. Created a modal that allows the user to edit the subtitles (both text and timestamp) for an uploaded video, alongside a custom video player built from scratch, implemented WavesurferJs to visualize the uploaded video’s audio track, implemented undo and redo functionalities that track the whole modal state.-BREAK-Created a component to help users check how their YouTube thumbnail would look on the youtube’s home screen (both light and dark mode) for computer, tablet and mobile interfaces (based on their preference), worked with youtube’s api for channel name autocompletion on the edit profile page.",
     },
 ];
 
@@ -247,9 +245,9 @@ export const ResourcesForDevs: RecommendationsForDevs = {
 
 export const ABOUT_SECTION_DATA = {
     textArray: [
-        "My name is Lucas Pennice and I’m a MERN stack developer looking for an entry-level position as a front end or full stack developer. I live in Argentina but I’m willing to work remotely",
-        "I’m always learning, and looking for the next challenge. Some of my main interests are creating useful, responsive websites and web applications, improve my team-working skills, learn to write better code and keep discovering new technologies to work with",
-        "I began my coding journey in highschool when I took three years of C, it was mostly based on solvin algorithmic problems. After finishing highschool I started studying civil engineer, but it didn't feel like a good fit for me. I wanted to be able to build projects and see them grow, after a couple of weeks I enrolled in another college to study system engineering",
+        "My name is Lucas Pennice, I’m a FullStack developer with most of my experience working with React and TypeScript",
+        "I’m always learning, and looking for the next challenge. Some of my main interests are creating useful, responsive applications, improving my team-working skills, learning to write better code and keep discovering new technologies and methodologies to work with",
+        "I began my coding journey in high school when I took three years of C, mostly based on solving algorithmic problems. After finishing high-school I enrolled into System Engineering and started to learn web development, in 2022 I finished a programming and data structures micro bachelors at NYUx",
     ],
     workExperienceTech: [
         { icon: <SiReact />, label: "ReactJs" },
@@ -281,6 +279,7 @@ export const ABOUT_SECTION_DATA = {
         { icon: <SiPrisma />, label: "Prisma" },
         { icon: <SiPassport />, label: "PassportJs" },
         { icon: <TbBrandReactNative />, label: "ReactNative" },
+        { icon: <SiThreedotjs />, label: "ThreeJs" },
     ],
 };
 

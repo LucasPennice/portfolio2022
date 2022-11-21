@@ -16,7 +16,8 @@ function TextAndIcons({ selectedDetails }: { selectedDetails: WorkExperience }) 
             <m.aside
                 {...animation}
                 transition={{ easings: "cubic-bezier(0.83, 0, 0.17, 1)", delay: screenTransitionDuration }}
-                className="flex-1 text-lg flex justify-center items-start flex-col gap-7">
+                className="flex-1 flex justify-center items-start flex-col gap-7"
+                style={{ fontSize: "clamp(16px,1.3vw,22px)" }}>
                 {caseStudyParagraphs.map((text, idx) => (
                     <p key={idx}>{text}</p>
                 ))}

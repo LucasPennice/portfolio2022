@@ -11,19 +11,19 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
         };
 
         if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
-            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(49, 133, 252)" };
+            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(35, 100, 170)" };
         }
         if (mode === MouseModes.Hidden) {
-            return { ...getPosition(96), opacity: 0, backgroundColor: "rgb(49, 133, 252)" };
+            return { ...getPosition(96), opacity: 0, backgroundColor: "rgb(35, 100, 170)" };
         }
         if (mode === MouseModes.Copied) {
-            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(95, 173, 65)" };
+            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(79, 178, 134)" };
         }
         if (mode === MouseModes.Scroll) {
-            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(49, 133, 252)" };
+            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(35, 100, 170)" };
         }
         if (mode === MouseModes.Clickeable) {
-            return { ...getPosition(45), height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "rgb(49, 133, 252)" };
+            return { ...getPosition(45), height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "rgb(35, 100, 170)" };
         }
 
         return { ...getPosition(32), height: "32px", width: "32px", mixBlendMode: "difference", backgroundColor: "rgb(255, 255, 255)" };
