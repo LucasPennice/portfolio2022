@@ -43,7 +43,7 @@ function TextAndIcons({ selectedDetails }: { selectedDetails: WorkExperience }) 
             <m.aside
                 {...animation}
                 transition={{ easings: "cubic-bezier(0.83, 0, 0.17, 1)", delay: screenTransitionDuration + 0.2 }}
-                className="flex-1 flex justify-center items-start flex-col">
+                className="flex-1 flex justify-center items-end flex-col">
                 <h1
                     className="py-5 w-full flex items-center justify-between"
                     style={{ borderStyle: "solid none", borderWidth: 1, borderColor: "717C89" }}>
@@ -51,14 +51,14 @@ function TextAndIcons({ selectedDetails }: { selectedDetails: WorkExperience }) 
                     <p>{selectedDetails.role}</p>
                 </h1>
 
-                <h1
+                {/* <h1
                     className="py-5 w-full flex items-center justify-between"
                     style={{ borderStyle: "none none solid none", borderWidth: 1, borderColor: "717C89" }}>
                     <p>Year</p>
                     <p>
                         {selectedDetails.from} - {selectedDetails.to}
                     </p>
-                </h1>
+                </h1> */}
             </m.aside>
         </div>
     );

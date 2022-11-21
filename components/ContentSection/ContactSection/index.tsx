@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
-import useCopy from "../../../utils/useCopy";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { motion as m } from "framer-motion";
 import { appearOpacity } from "../../../utils/animations";
@@ -14,7 +13,6 @@ interface Props {
 const ContactSection = ({ reference }: Props) => {
     const updateMouseMode = useContext(updateMouseModeContext);
     const isMobile = useIsMobile(1280);
-    const copyToClipBoard = useCopy();
 
     const [copied, setCopied] = useState(false);
     const [fontSize, setFontSize] = useState<AllowedFonts>(110);
@@ -40,7 +38,7 @@ const ContactSection = ({ reference }: Props) => {
     }, []);
 
     return (
-        <div id="contactSection" style={{ minHeight: "110vh" }} className="pt-10 xl:pt-28 xl:mt-20" ref={reference}>
+        <div id="contactSection" style={{ minHeight: "100vh" }} className="pt-10" ref={reference}>
             <div
                 style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? "100vh" : "calc(100vh - 112px)" }}
                 className="w-full flex flex-col justify-between items-start px-4 xl:px-20 gap-10">
@@ -54,7 +52,7 @@ const ContactSection = ({ reference }: Props) => {
                         onMouseEnter={setMouseModeToCopy}
                         onMouseLeave={setMouseModeToDefault}
                         onClick={() => {
-                            copyToClipBoard("lucaspennice@gmail.com");
+                            navigator.clipboard.writeText("lucaspennice@gmail.com");
                             setMouseModeToCopied();
                             setCopied(true);
                         }}>
