@@ -17,7 +17,7 @@ function HoverSlider({ currentContentSection, showLogo, hoveringSection }: Hover
             }}
             animate={{ left: calculateLeftPercentage(hoveringSection, showLogo), width: calculateWidth(hoveringSection) }}
             exit={{ left: calculateLeftPercentage(currentContentSection, showLogo), width: calculateWidth(currentContentSection) }}
-            style={{ height: "52px" }}
+            style={{ height: "52px", pointerEvents: "none" }}
             transition={{ type: "spring", bounce: 0.1, damping: 20, stiffness: 150 }}>
             <m.div
                 key={currentContentSection}

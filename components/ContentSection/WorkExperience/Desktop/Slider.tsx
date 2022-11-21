@@ -12,7 +12,7 @@ export interface SliderProps {
 function Slider({ currentContentSection, showLogo }: SliderProps) {
     return (
         <m.aside
-            className="absolute z-10"
+            className="absolute z-10 pointer-events-none"
             initial={{
                 left: calculateLeftPercentage(currentContentSection, showLogo),
                 opacity: 0,

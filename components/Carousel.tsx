@@ -115,7 +115,6 @@ function Indicator({
     const GAP_SIZE_IN_PIXELS = 96;
 
     const selectorWidth = `calc(${100 / workExperienceLength}% - ${((workExperienceLength - 1) / 2) * GAP_SIZE_IN_PIXELS}px)`;
-    console.log(selectorWidth);
     return (
         <div className="w-full h-6 flex justify-between items-center relative rounded-md gap-24">
             {tempArr.map((garbageValue, idx) => {
