@@ -54,6 +54,7 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
                         {selectedDetails.detailImages.map((img, idx) => (
                             <Image
                                 key={idx}
+                                placeholder="blur"
                                 src={img.src}
                                 style={{ width: "100%", height: "auto", borderRadius: 5, marginBottom: 20 }}
                                 className="shadow-gray shadow-md"
