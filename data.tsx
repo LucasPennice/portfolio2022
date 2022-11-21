@@ -69,6 +69,7 @@ export interface WorkExperience {
     from: string;
     to: string;
     projectLink: false | string;
+    youtubeDemoVideoId?: string;
     coverImage: ImageType;
     detailImages: ImageType[];
     techStack: Tech[];
@@ -81,6 +82,7 @@ export const workExperienceArr: WorkExperience[] = [
         from: "2021",
         to: "2022",
         role: "Front End Dev",
+        youtubeDemoVideoId: "dE-3igVicso",
         coverImage: { resolution: { w: 2160, h: 3840 }, src: TrackerWalletCover },
         detailImages: [
             { resolution: { w: 2560, h: 1358 }, src: TW_Dashboard1 },

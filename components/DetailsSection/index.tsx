@@ -48,7 +48,7 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
                 className="w-full px-4 xl:px-10 flex xl:flex-row flex-col  justify-start items-center relative xl:overflow-x-hidden xl:overflow-y-hidden overflow-y-scroll"
                 style={{ height: "calc(100vh - 115px)" }}>
                 <TextAndChart selectedDetails={selectedDetails} />
-                {!isMobile && <ImageScroller imageArr={selectedDetails.detailImages} />}
+                {!isMobile && <ImageScroller youtubeDemoVideoId={selectedDetails.youtubeDemoVideoId} imageArr={selectedDetails.detailImages} />}
                 {isMobile && (
                     <div className="py-10 w-full">
                         {selectedDetails.detailImages.map((img, idx) => (

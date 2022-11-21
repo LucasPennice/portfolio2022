@@ -11,6 +11,9 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
         if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
         }
+        if (mode === MouseModes.Hidden) {
+            return { ...position, opacity: 0, backgroundColor: "#3185FC" };
+        }
         if (mode === MouseModes.Copied) {
             return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#5FAD41" };
         }

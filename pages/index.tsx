@@ -17,6 +17,7 @@ export enum MouseModes {
     Scroll = "Scroll",
     CopyToClipboard = "CopyToClipboard",
     Copied = "Copied",
+    Hidden = "Hidden",
 }
 const defaultSelectedDetails: WorkExperience = {
     company: "",

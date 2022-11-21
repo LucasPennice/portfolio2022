@@ -3,17 +3,30 @@ import { useScroll } from "framer-motion";
 import Image from "next/image";
 import { useContext, useRef, useState } from "react";
 import { ImageType } from "../../data";
+import YouTube from "react-youtube";
 import { MouseModes, updateMouseModeContext } from "../../pages";
 
-function ImageScroller({ imageArr }: { imageArr: ImageType[] }) {
+function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]; youtubeDemoVideoId: string | undefined }) {
     //Context
     const updateMouseMode = useContext(updateMouseModeContext);
+    const setMouseHidden = () => updateMouseMode(MouseModes.Hidden);
+    const setMouseScroll = () => updateMouseMode(MouseModes.Scroll);
+    const setMouseDefault = () => updateMouseMode(MouseModes.Default);
     //Local State
     const [hideProgress, setHideProgress] = useState(true);
 
     const ref = useRef(null);
     const isInView = useInView(ref);
     const { scrollXProgress } = useScroll({ container: ref });
+
+    const youtubePlayerOptions = {
+        height: "100%",
+        width: "100%",
+        playerVars: {
+            autoplay: 0,
+        },
+    };
+
     return (
         <>
             {!hideProgress && (
@@ -43,8 +56,17 @@ function ImageScroller({ imageArr }: { imageArr: ImageType[] }) {
                 ref={ref}
                 onScroll={() => setHideProgress(false)}
                 className="w-full h-full absolute bottom-0 left-0 flex items-center gap-4 overflow-x-scroll overflow-y-hidden hideScrollbar"
-                onMouseEnter={() => updateMouseMode(MouseModes.Scroll)}
-                onMouseLeave={() => updateMouseMode(MouseModes.Default)}>
+                onMouseEnter={setMouseScroll}
+                onMouseLeave={setMouseDefault}>
+                {youtubeDemoVideoId && (
+                    <div
+                        onMouseEnter={setMouseHidden}
+                        onMouseLeave={setMouseDefault}
+                        className={`opacity-0 ${isInView && "animateFromBottom"}`}
+                        style={{ height: "83%", aspectRatio: 16 / 9, marginLeft: "51%" }}>
+                        <YouTube videoId={youtubeDemoVideoId} opts={youtubePlayerOptions} style={{ height: "100%", width: "100%" }} />
+                    </div>
+                )}
                 {imageArr.map((e, idx) => {
                     return (
                         <Image
@@ -55,7 +77,7 @@ function ImageScroller({ imageArr }: { imageArr: ImageType[] }) {
                                 width: "auto",
                                 height: "83%",
                                 borderRadius: 5,
-                                marginLeft: idx === 0 ? "51%" : "10%",
+                                marginLeft: idx === 0 && !youtubeDemoVideoId ? "51%" : "10%",
                                 marginRight: idx === imageArr.length - 1 ? "5%" : "0%",
                                 animationDelay: `${idx / 20 + 0.7}s`,
                             }}
