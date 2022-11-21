@@ -39,6 +39,7 @@ const ForDevsSection = ({ reference }: Props) => {
     };
 
     const handleScroll = (e: any) => {
+        if (window.innerWidth >= 2130) return;
         if (ref.current!.scrollLeft < 10 && e.deltaY < 0) return setAllowContentScroll(true);
         ref.current!.scrollLeft += e.deltaY;
         if (ref.current!.scrollLeft > 826) return setAllowContentScroll(true);
@@ -47,11 +48,13 @@ const ForDevsSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
 
     const handleOnMouseEnter = () => {
+        if (window.innerWidth >= 2130) return;
         setAllowContentScroll(false);
         setMouseModeToAction();
     };
 
     const handleOnMouseLeave = () => {
+        if (window.innerWidth >= 2130) return;
         setAllowContentScroll(true);
         setMouseModeToDefault();
     };

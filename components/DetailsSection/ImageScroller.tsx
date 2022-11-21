@@ -26,7 +26,6 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
     };
 
     const handleScroll = (e: any) => {
-        e.preventDefault();
         ref.current!.scrollLeft += e.deltaY;
         setHideProgress(false);
     };
