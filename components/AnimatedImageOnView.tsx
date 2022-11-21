@@ -23,7 +23,7 @@ function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles }:
             <Image
                 onMouseEnter={(actions && actions.onMouseEnter) ?? undefined}
                 onMouseLeave={(actions && actions.onMouseLeave) ?? undefined}
-                className={`${isInView && "imageAnimation"}  hover:scale-95`}
+                className={`${isInView && "imageAnimation"}  hover:scale-110`}
                 onClick={(actions && actions.onClick) ?? undefined}
                 {...imageProps}
             />

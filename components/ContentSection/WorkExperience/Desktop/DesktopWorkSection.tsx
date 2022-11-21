@@ -37,7 +37,9 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                 <AnimatedImageOnView
                     containerStyles={{
                         height: "100%",
-                        aspectRatio: 9 / 16,
+                        borderRadius: 5,
+                        aspectRatio: 2600 / 3840,
+                        boxShadow: "1px 2px 9px gray",
                     }}
                     imageProps={{
                         priority: true,
@@ -49,7 +51,6 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                         style: {
                             width: "100%",
                             height: "100%",
-                            borderRadius: 5,
                             transition: ".5s ease-in-out",
                         },
                     }}

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
 import { selectedDetailsContext } from "../../pages";
 import useHandleLogoState from "../../utils/useHandleLogoState";
@@ -27,6 +27,9 @@ export enum ContentSections {
     contact = "Contact",
     about = "About",
 }
+
+export const AllowContentScrollContext = createContext<(v: boolean) => void>(() => {});
+
 function Content({ layoutState }: { layoutState: LayoutState }) {
     //Context
     const selectedDetailsState = useContext(selectedDetailsContext);
@@ -34,6 +37,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     //Local State
     const [currentMode, setCurrentMode] = layoutState;
     const [showLogo, setShowLogo] = useState(false);
+    const [allowContentScroll, setAllowContentScroll] = useState(true);
     //Derivated state
     const isLoadFinished = currentMode !== PortfolioMode.Loading;
     //Refs
@@ -57,22 +61,25 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     }
 
     return (
-        <m.div
-            ref={smoothScrolling}
-            className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
-            animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
-            variants={calculateVariants(currentMode, PortfolioMode.Main)}
-            {...layoutAnimationSettings}>
-            <m.div />
-            <div ref={contentRef} className="h-full z-10 shadow-md overflow-y-scroll overflow-x-hidden relative">
-                {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} />}
-                <HeroSection />
-                <WorkSection openDetails={openDetails} reference={workSectionRef} />
-                <AboutSection reference={aboutSectionRef} />
-                <ForDevsSection reference={forDevsSectionRef} />
-                <ContactSection reference={contactSectionRef} />
-            </div>
-        </m.div>
+        <AllowContentScrollContext.Provider value={setAllowContentScroll}>
+            <m.div
+                ref={smoothScrolling}
+                className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
+                animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
+                variants={calculateVariants(currentMode, PortfolioMode.Main)}
+                {...layoutAnimationSettings}>
+                <div
+                    ref={contentRef}
+                    className={`h-full z-10 shadow-md ${allowContentScroll ? "overflow-y-scroll" : "overflow-y-hidden"} overflow-x-hidden relative`}>
+                    {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} />}
+                    <HeroSection />
+                    <WorkSection openDetails={openDetails} reference={workSectionRef} />
+                    <AboutSection reference={aboutSectionRef} />
+                    <ForDevsSection reference={forDevsSectionRef} />
+                    <ContactSection reference={contactSectionRef} />
+                </div>
+            </m.div>
+        </AllowContentScrollContext.Provider>
     );
 }
 

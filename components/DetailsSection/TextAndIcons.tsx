@@ -1,10 +1,8 @@
 import { WorkExperience } from "../../data";
 import { motion as m } from "framer-motion";
-import useIsMobile from "../../utils/useMobileScreen";
 
-function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) {
+function TextAndIcons({ selectedDetails }: { selectedDetails: WorkExperience }) {
     const caseStudyParagraphs = selectedDetails.caseStudy.split("-BREAK-");
-    const isMobile = useIsMobile(1280);
 
     const animation = {
         whileInView: { opacity: 1, y: 0 },
@@ -26,16 +24,18 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
             <m.aside
                 {...animation}
                 transition={{ easings: "cubic-bezier(0.83, 0, 0.17, 1)", delay: screenTransitionDuration + 0.1 }}
-                className="flex-1 flex justify-center items-center flex-wrap gap-5">
+                className="flex-1 flex flex-wrap justify-center items-center gap-5">
                 {selectedDetails.techStack.map((tech, idx) => {
                     return (
-                        <div key={idx} className="flex flex-col justify-center items-center gap-1">
+                        <div key={idx} className="flex-1 flex flex-col justify-start items-center gap-1">
                             <aside
                                 className="w-16 h-16 flex justify-center items-center rounded-sm"
                                 style={{ fontSize: 40, color: "#F0EEEC", backgroundColor: "#12100E" }}>
                                 {tech.icon}
                             </aside>
-                            <p className="text-base">{tech.label}</p>
+                            <p className="text-base text-center" style={{ height: 36 }}>
+                                {tech.label}
+                            </p>
                         </div>
                     );
                 })}
@@ -63,4 +63,4 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
         </div>
     );
 }
-export default TextAndChart;
+export default TextAndIcons;

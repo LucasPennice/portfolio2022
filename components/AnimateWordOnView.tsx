@@ -9,11 +9,12 @@ interface Props {
     fontSize: number;
     underline?: boolean;
     delayInSeconds?: number;
+    underlineHeight?: number;
     animateEveryTime?: true;
     style?: { [key: string]: string | number };
 }
 
-function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds, animateEveryTime, style }: Props) {
+function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds, animateEveryTime, style, underlineHeight }: Props) {
     //It's an object because we need to modify the variable and JS doesn't allow pass by reference
     let lastLetterLeftPosition = { value: 0 };
     let letterHeight = getHeightForFont(fontSize);
@@ -38,7 +39,7 @@ function AnimateWordOnView({ fontSize, wordToAnimate, underline, delayInSeconds,
                     </m.h1>
                 );
             })}
-            {underline && <Underline delay={delay + lettersArray.length / 20} />}
+            {underline && <Underline height={underlineHeight} delay={delay + lettersArray.length / 20} />}
         </div>
     );
 
@@ -83,7 +84,12 @@ const appearTextUnderlineAnimation = (delay: number) => {
     };
 };
 
-function Underline({ delay }: { delay: number }) {
-    return <m.div {...appearTextUnderlineAnimation(delay)} style={{ height: 7 }} className="w-full absolute bottom-0 left-0 bg-black"></m.div>;
+function Underline({ delay, height }: { delay: number; height: number | undefined }) {
+    return (
+        <m.div
+            {...appearTextUnderlineAnimation(delay)}
+            style={{ height: height ? height : 7 }}
+            className="w-full absolute bottom-0 left-0 bg-black"></m.div>
+    );
 }
 export default AnimateWordOnView;

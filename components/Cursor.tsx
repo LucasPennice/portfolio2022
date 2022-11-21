@@ -3,28 +3,30 @@ import { MouseModes } from "../pages";
 
 function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number }; mode: MouseModes }) {
     function getStylesOfMode(mode: MouseModes) {
-        const position = {
-            x: mousePosition.x - 16,
-            y: mousePosition.y - 16,
+        const getPosition = (dimention: number) => {
+            return {
+                x: mousePosition.x - dimention / 2,
+                y: mousePosition.y - dimention / 2,
+            };
         };
 
         if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
-            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
+            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(49, 133, 252)" };
         }
         if (mode === MouseModes.Hidden) {
-            return { ...position, opacity: 0, backgroundColor: "#3185FC" };
+            return { ...getPosition(96), opacity: 0, backgroundColor: "rgb(49, 133, 252)" };
         }
         if (mode === MouseModes.Copied) {
-            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#5FAD41" };
+            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(95, 173, 65)" };
         }
         if (mode === MouseModes.Scroll) {
-            return { ...position, height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
+            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(49, 133, 252)" };
         }
         if (mode === MouseModes.Clickeable) {
-            return { ...position, height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "#3185FC" };
+            return { ...getPosition(45), height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "rgb(49, 133, 252)" };
         }
 
-        return { ...position, height: "32px", width: "32px", mixBlendMode: "difference", backgroundColor: "white" };
+        return { ...getPosition(32), height: "32px", width: "32px", mixBlendMode: "difference", backgroundColor: "rgb(255, 255, 255)" };
     }
 
     return (

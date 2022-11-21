@@ -1,5 +1,6 @@
 import { PanInfo, motion as m, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { clamp } from "three/src/math/MathUtils";
 import { WorkExperience } from "../data";
 import AnimatedImageOnView from "./AnimatedImageOnView";
 import AnimateWordOnView from "./AnimateWordOnView";
@@ -26,7 +27,7 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
 
     return (
         <div className="xl:hidden w-full flex flex-col justify-center items-center" style={{ maxWidth: 600, margin: "0 auto" }}>
-            <div className="relative w-full" style={{ minHeight: "100vh" }}>
+            <div className="relative w-full" style={{ height: "clamp(300px ,170vw ,700px)" }}>
                 {workExperienceArr.map((workExperience, idx) => {
                     const isActive = idx === selectedContentIdx;
                     return (
@@ -46,13 +47,20 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                     transition={{ duration: 0.4, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
                                     className="w-full h-full absolute left-0 top-0">
                                     <AnimatedImageOnView
+                                        containerStyles={{
+                                            boxShadow: "1px 2px 9px gray",
+                                            borderRadius: 5,
+                                            aspectRatio: 2600 / 3840,
+                                            width: `100%`,
+                                            maxWidth: "calc(70vh * 2600 / 3840)",
+                                            maxHeight: "70vh",
+                                        }}
                                         imageProps={{
                                             priority: true,
                                             src: workExperience.coverImage.src,
                                             style: {
-                                                width: "auto",
-                                                height: "calc(100% - 150px)",
-                                                maxHeight: "80vh",
+                                                width: "100%",
+                                                height: "100%",
                                                 borderRadius: 5,
                                                 pointerEvents: "none",
                                             },
@@ -66,6 +74,8 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                         wordToAnimate={workExperience.company}
                                         animateEveryTime
                                         delayInSeconds={0.5}
+                                        underline
+                                        underlineHeight={4}
                                         style={{ marginTop: 10 }}
                                     />
                                     <AnimateWordOnView
@@ -87,6 +97,7 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                 workExperienceLength={workExperienceArr.length}
                 selectClickedIdx={(v: number) => setSelectedContentIdx(v)}
             />
+            <h1 className="w-full text-right opacity-40 mt-3">Swipe image or click the indicator</h1>
         </div>
     );
 }
@@ -101,25 +112,29 @@ function Indicator({
 }) {
     const tempArr = Array.from({ length: workExperienceLength }, (v, i) => i);
 
-    const selectorWidth = `${100 / workExperienceLength}%`;
+    const GAP_SIZE_IN_PIXELS = 96;
 
+    const selectorWidth = `calc(${100 / workExperienceLength}% - ${((workExperienceLength - 1) / 2) * GAP_SIZE_IN_PIXELS}px)`;
+    console.log(selectorWidth);
     return (
-        <div className="w-full h-6 flex justify-center items-center relative rounded-md" style={{ border: "1px solid #12100E1A" }}>
+        <div className="w-full h-6 flex justify-between items-center relative rounded-md gap-24">
             {tempArr.map((garbageValue, idx) => {
                 return (
                     <div
-                        className="flex-1 h-full flex justify-center items-center"
+                        className="flex-1 h-full flex justify-center items-center rounded-md"
                         key={idx}
+                        style={{ boxShadow: "1px 2px 9px gray" }}
                         onClick={() => {
                             selectClickedIdx(idx);
-                        }}></div>
+                        }}
+                    />
                 );
             })}
             <m.aside
                 initial={{ left: 0 }}
-                animate={{ left: `${parseFloat(selectorWidth) * selectedContentIdx}%` }}
+                animate={{ left: `calc(${(100 / workExperienceLength) * selectedContentIdx}% + ${(GAP_SIZE_IN_PIXELS * selectedContentIdx) / 2}px)` }}
                 className="h-full absolute rounded-md pointer-events-none"
-                transition={{ duration: 0.4, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
+                transition={{ duration: 0.5, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
                 style={{ width: selectorWidth, backgroundColor: "#12100E" }}></m.aside>
         </div>
     );

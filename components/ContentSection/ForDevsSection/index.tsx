@@ -1,4 +1,4 @@
-import { Suspense, useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
 import { ResourcesForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
@@ -10,6 +10,7 @@ import { IPhoneModel } from "./models/IPhoneModel";
 import { HeadphonesModel } from "./models/HeadphonesModel";
 import { BookshelfModel } from "./models/BookshelfModel";
 import { ReactModel } from "./models/ReactModel";
+import { AllowContentScrollContext } from "..";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -21,6 +22,9 @@ const ForDevsSection = ({ reference }: Props) => {
     const [selectedResource, setSelectedResource] = useState<number | undefined>(undefined);
     //Context
     const updateMouseMode = useContext(updateMouseModeContext);
+    const setAllowContentScroll = useContext(AllowContentScrollContext);
+    //Refs
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         setSelectedResource(undefined);
@@ -34,7 +38,23 @@ const ForDevsSection = ({ reference }: Props) => {
         return updateMouseMode(MouseModes.Clickeable);
     };
 
+    const handleScroll = (e: any) => {
+        if (ref.current!.scrollLeft < 10 && e.deltaY < 0) return setAllowContentScroll(true);
+        ref.current!.scrollLeft += e.deltaY;
+        if (ref.current!.scrollLeft > 826) return setAllowContentScroll(true);
+    };
+
     const isMobile = useIsMobile(1280);
+
+    const handleOnMouseEnter = () => {
+        setAllowContentScroll(false);
+        setMouseModeToAction();
+    };
+
+    const handleOnMouseLeave = () => {
+        setAllowContentScroll(true);
+        setMouseModeToDefault();
+    };
 
     return (
         <div id="forDevsSection" className="xl:pb-28 pb-6 xl:pt-20 xl:mt-20" style={{ minHeight: isMobile ? "auto" : "110vh" }} ref={reference}>
@@ -43,27 +63,32 @@ const ForDevsSection = ({ reference }: Props) => {
                     <h1>.03</h1>
                     <h1>For Devs</h1>
                 </header>
-                <m.header
+                <m.div
                     whileInView={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 30 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, easings: "cubic-bezier(0.075, 0.82, 0.165, 1)" }}
-                    className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
-                    onMouseEnter={setMouseModeToAction}
-                    onMouseLeave={setMouseModeToDefault}
-                    style={{ fontSize: isMobile ? "15vw" : 150, fontWeight: "bold" }}>
-                    {topicsArray.map((topic, idx) => {
-                        const active = selectedTopic === topic;
-                        return (
-                            <h1
-                                key={idx}
-                                className={`${active ? "opacity-100" : "opacity-20"} transition-all`}
-                                onClick={() => setSelectedTopic(topic)}>
-                                {topic}
-                            </h1>
-                        );
-                    })}
-                </m.header>
+                    transition={{ duration: 0.5, easings: "cubic-bezier(0.075, 0.82, 0.165, 1)" }}>
+                    <header
+                        ref={ref}
+                        className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
+                        onMouseEnter={handleOnMouseEnter}
+                        onMouseLeave={handleOnMouseLeave}
+                        onWheel={handleScroll}
+                        style={{ fontSize: isMobile ? "15vw" : 150, fontWeight: "bold", scrollBehavior: "auto" }}>
+                        {topicsArray.map((topic, idx) => {
+                            const active = selectedTopic === topic;
+                            return (
+                                <h1
+                                    key={idx}
+                                    className={`${active ? "opacity-100" : "opacity-20"} transition-all`}
+                                    onClick={() => setSelectedTopic(topic)}>
+                                    {topic}
+                                </h1>
+                            );
+                        })}
+                    </header>
+                </m.div>
+                <h1 className="text-right m-0 opacity-70">Click to change section</h1>
                 <div className="w-full flex justify-center items-start mt-12 xl:flex-row flex-col-reverse">
                     <m.section
                         whileInView={{ opacity: 1, y: 0 }}

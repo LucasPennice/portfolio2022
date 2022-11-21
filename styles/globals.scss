@@ -248,15 +248,15 @@ body {
 }
 
 .imageAnimation {
-    scale: 0.9;
-    animation: imageAnimation 1s 0.4s forwards cubic-bezier(0.83, 0, 0.17, 1);
+    scale: 1.1;
+    animation: imageAnimation 1.5s 0.7s forwards cubic-bezier(0.83, 0, 0.17, 1);
 }
 @keyframes imageAnimation {
     from {
-        scale: 0.9;
+        scale: 1.2;
     }
     to {
-        scale: 1;
+        scale: 1.1;
     }
 }
 

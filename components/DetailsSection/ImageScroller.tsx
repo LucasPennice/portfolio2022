@@ -1,7 +1,7 @@
 import { motion as m, useInView } from "framer-motion";
 import { useScroll } from "framer-motion";
 import Image from "next/image";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ImageType } from "../../data";
 import YouTube from "react-youtube";
 import { MouseModes, updateMouseModeContext } from "../../pages";
@@ -15,17 +15,27 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
     //Local State
     const [hideProgress, setHideProgress] = useState(true);
 
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement | null>(null);
     const isInView = useInView(ref);
     const { scrollXProgress } = useScroll({ container: ref });
 
     const youtubePlayerOptions = {
         height: "100%",
         width: "100%",
-        playerVars: {
-            autoplay: 0,
-        },
+        playerVars: { autoplay: 0 },
     };
+
+    const handleScroll = (e: any) => {
+        e.preventDefault();
+        ref.current!.scrollLeft += e.deltaY;
+        setHideProgress(false);
+    };
+
+    useEffect(() => {
+        setHideProgress(true);
+        if (!ref.current) return;
+        ref.current.scrollLeft = 0;
+    }, [isInView]);
 
     return (
         <>
@@ -54,23 +64,24 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
             )}
             <div
                 ref={ref}
-                onScroll={() => setHideProgress(false)}
+                onWheel={handleScroll}
+                style={{ scrollBehavior: "auto" }}
                 className="w-full h-full absolute bottom-0 left-0 flex items-center gap-4 overflow-x-scroll overflow-y-hidden hideScrollbar"
                 onMouseEnter={setMouseScroll}
                 onMouseLeave={setMouseDefault}>
                 {youtubeDemoVideoId && (
                     <div
                         onMouseEnter={setMouseHidden}
-                        onMouseLeave={setMouseDefault}
+                        onMouseLeave={setMouseScroll}
                         className={`opacity-0 ${isInView && "animateFromBottom"}`}
-                        style={{ height: "83%", aspectRatio: 16 / 9, marginLeft: "51%" }}>
+                        style={{ height: "83%", aspectRatio: 16 / 9, marginLeft: "51%", animationDelay: `0.7s` }}>
                         <YouTube videoId={youtubeDemoVideoId} opts={youtubePlayerOptions} style={{ height: "100%", width: "100%" }} />
                     </div>
                 )}
                 {imageArr.map((e, idx) => {
                     return (
                         <Image
-                            className={`opacity-0 ${isInView && "animateFromBottom"}`}
+                            className={`opacity-0 ${isInView && "animateFromBottom"} shadow-md shadow-gray`}
                             src={e.src}
                             placeholder="blur"
                             style={{
