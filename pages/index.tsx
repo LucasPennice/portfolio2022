@@ -18,6 +18,7 @@ export enum MouseModes {
     CopyToClipboard = "CopyToClipboard",
     Copied = "Copied",
     Hidden = "Hidden",
+    RotateMe = "RotateMe",
 }
 const defaultSelectedDetails: WorkExperience = {
     company: "",

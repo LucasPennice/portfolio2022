@@ -2,7 +2,7 @@ import { Suspense, useContext, useEffect, useRef, useState } from "react";
 import { motion as m } from "framer-motion";
 import { ResourcesForDevs, SelectedTopic } from "../../../data";
 import { MouseModes, updateMouseModeContext } from "../../../pages";
-import RecommendationDropdown from "./RecommendationDropdown";
+import RecommendationForDevs from "./RecommendationForDevs";
 import useIsMobile from "../../../utils/useMobileScreen";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
@@ -19,20 +19,16 @@ interface Props {
 const ForDevsSection = ({ reference }: Props) => {
     //Local state
     const [selectedTopic, setSelectedTopic] = useState<SelectedTopic>(SelectedTopic.Books);
-    const [selectedResource, setSelectedResource] = useState<number | undefined>(undefined);
     //Context
     const updateMouseMode = useContext(updateMouseModeContext);
     const setAllowContentScroll = useContext(AllowContentScrollContext);
     //Refs
     const ref = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        setSelectedResource(undefined);
-    }, [selectedTopic]);
-
     const topicsArray: SelectedTopic[] = Object.keys(SelectedTopic) as SelectedTopic[];
 
     const setMouseModeToDefault = () => updateMouseMode(MouseModes.Default);
+    const setMouseToRotateMe = () => updateMouseMode(MouseModes.RotateMe);
     const setMouseModeToAction = () => {
         if (window.innerWidth < 2130) return updateMouseMode(MouseModes.Scroll);
         return updateMouseMode(MouseModes.Clickeable);
@@ -48,15 +44,15 @@ const ForDevsSection = ({ reference }: Props) => {
     const isMobile = useIsMobile(1280);
 
     const handleOnMouseEnter = () => {
+        setMouseModeToAction();
         if (window.innerWidth >= 2130) return;
         setAllowContentScroll(false);
-        setMouseModeToAction();
     };
 
     const handleOnMouseLeave = () => {
+        setMouseModeToDefault();
         if (window.innerWidth >= 2130) return;
         setAllowContentScroll(true);
-        setMouseModeToDefault();
     };
 
     return (
@@ -66,6 +62,7 @@ const ForDevsSection = ({ reference }: Props) => {
                     <h1>.03</h1>
                     <h1>For Devs</h1>
                 </header>
+                <h1 className="mb-5 text-lg xl:text-3xl opacity-60">A small collection of resources that have helped me</h1>
                 <m.div
                     whileInView={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 30 }}
@@ -101,16 +98,15 @@ const ForDevsSection = ({ reference }: Props) => {
                         className="w-full xl:w-1/2"
                         key={selectedTopic}>
                         {ResourcesForDevs[selectedTopic].map((resource, idx) => (
-                            <RecommendationDropdown
-                                key={idx}
-                                selectedResourceState={[selectedResource, setSelectedResource]}
-                                data={resource}
-                                position={[idx, idx === ResourcesForDevs[selectedTopic].length - 1]}
-                            />
+                            <RecommendationForDevs key={idx} data={resource} position={[idx, idx === ResourcesForDevs[selectedTopic].length - 1]} />
                         ))}
                     </m.section>
                     <section className="w-full xl:w-1/2 flex justify-center items-center xl:mb-0 mb-12">
-                        <div className="xl:aspect-square aspect-video " style={{ width: isMobile ? "100%" : "80%" }}>
+                        <div
+                            className="xl:aspect-square aspect-video "
+                            style={{ width: isMobile ? "100%" : "80%" }}
+                            onMouseEnter={setMouseToRotateMe}
+                            onMouseLeave={setMouseModeToDefault}>
                             <Canvas camera={{ position: [-25, 5, -25], fov: 15, zoom: 1 }}>
                                 <OrbitControls autoRotate={true} enablePan={false} enableZoom={false} />
                                 <Environment preset="city" />

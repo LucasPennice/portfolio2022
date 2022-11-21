@@ -10,7 +10,12 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
             };
         };
 
-        if (mode === MouseModes.ClickForDetails || mode === MouseModes.CopyToClipboard) {
+        if (
+            mode === MouseModes.ClickForDetails ||
+            mode === MouseModes.CopyToClipboard ||
+            mode === MouseModes.RotateMe ||
+            mode === MouseModes.Scroll
+        ) {
             return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(35, 100, 170)" };
         }
         if (mode === MouseModes.Hidden) {
@@ -18,9 +23,6 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
         }
         if (mode === MouseModes.Copied) {
             return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(79, 178, 134)" };
-        }
-        if (mode === MouseModes.Scroll) {
-            return { ...getPosition(96), height: "96px", width: "96px", mixBlendMode: "normal", backgroundColor: "rgb(35, 100, 170)" };
         }
         if (mode === MouseModes.Clickeable) {
             return { ...getPosition(45), height: "45px", width: "45px", mixBlendMode: "normal", backgroundColor: "rgb(35, 100, 170)" };
@@ -66,6 +68,13 @@ function Cursor({ mousePosition, mode }: { mousePosition: { x: number; y: number
             {mode === MouseModes.Copied && (
                 <div className="h-full w-full flex flex-col justify-center items-center text-white" style={{ fontSize: 12, fontWeight: "bold" }}>
                     <p>Copied</p>
+                </div>
+            )}
+            {mode === MouseModes.RotateMe && (
+                <div className="h-full w-full flex flex-col justify-center items-center text-white" style={{ fontSize: 12, fontWeight: "bold" }}>
+                    <p>Drag</p>
+                    <p>To</p>
+                    <p>Rotate</p>
                 </div>
             )}
         </m.div>
