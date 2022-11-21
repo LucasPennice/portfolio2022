@@ -29,6 +29,29 @@ import { IoBuild } from "react-icons/io5";
 import { TbBrandReactNative } from "react-icons/tb";
 import { DiPython } from "react-icons/di";
 import { BiGitBranch } from "react-icons/bi";
+import { StaticImageData } from "next/image";
+//TrackerWallet Imports
+import TrackerWalletCover from "./public/projectsScreenshots/trackerWallet/cover.png";
+import TW_Dashboard1 from "./public/projectsScreenshots/trackerWallet/dashboard1.png";
+import TW_Dashboard2 from "./public/projectsScreenshots/trackerWallet/dashboard2.png";
+import TW_Map from "./public/projectsScreenshots/trackerWallet/map.png";
+import TW_MapColor from "./public/projectsScreenshots/trackerWallet/mapcolor.png";
+import TW_MapEditNode from "./public/projectsScreenshots/trackerWallet/mapeditnode.png";
+import TW_MapFilterColor from "./public/projectsScreenshots/trackerWallet/mapfiltercolor.png";
+import TW_MapTree from "./public/projectsScreenshots/trackerWallet/maptree.png";
+import TW_Profile from "./public/projectsScreenshots/trackerWallet/profile.png";
+//CreatorSet Imports
+import CreatorSetCover from "./public/projectsScreenshots/creatorSet/cover.png";
+import CS_CaptionTool from "./public/projectsScreenshots/creatorSet/captiontool.png";
+import CS_CaptionToolPage from "./public/projectsScreenshots/creatorSet/captiontoolpage.png";
+import CS_EditProfile from "./public/projectsScreenshots/creatorSet/editProfile.png";
+import CS_HighlightTool from "./public/projectsScreenshots/creatorSet/highlighttool.png";
+import CS_Login from "./public/projectsScreenshots/creatorSet/login.png";
+import CS_NewProduct from "./public/projectsScreenshots/creatorSet/newProduct.png";
+import CS_Poptag from "./public/projectsScreenshots/creatorSet/poptag.png";
+import CS_ProfanityChecker from "./public/projectsScreenshots/creatorSet/profanitychecker.png";
+import CS_Store from "./public/projectsScreenshots/creatorSet/store.png";
+import CS_ThumbnailPreviewer from "./public/projectsScreenshots/creatorSet/thumbnailPreviewer.png";
 
 export interface Tech {
     label: string;
@@ -36,7 +59,7 @@ export interface Tech {
 }
 
 export type ImageType = {
-    src: string;
+    src: string | StaticImageData;
     resolution: { w: number; h: number };
 };
 
@@ -58,16 +81,16 @@ export const workExperienceArr: WorkExperience[] = [
         from: "2021",
         to: "2022",
         role: "Front End Dev",
-        coverImage: { resolution: { w: 2160, h: 3840 }, src: "/projectsScreenshots/trackerWallet/cover.png" },
+        coverImage: { resolution: { w: 2160, h: 3840 }, src: TrackerWalletCover },
         detailImages: [
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/1.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/2.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/3.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/4.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/5.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/6.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/7.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/trackerWallet/8.png" },
+            { resolution: { w: 2560, h: 1358 }, src: TW_Dashboard1 },
+            { resolution: { w: 2560, h: 1358 }, src: TW_Dashboard2 },
+            { resolution: { w: 2560, h: 1358 }, src: TW_Map },
+            { resolution: { w: 2560, h: 1358 }, src: TW_MapColor },
+            { resolution: { w: 2560, h: 1358 }, src: TW_MapEditNode },
+            { resolution: { w: 2560, h: 1358 }, src: TW_MapFilterColor },
+            { resolution: { w: 2560, h: 1358 }, src: TW_MapTree },
+            { resolution: { w: 2560, h: 1358 }, src: TW_Profile },
         ],
         projectLink: false,
         techStack: [
@@ -88,21 +111,18 @@ export const workExperienceArr: WorkExperience[] = [
         from: "2021",
         to: "2022",
         role: "Front End Dev",
-        coverImage: { resolution: { w: 2160, h: 3840 }, src: "/projectsScreenshots/creatorSet/cover.png" },
+        coverImage: { resolution: { w: 2160, h: 3840 }, src: CreatorSetCover },
         detailImages: [
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/1.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/2.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/3.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/4.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/5.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/6.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/7.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/8.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/9.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/10.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/11.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/12.png" },
-            { resolution: { w: 2560, h: 1358 }, src: "/projectsScreenshots/creatorSet/13.png" },
+            { resolution: { w: 2560, h: 1358 }, src: CS_CaptionTool },
+            { resolution: { w: 2560, h: 1358 }, src: CS_CaptionToolPage },
+            { resolution: { w: 2560, h: 1358 }, src: CS_EditProfile },
+            { resolution: { w: 2560, h: 1358 }, src: CS_HighlightTool },
+            { resolution: { w: 2560, h: 1358 }, src: CS_Login },
+            { resolution: { w: 2560, h: 1358 }, src: CS_NewProduct },
+            { resolution: { w: 2560, h: 1358 }, src: CS_Poptag },
+            { resolution: { w: 2560, h: 1358 }, src: CS_ProfanityChecker },
+            { resolution: { w: 2560, h: 1358 }, src: CS_Store },
+            { resolution: { w: 2560, h: 1358 }, src: CS_ThumbnailPreviewer },
         ],
         projectLink: false,
         techStack: [

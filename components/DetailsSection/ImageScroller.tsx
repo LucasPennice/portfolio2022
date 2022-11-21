@@ -50,6 +50,7 @@ function ImageScroller({ imageArr }: { imageArr: ImageType[] }) {
                         <Image
                             className={`opacity-0 ${isInView && "animateFromBottom"}`}
                             src={e.src}
+                            placeholder="blur"
                             style={{
                                 width: "auto",
                                 height: "83%",

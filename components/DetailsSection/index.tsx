@@ -51,14 +51,15 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
                 {!isMobile && <ImageScroller imageArr={selectedDetails.detailImages} />}
                 {isMobile && (
                     <div className="py-10 w-full">
-                        {selectedDetails.detailImages.map((src, idx) => (
+                        {selectedDetails.detailImages.map((img, idx) => (
                             <Image
                                 key={idx}
-                                src="/drill-monkey-01_2x3.webp"
+                                src={img.src}
                                 style={{ width: "100%", height: "auto", borderRadius: 5, marginBottom: 20 }}
+                                className="shadow-gray shadow-md"
                                 alt="Project img"
-                                width={1920}
-                                height={1080}
+                                width={img.resolution.w}
+                                height={img.resolution.h}
                             />
                         ))}
                     </div>

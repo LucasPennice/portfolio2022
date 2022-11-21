@@ -35,15 +35,22 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
 
             <section className="flex flex-col items-end justify-center" style={{ width: "calc(50% - 20px)", height: "calc(100vh - 100px)" }}>
                 <AnimatedImageOnView
+                    containerStyles={{
+                        height: "100%",
+                        aspectRatio: 9 / 16,
+                    }}
                     imageProps={{
+                        priority: true,
                         alt: "project inmg",
                         height: data.coverImage.resolution.h,
                         width: data.coverImage.resolution.w,
                         src: data.coverImage.src,
-                        styles: {
+                        placeholder: "blur",
+                        style: {
+                            width: "100%",
                             height: "100%",
                             borderRadius: 5,
-                            transition: ".5s cubic-bezier(0.83, 0, 0.17, 1)",
+                            transition: ".5s ease-in-out",
                         },
                     }}
                     actions={{ onMouseEnter: setMouseDetails, onMouseLeave: setMouseDefault, onClick: () => openDetails(data) }}

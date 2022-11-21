@@ -47,8 +47,9 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                     className="w-full h-full absolute left-0 top-0">
                                     <AnimatedImageOnView
                                         imageProps={{
-                                            src: "/drill-monkey-01_2x3.webp",
-                                            styles: {
+                                            priority: true,
+                                            src: workExperience.coverImage.src,
+                                            style: {
                                                 width: "auto",
                                                 height: "calc(100% - 150px)",
                                                 maxHeight: "80vh",
@@ -56,8 +57,8 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                                 pointerEvents: "none",
                                             },
                                             alt: "Project img",
-                                            width: 1920,
-                                            height: 580,
+                                            width: workExperience.coverImage.resolution.w,
+                                            height: workExperience.coverImage.resolution.h,
                                         }}
                                     />
                                     <AnimateWordOnView

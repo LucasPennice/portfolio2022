@@ -9,7 +9,6 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
     const animation = {
         whileInView: { opacity: 1, y: 0 },
         initial: { opacity: 0, y: 50 },
-        viewport: { once: isMobile ? true : false },
     };
 
     const screenTransitionDuration = 0.7;
@@ -27,7 +26,7 @@ function TextAndChart({ selectedDetails }: { selectedDetails: WorkExperience }) 
             <m.aside
                 {...animation}
                 transition={{ easings: "cubic-bezier(0.83, 0, 0.17, 1)", delay: screenTransitionDuration + 0.1 }}
-                className="flex-1 flex justify-center xl:justify-start items-center flex-wrap gap-5">
+                className="flex-1 flex justify-center items-center flex-wrap gap-5">
                 {selectedDetails.techStack.map((tech, idx) => {
                     return (
                         <div key={idx} className="flex flex-col justify-center items-center gap-1">

@@ -2,6 +2,7 @@ import { HEIGHT_WITHOUT_NAVBAR } from "../../../pages";
 import useIsMobile from "../../../utils/useMobileScreen";
 import AnimatedImageOnView from "../../AnimatedImageOnView";
 import AnimateWordOnView from "../../AnimateWordOnView";
+import MonkeyImage from "../../../public/drill-monkey-01_2x3.webp";
 
 function HeroSection() {
     const isMobile = useIsMobile(700);
@@ -25,18 +26,19 @@ function HeroSection() {
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="LUCAS" />
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="PENNICE" />
                 <AnimatedImageOnView
-                    priority
                     containerStyles={{
                         width: `clamp(320px,${19 * 3}vw,500px)`,
                         height: `clamp(135px,${8 * 3}vw,209px)`,
                         marginTop: isSmallScreen ? 32 : 0,
                     }}
                     imageProps={{
+                        priority: true,
                         alt: "project inmg",
                         width: 1920,
                         height: 1080,
-                        src: "/drill-monkey-01_2x3.webp",
-                        styles: {
+                        src: MonkeyImage,
+                        placeholder: "blur",
+                        style: {
                             width: "100%",
                             height: "100%",
                             borderRadius: 5,

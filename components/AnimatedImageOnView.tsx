@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import { motion as m, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -9,18 +9,11 @@ interface AnimatedImage {
         onClick?: () => void;
     };
     containerStyles?: { [key: string]: string | number };
-    imageProps: {
-        styles: { [key: string]: string | number };
-        src: string;
-        alt: string;
-        width: number;
-        height: number;
-    };
+    imageProps: ImageProps;
     parallax?: boolean;
-    priority?: boolean;
 }
 
-function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles, priority }: AnimatedImage) {
+function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles }: AnimatedImage) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
@@ -30,14 +23,9 @@ function AnimatedImageOnView({ imageProps, actions, parallax, containerStyles, p
             <Image
                 onMouseEnter={(actions && actions.onMouseEnter) ?? undefined}
                 onMouseLeave={(actions && actions.onMouseLeave) ?? undefined}
+                className={`${isInView && "imageAnimation"}  hover:scale-95`}
                 onClick={(actions && actions.onClick) ?? undefined}
-                className={`${isInView && "imageAnimation"}  hover:scale-110`}
-                src={imageProps.src}
-                style={imageProps.styles}
-                alt={imageProps.alt}
-                width={imageProps.width}
-                height={imageProps.height}
-                priority={priority ? true : false}
+                {...imageProps}
             />
         </div>
     );
