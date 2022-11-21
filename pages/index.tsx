@@ -44,7 +44,7 @@ export default function Home() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [mouseMode, setMouseMode] = useState<MouseModes>(MouseModes.Default);
 
-    const isSmallScreen = useIsMobile(1430);
+    const isSmallScreen = useIsMobile(1680, true);
 
     useEffect(() => {
         const mouseMove = (e: any) => {

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
-const useIsMobile = (breakPoint: number) => {
+const useIsMobile = (breakPoint: number, retina?: boolean) => {
     const [isUserOnMobile, setIsUserOnMobile] = useState<boolean>(false);
 
     const checkIfMobileScreen = () => {
+        const dpiIndex = window.devicePixelRatio;
         const screenWidth = window.innerWidth;
-        if (screenWidth > breakPoint) {
+        const adjustedScreenWidth = retina ? dpiIndex * screenWidth : screenWidth;
+        if (adjustedScreenWidth > breakPoint) {
             return false;
         }
         return true;

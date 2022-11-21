@@ -46,7 +46,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
 
     const smoothScrolling = useRef(null);
 
-    const isSmallScreen = useIsMobile(1430);
+    const isSmallScreen = useIsMobile(1680, true);
     const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
 
     useHandleLogoState(contentRef, setShowLogo);

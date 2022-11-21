@@ -12,7 +12,6 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
         if (blockDragFn) return;
         setBlockDragFn(true);
         const { x } = info.offset;
-        console.log(x);
         if (x <= -4)
             return setSelectedContentIdx((prev) => {
                 if (prev + 1 === workExperienceArr.length) return prev;

@@ -5,7 +5,7 @@ import AnimateWordOnView from "../../AnimateWordOnView";
 
 function HeroSection() {
     const isMobile = useIsMobile(700);
-    const isSmallScreen = useIsMobile(1670);
+    const isSmallScreen = useIsMobile(1400);
 
     const getFontSize = () => {
         if (isMobile) return 35;
@@ -27,8 +27,8 @@ function HeroSection() {
                 <AnimatedImageOnView
                     priority
                     containerStyles={{
-                        width: `clamp(320px,${19 * 3}vw,800px)`,
-                        height: `clamp(135px,${8 * 3}vw,309px)`,
+                        width: `clamp(320px,${19 * 3}vw,500px)`,
+                        height: `clamp(135px,${8 * 3}vw,209px)`,
                         marginTop: isSmallScreen ? 32 : 0,
                     }}
                     imageProps={{
