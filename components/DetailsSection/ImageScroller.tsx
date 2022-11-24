@@ -86,6 +86,7 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
                             style={{
                                 width: "auto",
                                 height: "83%",
+                                aspectRatio: 2560 / 1358,
                                 borderRadius: 5,
                                 marginLeft: idx === 0 && !youtubeDemoVideoId ? "51%" : "10%",
                                 marginRight: idx === imageArr.length - 1 ? "5%" : "0%",
