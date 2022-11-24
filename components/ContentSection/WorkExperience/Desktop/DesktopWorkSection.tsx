@@ -28,15 +28,15 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
     const setMouseDefault = () => updateMouseMode(MouseModes.Default);
 
     return (
-        <aside className="flex justify-between items-center gap-6 w-full h-screen mb-20">
-            <section style={{ width: "calc(50% - 20px)", height: "100%" }}>
+        <aside className="flex justify-between items-center gap-6 w-full mb-20">
+            <section style={{ width: "calc(50% - 20px)", aspectRatio: 2600 / 3840 }}>
                 <Text data={data} openDetails={() => openDetails(data)} />
             </section>
 
-            <section className="flex flex-col items-end justify-center" style={{ width: "calc(50% - 20px)", height: "calc(100vh - 100px)" }}>
+            <section className="flex flex-col items-end justify-center" style={{ width: "calc(50% - 20px)" }}>
                 <AnimatedImageOnView
                     containerStyles={{
-                        height: "100%",
+                        width: "100%",
                         borderRadius: 5,
                         aspectRatio: 2600 / 3840,
                         cursor: "pointer",
@@ -51,7 +51,6 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                         placeholder: "blur",
                         style: {
                             width: "100%",
-                            height: "100%",
                             transition: ".5s ease-in-out",
                         },
                     }}
