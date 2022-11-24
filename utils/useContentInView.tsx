@@ -16,8 +16,6 @@ const useContentInView = (workSectionRef: Ref, aboutSectionRef: Ref, forDevsSect
         const isSectionInViewArray = [workSectionInView, aboutSectionInView, forDevsSectionInView, contactSectionInView];
         const sectionNames: ContentSections[] = [ContentSections.work, ContentSections.about, ContentSections.forDevs, ContentSections.contact];
 
-        console.log(isSectionInViewArray);
-
         const numberOfSectionsInView = getNumberOfSectionsInView(isSectionInViewArray);
 
         if (numberOfSectionsInView !== 1) return;

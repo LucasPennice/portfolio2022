@@ -5,6 +5,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { ImageType } from "../../data";
 import YouTube from "react-youtube";
 import { MouseModes, updateMouseModeContext } from "../../pages";
+import useHorizontalScroll from "../../utils/useHorizontalScroll";
 
 function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]; youtubeDemoVideoId: string | undefined }) {
     //Context
@@ -25,10 +26,7 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
         playerVars: { autoplay: 0 },
     };
 
-    const handleScroll = (e: any) => {
-        ref.current!.scrollLeft += e.deltaY;
-        setHideProgress(false);
-    };
+    useHorizontalScroll({ ref, onScroll: () => setHideProgress(false) });
 
     useEffect(() => {
         setHideProgress(true);
@@ -63,8 +61,6 @@ function ImageScroller({ imageArr, youtubeDemoVideoId }: { imageArr: ImageType[]
             )}
             <div
                 ref={ref}
-                onWheel={handleScroll}
-                style={{ scrollBehavior: "auto" }}
                 className="w-full h-full absolute bottom-0 left-0 flex items-center gap-4 overflow-x-scroll overflow-y-hidden hideScrollbar"
                 onMouseEnter={setMouseScroll}
                 onMouseLeave={setMouseDefault}>

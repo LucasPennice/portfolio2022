@@ -10,6 +10,7 @@ import { IPhoneModel } from "./models/IPhoneModel";
 import { HeadphonesModel } from "./models/HeadphonesModel";
 import { BookshelfModel } from "./models/BookshelfModel";
 import { ReactModel } from "./models/ReactModel";
+import useHorizontalScroll from "../../../utils/useHorizontalScroll";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -32,10 +33,7 @@ const ForDevsSection = ({ reference }: Props) => {
         return updateMouseMode(MouseModes.Clickeable);
     };
 
-    const handleScroll = (e: any) => {
-        if (window.innerWidth >= 2130) return;
-        ref.current!.scrollLeft += e.deltaY;
-    };
+    useHorizontalScroll({ ref, blockScrollAt: 2130 });
 
     const isMobile = useIsMobile(1280);
 
@@ -67,8 +65,7 @@ const ForDevsSection = ({ reference }: Props) => {
                         className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar cursor-pointer"
                         onMouseEnter={handleOnMouseEnter}
                         onMouseLeave={handleOnMouseLeave}
-                        onWheel={handleScroll}
-                        style={{ fontSize: isMobile ? "15vw" : 150, fontWeight: "bold", scrollBehavior: "auto" }}>
+                        style={{ fontSize: isMobile ? "15vw" : 150, fontWeight: "bold" }}>
                         {topicsArray.map((topic, idx) => {
                             const active = selectedTopic === topic;
                             return (
