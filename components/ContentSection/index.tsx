@@ -14,6 +14,7 @@ import { WorkExperience } from "../../data";
 import WorkSection from "./WorkExperience/WorkSection";
 import HeroSection from "./HeroSection";
 import { DarkModeToggle } from "./WorkExperience/Desktop/Header";
+import useHandleDarkMode from "./useHandleDarkMode";
 const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
     ssr: false,
 });
@@ -57,14 +58,7 @@ function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutS
         setCurrentMode(PortfolioMode.Details);
     }
 
-    useEffect(() => {
-        const html = document.querySelector("html");
-        if (!html) return;
-
-        if (darkMode) return html.classList.add("dark");
-
-        html.classList.remove("dark");
-    }, [darkMode]);
+    useHandleDarkMode(darkMode);
 
     return (
         <m.div
