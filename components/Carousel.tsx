@@ -26,8 +26,8 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
     };
 
     return (
-        <div className="xl:hidden w-full flex flex-col justify-center items-center" style={{ maxWidth: 600, margin: "0 auto" }}>
-            <div className="relative w-full" style={{ height: "clamp(300px ,170vw ,700px)" }}>
+        <div className="xl:hidden w-full flex flex-col justify-start items-center" style={{ margin: "0 auto", aspectRatio: 2000 / 1500 }}>
+            <div className="relative w-full" style={{ aspectRatio: 2000 / 1560 }}>
                 {workExperienceArr.map((workExperience, idx) => {
                     const isActive = idx === selectedContentIdx;
                     return (
@@ -50,14 +50,12 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                         containerClass="shadow-lg dark:shadow-none shadow-grayShadow"
                                         containerStyles={{
                                             borderRadius: 5,
-                                            aspectRatio: 2600 / 3840,
+                                            aspectRatio: 2000 / 1000,
                                             width: `100%`,
-                                            maxWidth: "calc(70vh * 2600 / 3840)",
-                                            maxHeight: "70vh",
                                         }}
                                         imageProps={{
                                             priority: true,
-                                            src: workExperience.coverImage.src,
+                                            src: workExperience.mobileCoverImage.src,
                                             style: {
                                                 width: "100%",
                                                 height: "100%",
@@ -65,8 +63,8 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                                 pointerEvents: "none",
                                             },
                                             alt: "Project img",
-                                            width: workExperience.coverImage.resolution.w,
-                                            height: workExperience.coverImage.resolution.h,
+                                            width: workExperience.mobileCoverImage.resolution.w,
+                                            height: workExperience.mobileCoverImage.resolution.h,
                                         }}
                                     />
                                     <AnimateWordOnView
@@ -131,7 +129,7 @@ function Indicator({
             <m.aside
                 initial={{ left: 0 }}
                 animate={{ left: `calc(${(100 / workExperienceLength) * selectedContentIdx}% + ${(GAP_SIZE_IN_PIXELS * selectedContentIdx) / 2}px)` }}
-                className="h-full absolute rounded-md pointer-events-none bg-white"
+                className="h-full absolute rounded-md pointer-events-none bg-black dark:bg-white"
                 transition={{ duration: 0.5, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
                 style={{ width: selectorWidth }}></m.aside>
         </div>

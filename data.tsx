@@ -33,6 +33,7 @@ import { BiGitBranch } from "react-icons/bi";
 import { StaticImageData } from "next/image";
 //TrackerWallet Imports
 import TrackerWalletCover from "./public/projectsScreenshots/trackerWallet/cover.png";
+import TrackerWalletMobileCover from "./public/projectsScreenshots/trackerWallet/mobileCover.png";
 import TW_Dashboard1 from "./public/projectsScreenshots/trackerWallet/dashboard1.png";
 import TW_Dashboard2 from "./public/projectsScreenshots/trackerWallet/dashboard2.png";
 import TW_Map from "./public/projectsScreenshots/trackerWallet/map.png";
@@ -42,6 +43,7 @@ import TW_MapTree from "./public/projectsScreenshots/trackerWallet/maptree.png";
 import TW_Profile from "./public/projectsScreenshots/trackerWallet/profile.png";
 //CreatorSet Imports
 import CreatorSetCover from "./public/projectsScreenshots/creatorSet/cover.png";
+import CreatorSetMobileCover from "./public/projectsScreenshots/creatorSet/mobileCover.png";
 import CS_CaptionTool from "./public/projectsScreenshots/creatorSet/captiontool.png";
 import CS_CaptionToolPage from "./public/projectsScreenshots/creatorSet/captiontoolpage.png";
 import CS_EditProfile from "./public/projectsScreenshots/creatorSet/editProfile.png";
@@ -69,6 +71,7 @@ export interface WorkExperience {
     projectLink: false | string;
     youtubeDemoVideoId?: string;
     coverImage: ImageType;
+    mobileCoverImage: ImageType;
     detailImages: ImageType[];
     techStack: Tech[];
     caseStudy: string;
@@ -81,6 +84,7 @@ export const workExperienceArr: WorkExperience[] = [
         to: "2022",
         role: "Frontend developer",
         youtubeDemoVideoId: "dE-3igVicso",
+        mobileCoverImage: { resolution: { w: 2000, h: 1000 }, src: TrackerWalletMobileCover },
         coverImage: { resolution: { w: 2600, h: 3840 }, src: TrackerWalletCover },
         detailImages: [
             { resolution: { w: 2560, h: 1358 }, src: TW_MapTree },
@@ -109,6 +113,7 @@ export const workExperienceArr: WorkExperience[] = [
         from: "2021",
         to: "2022",
         role: "Frontend Dev",
+        mobileCoverImage: { resolution: { w: 2000, h: 1000 }, src: CreatorSetMobileCover },
         coverImage: { resolution: { w: 2600, h: 3840 }, src: CreatorSetCover },
         detailImages: [
             { resolution: { w: 2560, h: 1358 }, src: CS_Login },
