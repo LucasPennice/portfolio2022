@@ -15,14 +15,17 @@ function HeroSection() {
     };
 
     return (
-        <div style={{ maxWidth: 2500, margin: "0 auto", minHeight: "100vh" }} className="w-full flex flex-col justify-center items-center relative">
+        <div
+            style={{ maxWidth: 2500, margin: "0 auto", minHeight: "100vh" }}
+            className={`w-full flex flex-col justify-center items-center relative  ${!isMobile && isSmallScreen && "px-10"}  
+                ${isMobile && "px-2"}`}>
             <div
                 className={`h-full flex flex-col 
                 ${!isMobile && isSmallScreen && "justify-center items-start"}  
                 ${isMobile && "justify-center items-start"}
                 ${!isSmallScreen && !isMobile && "justify-center absolute top-0 left-0 items-start pl-20"}
                 `}
-                style={{ height: isSmallScreen ? "auto" : HEIGHT_WITHOUT_NAVBAR, width: isSmallScreen ? "clamp(320px,57vw,800px)" : "auto" }}>
+                style={{ height: isSmallScreen ? "auto" : HEIGHT_WITHOUT_NAVBAR, width: "100%" }}>
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="LUCAS" />
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="PENNICE" />
                 <AnimatedImageOnView
@@ -52,7 +55,7 @@ function HeroSection() {
                 ${!isMobile && isSmallScreen && "mt-8"}  
                 ${isMobile && "justify-center items-start mt-8"}
                 ${!isSmallScreen && !isMobile && "absolute right-0 bottom-20 px-20"}`}
-                style={{ width: isSmallScreen ? "clamp(320px,57vw,800px)" : "100%" }}>
+                style={{ width: "100%" }}>
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="FULLSTACK" />
                 <AnimateWordOnView fontSize={getFontSize()} wordToAnimate="DEVELOPER" />
             </div>
