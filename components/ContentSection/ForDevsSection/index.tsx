@@ -33,7 +33,7 @@ const ForDevsSection = ({ reference }: Props) => {
         return updateMouseMode(MouseModes.Clickeable);
     };
 
-    useHorizontalScroll({ ref, blockScrollAt: 2130 });
+    useHorizontalScroll({ ref, blockScrollAt: 2130 ,breakpoint:1280});
 
     const isMobile = useIsMobile(1280);
 

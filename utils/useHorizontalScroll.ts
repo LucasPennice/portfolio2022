@@ -1,7 +1,12 @@
 import { MutableRefObject, useEffect } from "react";
 
-function useHorizontalScroll(args: { ref: MutableRefObject<HTMLDivElement | null>; onScroll?: () => void; blockScrollAt?: number }) {
-    const { ref, blockScrollAt, onScroll } = args;
+function useHorizontalScroll(args: {
+    ref: MutableRefObject<HTMLDivElement | null>;
+    onScroll?: () => void;
+    blockScrollAt?: number;
+    breakpoint?: number;
+}) {
+    const { ref, blockScrollAt, onScroll, breakpoint } = args;
 
     useEffect(() => {
         if (!ref.current) return;
@@ -17,7 +22,7 @@ function useHorizontalScroll(args: { ref: MutableRefObject<HTMLDivElement | null
         function handleScroll(e: any) {
             if (!ref.current) return;
             if (blockScrollAt && window.innerWidth >= blockScrollAt) return;
-
+            if (breakpoint && window.innerWidth <= breakpoint) return;
             if (onScroll) onScroll();
 
             //Prevents vertical scrolling
