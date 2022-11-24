@@ -46,33 +46,9 @@ body {
     background-color: #f0eeec;
 }
 
-.backgroundShrink {
-    animation: backgroundShrink 1.5s ease forwards;
-}
-
 @media (max-width: 1280px) {
     .background {
         background-size: 80%;
-    }
-    .backgroundShrink {
-        animation: backgroundShrinkMobile 1.5s ease forwards;
-    }
-}
-
-@keyframes backgroundShrinkMobile {
-    from {
-        background-size: 80%;
-    }
-    to {
-        background-size: 50%;
-    }
-}
-@keyframes backgroundShrink {
-    from {
-        background-size: 30%;
-    }
-    to {
-        background-size: 20%;
     }
 }
 

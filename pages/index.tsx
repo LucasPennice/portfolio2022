@@ -81,7 +81,7 @@ export default function Home() {
 
     return (
         <updateMouseModeContext.Provider value={updateMouseMode}>
-            <div className="overflow-hidden min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
+            <div className="overflow-hidden min-h-screen relative text-black dark:text-white" style={{ backgroundColor: "#57737A" }}>
                 <Transition currentMode={currentMode} shouldAnimate={selectedDetails.company !== ""} />
                 {showCustomCursor && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
                 <selectedDetailsContext.Provider value={[selectedDetails, setSelectedDetails]}>

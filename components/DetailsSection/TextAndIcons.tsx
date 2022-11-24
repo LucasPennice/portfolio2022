@@ -30,8 +30,8 @@ function TextAndIcons({ selectedDetails }: { selectedDetails: WorkExperience }) 
                     return (
                         <div key={idx} className="flex-1 flex flex-col justify-start items-center gap-1">
                             <aside
-                                className="w-16 h-16 flex justify-center items-center rounded-sm"
-                                style={{ fontSize: 40, color: "#F0EEEC", backgroundColor: "#12100E" }}>
+                                className="w-16 h-16 flex justify-center items-center rounded-sm text-white dark:text-black bg-black dark:bg-white"
+                                style={{ fontSize: 40 }}>
                                 {tech.icon}
                             </aside>
                             <p className="text-base text-center" style={{ height: 36 }}>

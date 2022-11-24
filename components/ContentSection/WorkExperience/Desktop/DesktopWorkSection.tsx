@@ -39,9 +39,9 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                         height: "100%",
                         borderRadius: 5,
                         aspectRatio: 2600 / 3840,
-                        boxShadow: "1px 2px 9px gray",
                         cursor: "pointer",
                     }}
+                    containerClass="shadow-lg dark:shadow-none shadow-grayShadow"
                     imageProps={{
                         priority: true,
                         alt: "project inmg",

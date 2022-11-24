@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { calculateVariants, layoutAnimationSettings, LayoutState, PortfolioMode } from "../../utils/layout";
 import { selectedDetailsContext } from "../../pages";
 import useHandleLogoState from "../../utils/useHandleLogoState";
@@ -13,6 +13,7 @@ import { motion as m } from "framer-motion";
 import { WorkExperience } from "../../data";
 import WorkSection from "./WorkExperience/WorkSection";
 import HeroSection from "./HeroSection";
+import { DarkModeToggle } from "./WorkExperience/Desktop/Header";
 const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
     ssr: false,
 });
@@ -35,9 +36,7 @@ function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutS
     //Local State
     const [currentMode, setCurrentMode] = layoutState;
     const [showLogo, setShowLogo] = useState(false);
-    const [allowContentScroll, setAllowContentScroll] = useState(true);
-    //Derivated state
-    const isLoadFinished = currentMode !== PortfolioMode.Loading;
+    const [darkMode, setDarkMode] = useState(true);
     //Refs
     const contentRef = useRef<null | HTMLDivElement>(null);
     //Currently viewing
@@ -58,17 +57,37 @@ function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutS
         setCurrentMode(PortfolioMode.Details);
     }
 
+    useEffect(() => {
+        const html = document.querySelector("html");
+        if (!html) return;
+
+        if (darkMode) return html.classList.add("dark");
+
+        html.classList.remove("dark");
+    }, [darkMode]);
+
     return (
         <m.div
             ref={smoothScrolling}
-            className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
+            className={`absolute w-full h-screen bg-white dark:bg-black transition-colors`}
             animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Main)}
             {...layoutAnimationSettings}>
-            <div
-                ref={contentRef}
-                className={`h-full z-10 shadow-md ${allowContentScroll ? "overflow-y-scroll" : "overflow-y-hidden"} overflow-x-hidden relative`}>
-                {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} blockCustomCursorState={blockCustomCursorState} />}
+            <div ref={contentRef} className={`h-full z-10 shadow-md overflow-y-scroll overflow-x-hidden relative`}>
+                {!isSmallScreen && (
+                    <Header
+                        showLogo={showLogo}
+                        sectionInView={sectionInView}
+                        blockCustomCursorState={blockCustomCursorState}
+                        darkModeState={[darkMode, setDarkMode]}
+                    />
+                )}
+                {isSmallScreen && (
+                    <DarkModeToggle
+                        darkModeState={[darkMode, setDarkMode]}
+                        className="absolute w-full text-black dark:text-white h-12 flex justify-start p-5 items-center opacity-30 z-20 cursor-pointer"
+                    />
+                )}
                 <HeroSection />
                 <WorkSection openDetails={openDetails} reference={workSectionRef} />
                 <AboutSection reference={aboutSectionRef} />

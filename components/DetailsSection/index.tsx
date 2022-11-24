@@ -38,7 +38,7 @@ function Details({ layoutState }: { layoutState: LayoutState }) {
 
     return (
         <m.div
-            className="absolute w-screen h-screen bg-white"
+            className="absolute w-screen h-screen bg-white dark:bg-black"
             animate={currentMode === PortfolioMode.Details ? "active" : "inactive"}
             initial="inactive"
             variants={calculateVariants(currentMode, PortfolioMode.Details)}

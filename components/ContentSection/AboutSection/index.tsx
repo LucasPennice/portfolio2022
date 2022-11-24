@@ -15,7 +15,7 @@ const AboutSection = ({ reference }: Props) => {
             <div
                 style={{ maxWidth: 2500, margin: "0 auto" }}
                 className="w-full flex text-2xl flex-col justify-start items-center xl:pb-0 pb-3 px-4 xl:px-20 xl:gap-0 gap-8">
-                <header className="w-full flex justify-between items-center xl:text-3xl text-2xl my-1 xl:my-20 ">
+                <header className="w-full flex justify-between items-center xl:text-3xl text-2xl my-1 xl:my-20">
                     <h1>.02</h1>
                     <h1>About</h1>
                 </header>
@@ -34,8 +34,8 @@ const AboutSection = ({ reference }: Props) => {
                             return (
                                 <div key={idx} className="flex-1 flex flex-col justify-start items-center gap-1">
                                     <aside
-                                        className="w-16 h-16 xl:w-32 xl:h-32 flex justify-center items-center rounded-md"
-                                        style={{ fontSize: isMobile ? 40 : 65, color: "#F0EEEC", backgroundColor: "#12100E" }}>
+                                        className="w-16 h-16 xl:w-32 xl:h-32 flex justify-center items-center rounded-md text-white dark:text-black bg-black dark:bg-white"
+                                        style={{ fontSize: isMobile ? 40 : 65 }}>
                                         {tech.icon}
                                     </aside>
                                     <p className="text-base" style={{ height: 36 }}>
@@ -51,8 +51,8 @@ const AboutSection = ({ reference }: Props) => {
                             return (
                                 <div key={idx} className="flex-1 flex flex-col justify-start items-center gap-1">
                                     <aside
-                                        className="w-16 h-16 xl:w-32 xl:h-32 flex justify-center items-center rounded-md"
-                                        style={{ fontSize: isMobile ? 40 : 65, color: "#F0EEEC", backgroundColor: "#12100E" }}>
+                                        className="w-16 h-16 xl:w-32 xl:h-32 flex justify-center items-center rounded-md text-white dark:text-black bg-black dark:bg-white"
+                                        style={{ fontSize: isMobile ? 40 : 65 }}>
                                         {tech.icon}
                                     </aside>
                                     <p className="text-base" style={{ height: 36 }}>

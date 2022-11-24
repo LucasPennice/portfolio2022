@@ -47,8 +47,8 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                     transition={{ duration: 0.4, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
                                     className="w-full h-full absolute left-0 top-0">
                                     <AnimatedImageOnView
+                                        containerClass="shadow-lg dark:shadow-none shadow-grayShadow"
                                         containerStyles={{
-                                            boxShadow: "1px 2px 9px gray",
                                             borderRadius: 5,
                                             aspectRatio: 2600 / 3840,
                                             width: `100%`,
@@ -75,11 +75,11 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                         animateEveryTime
                                         delayInSeconds={0.5}
                                         underline
-                                        underlineHeight={4}
+                                        underlineHeight={2}
                                         style={{ marginTop: 10 }}
                                     />
                                     <AnimateWordOnView
-                                        fontSize={24}
+                                        fontSize={22}
                                         wordToAnimate={workExperience.role}
                                         animateEveryTime
                                         delayInSeconds={0.7}
@@ -120,9 +120,8 @@ function Indicator({
             {tempArr.map((garbageValue, idx) => {
                 return (
                     <div
-                        className="flex-1 h-full flex justify-center items-center rounded-md"
+                        className="flex-1 h-full flex justify-center items-center rounded-md shadow-lg dark:shadow-none shadow-grayShadow dark:bg-headerBgLight"
                         key={idx}
-                        style={{ boxShadow: "1px 2px 9px gray" }}
                         onClick={() => {
                             selectClickedIdx(idx);
                         }}
@@ -132,9 +131,9 @@ function Indicator({
             <m.aside
                 initial={{ left: 0 }}
                 animate={{ left: `calc(${(100 / workExperienceLength) * selectedContentIdx}% + ${(GAP_SIZE_IN_PIXELS * selectedContentIdx) / 2}px)` }}
-                className="h-full absolute rounded-md pointer-events-none"
+                className="h-full absolute rounded-md pointer-events-none bg-white"
                 transition={{ duration: 0.5, easings: "cubic-bezier(0.83, 0, 0.17, 1)" }}
-                style={{ width: selectorWidth, backgroundColor: "#12100E" }}></m.aside>
+                style={{ width: selectorWidth }}></m.aside>
         </div>
     );
 }

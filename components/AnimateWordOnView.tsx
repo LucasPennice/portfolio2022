@@ -89,7 +89,7 @@ function Underline({ delay, height }: { delay: number; height: number | undefine
         <m.div
             {...appearTextUnderlineAnimation(delay)}
             style={{ height: height ? height : 7 }}
-            className="w-full absolute bottom-0 left-0 bg-black"></m.div>
+            className="w-full absolute bottom-0 left-0 dark:bg-white bg-black"></m.div>
     );
 }
 export default AnimateWordOnView;

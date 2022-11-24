@@ -32,7 +32,7 @@ function Slider({ currentContentSection, showLogo }: SliderProps) {
                 initial={{ filter: "blur(2px)" }}
                 animate={{ filter: "blur(0px)" }}
                 transition={{ type: "spring", bounce: 0.1, damping: 15 }}
-                className="h-full w-full bg-black rounded-md safariBlurCompatibility"></m.div>
+                className="h-full w-full bg-black dark:bg-white rounded-md safariBlurCompatibility"></m.div>
         </m.aside>
     );
 }

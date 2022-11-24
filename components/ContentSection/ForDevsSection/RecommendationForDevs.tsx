@@ -18,7 +18,7 @@ function RecommendationForDevs({ data, position }: RecommendationForDevs) {
 
     const isMobile = useIsMobile(1280);
     const isSmallScreen = useIsMobile(680);
-    const styles = { borderStyle: getBorderStyles(), borderWidth: 1, borderColor: "black", paddingTop: isMobile ? 20 : 50 };
+    const styles = { borderStyle: getBorderStyles(), borderWidth: 1, paddingTop: isMobile ? 20 : 50 };
 
     const setMouseModeToDefault = () => updateMouseMode(MouseModes.Default);
     const setMouseModeToClickeable = () => updateMouseMode(MouseModes.Clickeable);
@@ -27,7 +27,7 @@ function RecommendationForDevs({ data, position }: RecommendationForDevs) {
         <m.div
             style={styles}
             animate={{ height: isMobile ? 90 : 135 }}
-            className="px-5 xl:px-20 text-xl xl:text-2xl overflow-y-hidden"
+            className="px-5 xl:px-20 text-xl xl:text-2xl overflow-y-hidden border-black dark:border-white"
             transition={{ ease: "easeInOut" }}>
             <section className="flex items-center justify-between">
                 <p>0{idx}</p>
