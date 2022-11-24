@@ -26,6 +26,7 @@ const defaultSelectedDetails: WorkExperience = {
     from: "",
     role: "",
     to: "",
+    mobileCoverImage: { resolution: { h: 0, w: 0 }, src: "" },
     coverImage: { resolution: { h: 0, w: 0 }, src: "" },
     detailImages: [],
     projectLink: false,
