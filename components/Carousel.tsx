@@ -2,6 +2,7 @@ import { PanInfo, motion as m, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { clamp } from "three/src/math/MathUtils";
 import { WorkExperience } from "../data";
+import useIsMobile from "../utils/useMobileScreen";
 import AnimatedImageOnView from "./AnimatedImageOnView";
 import AnimateWordOnView from "./AnimateWordOnView";
 
@@ -25,9 +26,12 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
             });
     };
 
+    const isTablet = useIsMobile(1280);
+    const isMobile = useIsMobile(600);
+
     return (
         <div className="xl:hidden w-full flex flex-col justify-start items-center" style={{ margin: "0 auto", aspectRatio: 2000 / 1500 }}>
-            <div className="relative w-full" style={{ aspectRatio: 2000 / 1560 }}>
+            <div className="relative w-full" style={{ aspectRatio: isMobile ? 1 : isTablet ? 2000 / 1400 : 1 }}>
                 {workExperienceArr.map((workExperience, idx) => {
                     const isActive = idx === selectedContentIdx;
                     return (
