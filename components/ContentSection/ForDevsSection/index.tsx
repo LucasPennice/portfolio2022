@@ -10,7 +10,6 @@ import { IPhoneModel } from "./models/IPhoneModel";
 import { HeadphonesModel } from "./models/HeadphonesModel";
 import { BookshelfModel } from "./models/BookshelfModel";
 import { ReactModel } from "./models/ReactModel";
-import { AllowContentScrollContext } from "..";
 
 interface Props {
     reference: React.MutableRefObject<any>;
@@ -21,7 +20,6 @@ const ForDevsSection = ({ reference }: Props) => {
     const [selectedTopic, setSelectedTopic] = useState<SelectedTopic>(SelectedTopic.Books);
     //Context
     const updateMouseMode = useContext(updateMouseModeContext);
-    const setAllowContentScroll = useContext(AllowContentScrollContext);
     //Refs
     const ref = useRef<HTMLDivElement | null>(null);
 
@@ -36,9 +34,7 @@ const ForDevsSection = ({ reference }: Props) => {
 
     const handleScroll = (e: any) => {
         if (window.innerWidth >= 2130) return;
-        if (ref.current!.scrollLeft < 10 && e.deltaY < 0) return setAllowContentScroll(true);
         ref.current!.scrollLeft += e.deltaY;
-        if (ref.current!.scrollLeft > 826) return setAllowContentScroll(true);
     };
 
     const isMobile = useIsMobile(1280);
@@ -46,13 +42,11 @@ const ForDevsSection = ({ reference }: Props) => {
     const handleOnMouseEnter = () => {
         setMouseModeToAction();
         if (window.innerWidth >= 2130) return;
-        setAllowContentScroll(false);
     };
 
     const handleOnMouseLeave = () => {
         setMouseModeToDefault();
         if (window.innerWidth >= 2130) return;
-        setAllowContentScroll(true);
     };
 
     return (

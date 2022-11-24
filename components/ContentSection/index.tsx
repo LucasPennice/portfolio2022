@@ -28,8 +28,6 @@ export enum ContentSections {
     about = "About",
 }
 
-export const AllowContentScrollContext = createContext<(v: boolean) => void>(() => {});
-
 function Content({ layoutState }: { layoutState: LayoutState }) {
     //Context
     const selectedDetailsState = useContext(selectedDetailsContext);
@@ -61,25 +59,23 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
     }
 
     return (
-        <AllowContentScrollContext.Provider value={setAllowContentScroll}>
-            <m.div
-                ref={smoothScrolling}
-                className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
-                animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
-                variants={calculateVariants(currentMode, PortfolioMode.Main)}
-                {...layoutAnimationSettings}>
-                <div
-                    ref={contentRef}
-                    className={`h-full z-10 shadow-md ${allowContentScroll ? "overflow-y-scroll" : "overflow-y-hidden"} overflow-x-hidden relative`}>
-                    {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} />}
-                    <HeroSection />
-                    <WorkSection openDetails={openDetails} reference={workSectionRef} />
-                    <AboutSection reference={aboutSectionRef} />
-                    <ForDevsSection reference={forDevsSectionRef} />
-                    <ContactSection reference={contactSectionRef} />
-                </div>
-            </m.div>
-        </AllowContentScrollContext.Provider>
+        <m.div
+            ref={smoothScrolling}
+            className={`absolute w-full h-screen background ${isLoadFinished && "backgroundShrink"}`}
+            animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
+            variants={calculateVariants(currentMode, PortfolioMode.Main)}
+            {...layoutAnimationSettings}>
+            <div
+                ref={contentRef}
+                className={`h-full z-10 shadow-md ${allowContentScroll ? "overflow-y-scroll" : "overflow-y-hidden"} overflow-x-hidden relative`}>
+                {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} />}
+                <HeroSection />
+                <WorkSection openDetails={openDetails} reference={workSectionRef} />
+                <AboutSection reference={aboutSectionRef} />
+                <ForDevsSection reference={forDevsSectionRef} />
+                <ContactSection reference={contactSectionRef} />
+            </div>
+        </m.div>
     );
 }
 
