@@ -36,7 +36,7 @@ function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutS
     //Local State
     const [currentMode, setCurrentMode] = layoutState;
     const [showLogo, setShowLogo] = useState(false);
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(false);
     //Refs
     const contentRef = useRef<null | HTMLDivElement>(null);
     //Currently viewing
