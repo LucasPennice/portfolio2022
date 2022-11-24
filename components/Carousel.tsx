@@ -55,6 +55,7 @@ function Carousel({ workExperienceArr, onClick }: { workExperienceArr: WorkExper
                                         }}
                                         imageProps={{
                                             priority: true,
+                                            placeholder: "blur",
                                             src: workExperience.mobileCoverImage.src,
                                             style: {
                                                 width: "100%",
