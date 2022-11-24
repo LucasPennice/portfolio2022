@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion as m, useInView } from "framer-motion";
+import { motion as m } from "framer-motion";
 import { MouseModes, updateMouseModeContext } from "../../../../pages";
 import { WorkExperience } from "../../../../data";
 import AnimateWordOnView from "../../../AnimateWordOnView";
@@ -40,6 +40,7 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                         borderRadius: 5,
                         aspectRatio: 2600 / 3840,
                         boxShadow: "1px 2px 9px gray",
+                        cursor: "pointer",
                     }}
                     imageProps={{
                         priority: true,
@@ -56,7 +57,11 @@ function Job_Desktop({ openDetails, data }: { openDetails(workExperience: WorkEx
                     }}
                     actions={{ onMouseEnter: setMouseDetails, onMouseLeave: setMouseDefault, onClick: () => openDetails(data) }}
                 />
-                <h1 onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={() => openDetails(data)} className="text-2xl mt-2">
+                <h1
+                    onMouseEnter={setMouseDetails}
+                    onMouseLeave={setMouseDefault}
+                    onClick={() => openDetails(data)}
+                    className="text-2xl mt-2 cursor-pointer">
                     More Details
                 </h1>
             </section>
@@ -72,8 +77,8 @@ function Text({ data, openDetails }: { data: WorkExperience; openDetails: () => 
     const setMouseDefault = () => updateMouseMode(MouseModes.Default);
 
     return (
-        <aside className="flex flex-col sticky top-20 cursor-default w-full">
-            <div onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={openDetails} className="mb-9">
+        <aside className="flex flex-col sticky top-20 w-full">
+            <div onMouseEnter={setMouseDetails} onMouseLeave={setMouseDefault} onClick={openDetails} className="mb-9 cursor-pointer">
                 {companyNameWords.map((word, idx) => {
                     return <AnimateWordOnView fontSize={110} wordToAnimate={word} underline key={idx} />;
                 })}

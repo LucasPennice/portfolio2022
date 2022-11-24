@@ -8,14 +8,19 @@ import AnimateWordOnView, { AllowedFonts } from "../../AnimateWordOnView";
 
 interface Props {
     reference: React.MutableRefObject<any>;
+    blockCustomCursorState: [boolean, () => void];
 }
 
-const ContactSection = ({ reference }: Props) => {
+const ContactSection = ({ reference, blockCustomCursorState }: Props) => {
+    //Context
     const updateMouseMode = useContext(updateMouseModeContext);
+    //Hooks
     const isMobile = useIsMobile(1280);
-
+    //Local state
     const [copied, setCopied] = useState(false);
     const [fontSize, setFontSize] = useState<AllowedFonts>(110);
+    //Props
+    const [blockCustomCursor, toggleBlockCustomCursor] = blockCustomCursorState;
 
     const setMouseModeToDefault = () => updateMouseMode(MouseModes.Default);
     const setMouseModeToCopy = () => updateMouseMode(MouseModes.CopyToClipboard);
@@ -48,7 +53,7 @@ const ContactSection = ({ reference }: Props) => {
                 </header>
                 <div className="w-full">
                     <section
-                        className="w-full"
+                        className="w-full cursor-pointer"
                         onMouseEnter={setMouseModeToCopy}
                         onMouseLeave={setMouseModeToDefault}
                         onClick={() => {
@@ -59,8 +64,8 @@ const ContactSection = ({ reference }: Props) => {
                         <AnimateWordOnView fontSize={fontSize} wordToAnimate="LUCASPENNICE@" />
                         <AnimateWordOnView fontSize={fontSize} wordToAnimate="GMAIL.COM" />
                         <m.div {...appearOpacity(1)}>
-                            {isMobile && !copied && <p>↑ Click To Copy</p>}
-                            {isMobile && copied && <p style={{ color: "#5FAD41" }}>Copied!</p>}
+                            {(isMobile || blockCustomCursor) && !copied && <p>↑ Click To Copy</p>}
+                            {(isMobile || blockCustomCursor) && copied && <p style={{ color: "#5FAD41" }}>Copied!</p>}
                         </m.div>
                     </section>
 

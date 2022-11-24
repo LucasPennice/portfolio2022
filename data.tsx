@@ -135,7 +135,7 @@ export const workExperienceArr: WorkExperience[] = [
             { icon: <IoBuild />, label: "EsBuild" },
         ],
         caseStudy:
-            "Migration from MUI to custom components for complete UI overhaul, migrated from WebPack to EsBuild, partial migration from JavaScript to TypeScript, integration with backend API’s to send and receive data that is then rendered as React components. Created several forms with the option to upload images, videos and files. Implemented polling to check the processing state of uploaded files, created a component that allows the user to highlight individual frames of an uploaded video. Created a modal that allows the user to edit the subtitles (both text and timestamp) for an uploaded video, alongside a custom video player built from scratch, implemented WavesurferJs to visualize the uploaded video’s audio track, implemented undo and redo functionalities that track the whole modal state.-BREAK-Created a component to help users check how their YouTube thumbnail would look on the youtube’s home screen (both light and dark mode) for computer, tablet and mobile interfaces (based on their preference), worked with youtube’s api for channel name autocompletion on the edit profile page.",
+            "Migration from MUI to custom components for complete UI overhaul, migrated from WebPack to EsBuild, partial migration from JavaScript to TypeScript, integration with backend API’s to send and receive data that is then rendered as React components. Created several forms with the option to upload images, videos and files. -BREAK-Implemented polling to check the processing state of uploaded files, created a component that allows the user to highlight individual frames of an uploaded video. Created a modal that allows the user to edit the subtitles (both text and timestamp) for an uploaded video, alongside a custom video player built from scratch, implemented WavesurferJs to visualize the uploaded video’s audio track, implemented undo and redo functionalities that track the whole modal state.-BREAK-Created a component to help users check how their YouTube thumbnail would look on the youtube’s home screen (both light and dark mode) for computer, tablet and mobile interfaces (based on their preference), worked with youtube’s api for channel name autocompletion on the edit profile page.",
     },
 ];
 
@@ -229,7 +229,7 @@ export const ABOUT_SECTION_DATA = {
     textArray: [
         "My name is Lucas Pennice, I’m a FullStack developer with most of my experience working with React and TypeScript",
         "I’m always learning, and looking for the next challenge. Some of my main interests are creating useful, responsive applications, improving my team-working skills, learning to write better code and keep discovering new technologies and methodologies to work with",
-        "I began my coding journey in high school when I took three years of C, mostly based on solving algorithmic problems. After finishing high-school I enrolled into System Engineering and started to learn web development, in 2022 I finished a programming and data structures micro bachelors at NYUx",
+        "I began my coding journey in high school when I took three years of C, mostly based on solving algorithmic problems. After finishing high-school I enrolled into System Engineering and started to learn web development, in 2022 I finished a programming and data structures micro bachelors at NYU (New York University)",
     ],
     workExperienceTech: [
         { icon: <SiReact />, label: "ReactJs" },

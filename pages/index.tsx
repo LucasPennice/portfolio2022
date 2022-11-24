@@ -6,6 +6,7 @@ import Details from "../components/DetailsSection";
 import dynamic from "next/dynamic";
 import { WorkExperience } from "../data";
 import { motion as m } from "framer-motion";
+
 const Cursor = dynamic(() => import("../components/Cursor"), {
     ssr: false,
 });
@@ -45,8 +46,13 @@ export default function Home() {
     const [selectedDetails, setSelectedDetails] = useState<WorkExperience>(defaultSelectedDetails);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [mouseMode, setMouseMode] = useState<MouseModes>(MouseModes.Default);
+    const [blockCustomCursor, setBlockCustomCursor] = useState(false);
+    //Hooks
+    const isSmallScreen = useIsMobile(1430, false);
+    //Derived state
+    const showCustomCursor = !isSmallScreen && !blockCustomCursor;
 
-    const isSmallScreen = useIsMobile(1400, false);
+    const toggleBlockCustomCursor = () => setBlockCustomCursor((prev) => !prev);
 
     useEffect(() => {
         const mouseMove = (e: any) => {
@@ -65,13 +71,21 @@ export default function Home() {
 
     const updateMouseMode = (v: MouseModes) => setMouseMode(v);
 
+    useEffect(() => {
+        const root = document.querySelector("#__next");
+
+        if (!root) return;
+
+        root.setAttribute("show-custom-cursor", showCustomCursor.toString());
+    }, [showCustomCursor]);
+
     return (
         <updateMouseModeContext.Provider value={updateMouseMode}>
             <div className="overflow-hidden min-h-screen relative" style={{ backgroundColor: "#57737A" }}>
                 <Transition currentMode={currentMode} shouldAnimate={selectedDetails.company !== ""} />
-                {!isSmallScreen && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
+                {showCustomCursor && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
                 <selectedDetailsContext.Provider value={[selectedDetails, setSelectedDetails]}>
-                    <Content layoutState={[currentMode, setCurrentMode]} />
+                    <Content layoutState={[currentMode, setCurrentMode]} blockCustomCursorState={[blockCustomCursor, toggleBlockCustomCursor]} />
                     <Details layoutState={[currentMode, setCurrentMode]} />
                 </selectedDetailsContext.Provider>
             </div>

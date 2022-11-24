@@ -64,7 +64,7 @@ const ForDevsSection = ({ reference }: Props) => {
                     transition={{ duration: 0.5, easings: "cubic-bezier(0.075, 0.82, 0.165, 1)" }}>
                     <header
                         ref={ref}
-                        className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar"
+                        className="flex flex-col xl:flex-row xl:overflow-x-scroll hideScrollbar cursor-pointer"
                         onMouseEnter={handleOnMouseEnter}
                         onMouseLeave={handleOnMouseLeave}
                         onWheel={handleScroll}
@@ -97,7 +97,7 @@ const ForDevsSection = ({ reference }: Props) => {
                     </m.section>
                     <section className="w-full xl:w-1/2 flex justify-center items-center xl:mb-0 mb-12">
                         <div
-                            className="xl:aspect-square aspect-video "
+                            className="xl:aspect-square aspect-video cursor-grab"
                             style={{ width: isMobile ? "100%" : "80%" }}
                             onMouseEnter={setMouseToRotateMe}
                             onMouseLeave={setMouseModeToDefault}>

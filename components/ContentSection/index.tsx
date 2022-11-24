@@ -28,7 +28,7 @@ export enum ContentSections {
     about = "About",
 }
 
-function Content({ layoutState }: { layoutState: LayoutState }) {
+function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutState; blockCustomCursorState: [boolean, () => void] }) {
     //Context
     const selectedDetailsState = useContext(selectedDetailsContext);
     const [selectedDetails, setSelectedDetails] = selectedDetailsState!;
@@ -48,7 +48,7 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
 
     const smoothScrolling = useRef(null);
 
-    const isSmallScreen = useIsMobile(1680, true);
+    const isSmallScreen = useIsMobile(1430, false);
     const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
 
     useHandleLogoState(contentRef, setShowLogo);
@@ -68,12 +68,12 @@ function Content({ layoutState }: { layoutState: LayoutState }) {
             <div
                 ref={contentRef}
                 className={`h-full z-10 shadow-md ${allowContentScroll ? "overflow-y-scroll" : "overflow-y-hidden"} overflow-x-hidden relative`}>
-                {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} />}
+                {!isSmallScreen && <Header showLogo={showLogo} sectionInView={sectionInView} blockCustomCursorState={blockCustomCursorState} />}
                 <HeroSection />
                 <WorkSection openDetails={openDetails} reference={workSectionRef} />
                 <AboutSection reference={aboutSectionRef} />
                 <ForDevsSection reference={forDevsSectionRef} />
-                <ContactSection reference={contactSectionRef} />
+                <ContactSection blockCustomCursorState={blockCustomCursorState} reference={contactSectionRef} />
             </div>
         </m.div>
     );

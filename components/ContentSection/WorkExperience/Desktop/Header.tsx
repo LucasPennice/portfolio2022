@@ -6,6 +6,7 @@ import { ContentSections } from "../..";
 import AnimateWordOnView from "../../../AnimateWordOnView";
 import HoverSlider from "./HoverSlider";
 import Slider from "./Slider";
+import { BsMouse, BsMouseFill } from "react-icons/bs";
 
 interface HeaderAnchorProps {
     sectionName: ContentSections;
@@ -15,11 +16,14 @@ interface HeaderAnchorProps {
 interface Props {
     showLogo: boolean;
     sectionInView: ContentSections | undefined;
+    blockCustomCursorState: [boolean, () => void];
 }
 
-const Header = ({ showLogo, sectionInView }: Props) => {
+const Header = ({ showLogo, sectionInView, blockCustomCursorState }: Props) => {
     const [isHovering, setIsHovering] = React.useState(false);
     const [hoveringAnchor, setHoveringAnchor] = React.useState<ContentSections>();
+    //Props
+    const [blockCustomCursor, toggleBlockCustomCursor] = blockCustomCursorState;
 
     React.useEffect(() => {
         if (isHovering) return;
@@ -59,6 +63,12 @@ const Header = ({ showLogo, sectionInView }: Props) => {
                 </div>
                 <HeaderAnchor link="#forDevsSection" sectionName={ContentSections.forDevs} />
                 <HeaderAnchor link="#contactSection" sectionName={ContentSections.contact} />
+            </div>
+            <div
+                className="absolute right-5 top-1 px-4 h-full flex flex-col justify-center items-center opacity-70"
+                onClick={toggleBlockCustomCursor}>
+                {!blockCustomCursor && <BsMouseFill />}
+                {blockCustomCursor && <BsMouse />}
             </div>
         </div>
     );
