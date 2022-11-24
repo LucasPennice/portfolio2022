@@ -43,7 +43,7 @@ const ContactSection = ({ reference, blockCustomCursorState }: Props) => {
     }, []);
 
     return (
-        <div id="contactSection" style={{ minHeight: "100vh" }} className="pt-10" ref={reference}>
+        <div style={{ minHeight: "101vh" }} className="pt-10" ref={reference}>
             <div
                 style={{ maxWidth: 2500, margin: "0 auto", height: isMobile ? "100vh" : "calc(100vh - 112px)" }}
                 className="w-full flex flex-col justify-between items-start px-4 xl:px-20 gap-10">
@@ -93,6 +93,7 @@ const ContactSection = ({ reference, blockCustomCursorState }: Props) => {
                 </div>
                 <m.footer
                     {...appearOpacity(1.1)}
+                    id="contactSection"
                     className="w-full flex flex-row justify-between items-start xl:gap-0 gap-6 xl:items-center pb-5 xl:pb-0">
                     <div style={{ fontSize: isMobile ? "max(2vw , 2px)" : 30 }}>
                         <p>BASED IN ROSARIO</p>

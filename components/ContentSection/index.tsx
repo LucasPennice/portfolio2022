@@ -15,10 +15,8 @@ import WorkSection from "./WorkExperience/WorkSection";
 import HeroSection from "./HeroSection";
 import { DarkModeToggle } from "./WorkExperience/Desktop/Header";
 import useHandleDarkMode from "./useHandleDarkMode";
+import ContactSection from "./ContactSection";
 const Header = dynamic(() => import("./WorkExperience/Desktop/Header"), {
-    ssr: false,
-});
-const ContactSection = dynamic(() => import("./ContactSection"), {
     ssr: false,
 });
 
@@ -49,7 +47,7 @@ function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutS
     const smoothScrolling = useRef(null);
 
     const isSmallScreen = useIsMobile(1430, false);
-    const sectionInView = useContentInView(workSectionRef, aboutSectionRef, contactSectionRef, forDevsSectionRef);
+    const sectionInView = useContentInView(workSectionRef, aboutSectionRef, forDevsSectionRef, contactSectionRef);
 
     useHandleLogoState(contentRef, setShowLogo);
 
