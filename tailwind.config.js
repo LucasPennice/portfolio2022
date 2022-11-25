@@ -4,9 +4,9 @@ module.exports = {
     darkMode: "class",
     theme: {
         colors: {
-            black: "#12100E",
-            white: "#F0EEEC",
-            grayShadow: "#b4b4b4",
+            black: "black",
+            white: "white",
+            grayShadow: "#e6e6e6",
             headerBgDark: "#1c1c1c5a",
             headerBgLight: "#F0EEEC5A",
             red: "red",

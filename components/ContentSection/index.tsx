@@ -62,6 +62,7 @@ function Content({ layoutState, blockCustomCursorState }: { layoutState: LayoutS
         <m.div
             ref={smoothScrolling}
             className={`absolute w-full h-screen bg-white dark:bg-black transition-colors`}
+            style={{ transitionDuration: isSmallScreen ? "0.3s" : "0.15s" }}
             animate={currentMode === PortfolioMode.Main ? "active" : "inactive"}
             variants={calculateVariants(currentMode, PortfolioMode.Main)}
             {...layoutAnimationSettings}>
