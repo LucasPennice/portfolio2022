@@ -6,6 +6,7 @@ import Details from "../components/DetailsSection";
 import dynamic from "next/dynamic";
 import { WorkExperience } from "../data";
 import { motion as m } from "framer-motion";
+import Head from "next/head";
 
 const Cursor = dynamic(() => import("../components/Cursor"), {
     ssr: false,
@@ -82,6 +83,10 @@ export default function Home() {
 
     return (
         <updateMouseModeContext.Provider value={updateMouseMode}>
+            <Head>
+                <title>Lucas Pennice's Portfolio</title>
+                <meta name="description" content="Portfolio of full stack web developer Lucas Pennice" />
+            </Head>
             <div className="overflow-hidden min-h-screen relative text-black dark:text-white" style={{ backgroundColor: "#57737A" }}>
                 <Transition currentMode={currentMode} shouldAnimate={selectedDetails.company !== ""} />
                 {showCustomCursor && <Cursor mousePosition={mousePosition} mode={mouseMode} />}
