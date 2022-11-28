@@ -82,7 +82,7 @@ export const workExperienceArr: WorkExperience[] = [
         company: "Tracker Wallet",
         from: "2021",
         to: "2022",
-        role: "Frontend developer",
+        role: "Frontend Dev",
         youtubeDemoVideoId: "dE-3igVicso",
         mobileCoverImage: { resolution: { w: 2000, h: 1000 }, src: TrackerWalletMobileCover },
         coverImage: { resolution: { w: 2600, h: 3840 }, src: TrackerWalletCover },
