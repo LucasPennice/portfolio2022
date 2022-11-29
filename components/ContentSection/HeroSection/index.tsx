@@ -2,7 +2,7 @@ import { HEIGHT_WITHOUT_NAVBAR } from "../../../pages";
 import useIsMobile from "../../../utils/useMobileScreen";
 import AnimatedImageOnView from "../../AnimatedImageOnView";
 import AnimateWordOnView from "../../AnimateWordOnView";
-import MonkeyImage from "../../../public/drill-monkey-01_2x3.webp";
+import Placeholder from "../../../public/placeholder.png";
 
 function HeroSection() {
     const isMobile = useIsMobile(700);
@@ -37,9 +37,9 @@ function HeroSection() {
                     imageProps={{
                         priority: true,
                         alt: "project inmg",
-                        width: 1920,
-                        height: 1080,
-                        src: MonkeyImage,
+                        width: 760,
+                        height: 320,
+                        src: Placeholder,
                         placeholder: "blur",
                         style: {
                             width: "100%",
