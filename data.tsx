@@ -256,6 +256,7 @@ export const ABOUT_SECTION_DATA = {
         { icon: <SiHtml5 />, label: "HTML" },
         { icon: <SiCss3 />, label: "CSS" },
         { icon: <SiDocker />, label: "Docker" },
+        { icon: <SiThreedotjs />, label: "ThreeJs" },
     ],
     haveUsedBeforeTech: [
         { icon: <DiPython />, label: "Python" },
@@ -266,7 +267,6 @@ export const ABOUT_SECTION_DATA = {
         { icon: <SiPrisma />, label: "Prisma" },
         { icon: <SiPassport />, label: "PassportJs" },
         { icon: <TbBrandReactNative />, label: "ReactNative" },
-        { icon: <SiThreedotjs />, label: "ThreeJs" },
     ],
 };
 
