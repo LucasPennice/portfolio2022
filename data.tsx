@@ -117,9 +117,6 @@ export const workExperienceArr: WorkExperience[] = [
         coverImage: { resolution: { w: 2600, h: 3840 }, src: CreatorSetCover },
         detailImages: [
             { resolution: { w: 2560, h: 1358 }, src: CS_Login },
-            { resolution: { w: 2560, h: 1358 }, src: CS_CaptionToolPage },
-            { resolution: { w: 2560, h: 1358 }, src: CS_CaptionTool },
-            { resolution: { w: 2560, h: 1358 }, src: CS_ProfanityChecker },
             { resolution: { w: 2560, h: 1358 }, src: CS_ThumbnailPreviewer },
             { resolution: { w: 2560, h: 1358 }, src: CS_EditProfile },
             { resolution: { w: 2560, h: 1358 }, src: CS_NewProduct },
