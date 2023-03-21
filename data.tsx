@@ -113,7 +113,7 @@ export const workExperienceArr: WorkExperience[] = [
         from: "2021",
         to: "2022",
         role: "Frontend Dev",
-        mobileCoverImage: { resolution: { w: 2000, h: 1000 }, src: CreatorSetMobileCover },
+        mobileCoverImage: { resolution: { w: 4000, h: 2000 }, src: CreatorSetMobileCover },
         coverImage: { resolution: { w: 2600, h: 3840 }, src: CreatorSetCover },
         detailImages: [
             { resolution: { w: 2560, h: 1358 }, src: CS_Login },

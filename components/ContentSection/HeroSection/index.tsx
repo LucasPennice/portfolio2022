@@ -31,17 +31,18 @@ function HeroSection() {
                 <AnimatedImageOnView
                     containerStyles={{
                         width: `clamp(320px,${19 * 3}vw,500px)`,
-                        height: `clamp(135px,${8 * 3}vw,209px)`,
+                        // height: `clamp(135px,${8 * 3}vw,209px)`,
                         marginTop: isSmallScreen ? 32 : 0,
                     }}
                     imageProps={{
                         priority: true,
                         alt: "project inmg",
-                        width: 760,
-                        height: 320,
+                        width: 4032,
+                        height: 2285,
                         src: Placeholder,
                         placeholder: "blur",
                         style: {
+                            objectFit: "contain",
                             width: "100%",
                             height: "100%",
                             borderRadius: 5,
